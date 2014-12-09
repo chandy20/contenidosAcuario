@@ -26,9 +26,10 @@ public class ContenidosAcuario {
             System.out.println(e);
         }
         Principal principal = new Principal();
-        Toolkit t = Toolkit.getDefaultToolkit();
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        principal.setLocation((int)(screenSize.getWidth()/2 -200), (int)(screenSize.getHeight())/2-150);
+//        Toolkit t = Toolkit.getDefaultToolkit();
+//        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//        principal.setLocation((int)(screenSize.getWidth()/2 -200), (int)(screenSize.getHeight())/2-150);
+        principal.setLocationRelativeTo(null);
         principal.setVisible(true);
     }
 

@@ -3,8 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package contenidosacuario;
+
+import DAO.UsuarioDAO;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import objetos.UsuarioVO;
 
 /**
  *
@@ -12,11 +20,21 @@ package contenidosacuario;
  */
 public class Administrador extends javax.swing.JFrame {
 
+    UsuarioDAO uDAO = new UsuarioDAO();
+    DefaultTableModel dftm;
+
     /**
      * Creates new form Administrador
      */
     public Administrador() {
         initComponents();
+        addUser.setVisible(false);
+        lista.setVisible(false);
+        editar.setVisible(false);
+    }
+
+    public void alineamiento() {
+        create.setLocation(516, 408);
     }
 
     /**
@@ -28,7 +46,46 @@ public class Administrador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
+        addUser = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        nombres = new javax.swing.JTextField();
+        names = new javax.swing.JLabel();
+        apellidos = new javax.swing.JTextField();
+        lastName = new javax.swing.JLabel();
+        user = new javax.swing.JLabel();
+        username = new javax.swing.JTextField();
+        pass = new javax.swing.JLabel();
+        doc = new javax.swing.JLabel();
+        documento = new javax.swing.JTextField();
+        create = new javax.swing.JButton();
+        password = new javax.swing.JPasswordField();
+        confirmar = new javax.swing.JLabel();
+        passwordConfirm = new javax.swing.JTextField();
+        inicio = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lista = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
+        delete = new javax.swing.JButton();
+        edit = new javax.swing.JButton();
+        editar = new javax.swing.JPanel();
+        nombres1 = new javax.swing.JTextField();
+        names1 = new javax.swing.JLabel();
+        lastName1 = new javax.swing.JLabel();
+        apellidos1 = new javax.swing.JTextField();
+        user1 = new javax.swing.JLabel();
+        username1 = new javax.swing.JTextField();
+        pass1 = new javax.swing.JLabel();
+        doc1 = new javax.swing.JLabel();
+        documento1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        edition = new javax.swing.JButton();
+        password1 = new javax.swing.JPasswordField();
+        confirmar1 = new javax.swing.JLabel();
+        passwordConfirm1 = new javax.swing.JTextField();
+        menu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         crear = new javax.swing.JMenuItem();
         listar = new javax.swing.JMenuItem();
@@ -39,6 +96,171 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        addUser.setMaximumSize(new java.awt.Dimension(1024, 768));
+        addUser.setMinimumSize(new java.awt.Dimension(1024, 768));
+        addUser.setPreferredSize(new java.awt.Dimension(1024, 768));
+        addUser.setRequestFocusEnabled(false);
+        addUser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Crear Usuario");
+        addUser.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 119, 1132, -1));
+
+        nombres.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addUser.add(nombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 128, -1));
+
+        names.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        names.setText("Nombres");
+        addUser.add(names, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
+
+        apellidos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addUser.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, 128, -1));
+
+        lastName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lastName.setText("Apellidos");
+        addUser.add(lastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, -1, -1));
+
+        user.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user.setText("Usuario");
+        addUser.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, -1, -1));
+
+        username.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addUser.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 128, -1));
+
+        pass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pass.setText("Contraseña");
+        addUser.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, -1, 20));
+
+        doc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        doc.setText("Documento");
+        addUser.add(doc, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, -1, 20));
+
+        documento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addUser.add(documento, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 128, -1));
+
+        create.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        create.setText("Crear");
+        create.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createActionPerformed(evt);
+            }
+        });
+        addUser.add(create, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 100, -1));
+
+        password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addUser.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, 128, -1));
+
+        confirmar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        confirmar.setText("Confirmar");
+        addUser.add(confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 310, -1, 20));
+
+        passwordConfirm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addUser.add(passwordConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 310, 128, -1));
+
+        inicio.setMaximumSize(new java.awt.Dimension(1024, 768));
+        inicio.setMinimumSize(new java.awt.Dimension(1024, 768));
+        inicio.setPreferredSize(new java.awt.Dimension(1024, 768));
+        inicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_mundoaventura.png"))); // NOI18N
+        inicio.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1110, 120));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Bienvenido en el menú superior encontraras las opciones para el manejo del acuario");
+        inicio.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1110, -1));
+
+        lista.setMaximumSize(new java.awt.Dimension(1024, 768));
+        lista.setMinimumSize(new java.awt.Dimension(1024, 768));
+        lista.setPreferredSize(new java.awt.Dimension(1024, 768));
+        lista.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Lista de Usuarios");
+        lista.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1110, -1));
+
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombres", "Apellidos", "Documento", "Nombre de Usuario"
+            }
+        ));
+        jScrollPane1.setViewportView(tabla);
+
+        lista.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, 110));
+
+        delete.setText("Eliminar");
+        lista.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, -1, -1));
+
+        edit.setText("Editar");
+        edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editActionPerformed(evt);
+            }
+        });
+        lista.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, -1, -1));
+
+        editar.setMaximumSize(new java.awt.Dimension(1024, 768));
+        editar.setMinimumSize(new java.awt.Dimension(1024, 768));
+        editar.setName(""); // NOI18N
+        editar.setPreferredSize(new java.awt.Dimension(1024, 768));
+        editar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        nombres1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        editar.add(nombres1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 128, -1));
+
+        names1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        names1.setText("Nombres");
+        editar.add(names1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
+
+        lastName1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lastName1.setText("Apellidos");
+        editar.add(lastName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, -1, -1));
+
+        apellidos1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        editar.add(apellidos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 128, -1));
+
+        user1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user1.setText("Usuario");
+        editar.add(user1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
+
+        username1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        editar.add(username1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 128, -1));
+
+        pass1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pass1.setText("Contraseña");
+        editar.add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, -1, 20));
+
+        doc1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        doc1.setText("Documento");
+        editar.add(doc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, -1, 20));
+
+        documento1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        editar.add(documento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 70, 128, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Editar Usuario");
+        editar.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1110, -1));
+
+        edition.setText("Editar");
+        editar.add(edition, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, -1, -1));
+
+        password1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        editar.add(password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 128, -1));
+
+        confirmar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        confirmar1.setText("Confirmar");
+        editar.add(confirmar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, -1, 20));
+
+        passwordConfirm1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        editar.add(passwordConfirm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 128, -1));
 
         jMenu1.setText("Usuarios");
 
@@ -55,9 +277,14 @@ public class Administrador extends javax.swing.JFrame {
         listar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         listar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/userList.png"))); // NOI18N
         listar.setText("Listar Usuarios");
+        listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarActionPerformed(evt);
+            }
+        });
         jMenu1.add(listar);
 
-        jMenuBar1.add(jMenu1);
+        menu.add(jMenu1);
 
         jMenu2.setText("Peces");
 
@@ -71,7 +298,7 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem2.setText("Listar Peces");
         jMenu2.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu2);
+        menu.add(jMenu2);
 
         jMenu3.setText("Ayuda");
 
@@ -80,19 +307,49 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem3.setText("Acerca de...");
         jMenu3.add(jMenuItem3);
 
-        jMenuBar1.add(jMenu3);
+        menu.add(jMenu3);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(addUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(lista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addComponent(addUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(10, 10, 10)
+                    .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(lista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(21, 21, 21)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         pack();
@@ -100,9 +357,139 @@ public class Administrador extends javax.swing.JFrame {
 
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
         // TODO add your handling code here:
+        inicio.setVisible(false);
+        lista.setVisible(false);
+        editar.setVisible(false);
+        addUser.setVisible(true);
     }//GEN-LAST:event_crearActionPerformed
 
+    private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
+        // TODO add your handling code here:
+        String name = nombres.getText();
+        String ape = apellidos.getText();
+        String doc = documento.getText();
+        String user = username.getText();
+        String pass = password.getText();
+        String passConf = passwordConfirm.getText();
+        String name2 = name.trim();
+        String ape2 = ape.trim();
+        String doc2 = doc.trim();
+        String user2 = user.trim();
+        String pass2 = pass.trim();
+        String passConf2 = passConf.trim();
+        if (name2.equals("") || ape2.equals("") || doc2.equals("") || user2.equals("") || pass2.equals("") || passConf2.equals("")) {
+            if (name2.equals("")) {
+                nombres.setText("");
+            }
+            if (ape2.equals("")) {
+                apellidos.setText("");
+            }
+            if (doc2.equals("")) {
+                documento.setText("");
+            }
+            if (user2.equals("")) {
+                username.setText("");
+            }
+            if (pass2.equals("")) {
+                password.setText("");
+            }
+            if (passConf2.equals("")) {
+                passwordConfirm.setText("");
+            }
+            JOptionPane.showMessageDialog(rootPane, "No debe dejar ningun campo vacío \n o con solo espacios en blanco");
+        } else {
+            if (pass.equals(passConf)) {
+                UsuarioVO uVO = new UsuarioVO();
+                uVO.setUsua_nombres(name);
+                uVO.setUsua_apellidos(ape);
+                uVO.setUsua_documento(doc);
+                uVO.setUsua_usuario(user);
+                uVO.setUsua_contrasena(pass);
+                try {
+                    boolean usuario = uDAO.getUserName(user); // miro si el nombre de usuario ya esta registrado en la BD
+                    boolean docum = uDAO.getUserDoc(doc); //miro su el documento ya existe en la BD
+                    if (usuario != true) {
+                        if (docum != true) {
+                            boolean crear = uDAO.userRegister(uVO);
+                            if (crear == true) {
+                                nombres.setText("");
+                                apellidos.setText("");
+                                documento.setText("");
+                                username.setText("");
+                                password.setText("");
+                                JOptionPane.showMessageDialog(rootPane, "Usuario creado correctamente");
+                            } else {
+                                JOptionPane.showMessageDialog(rootPane, "Error al crear el usuario, por favor intente nuevamente.\n Si el problema persiste contacte con el desarrollador.");
+                            }
+                        } else {
+                            documento.setText("");
+                            JOptionPane.showMessageDialog(rootPane, "Error el numero de documento ya esta registrado en la base de datos");
+                        }
+                    } else {
+                        username.setText("");
+                        JOptionPane.showMessageDialog(rootPane, "Error el nombre de usuario ya esta registrado en la base de datos");
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                password.setText("");
+                passwordConfirm.setText("");
+                JOptionPane.showMessageDialog(rootPane, "La contraseña y su confirmación no coinciden");
+            }
+        }
+    }//GEN-LAST:event_createActionPerformed
+
+    private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
+        // TODO add your handling code here:
+        inicio.setVisible(false);
+        addUser.setVisible(false);
+        editar.setVisible(false);
+        dftm = (DefaultTableModel) this.tabla.getModel();
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+           dftm.removeRow(i);
+           i-=1;
+       }
+        ArrayList<UsuarioVO> users = new ArrayList<UsuarioVO>();
+        try {
+            users = uDAO.userList();
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+        String[] fila = new String[4];
+        for (UsuarioVO uVO : users) {
+            fila[0] = uVO.getUsua_nombres();
+            fila[1] = uVO.getUsua_apellidos();
+            fila[2] = uVO.getUsua_documento();
+            fila[3] = uVO.getUsua_usuario();
+            dftm.addRow(fila);
+        }
+        lista.setVisible(true);
+    }//GEN-LAST:event_listarActionPerformed
+
+    private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
+        int x = tabla.getSelectedRow();
+        Object[] fila = new String[4];
+        fila[0] = tabla.getValueAt(x, 2);
+        UsuarioVO uVO = new UsuarioVO();
+        try {
+            uVO = uDAO.getData((String)fila[0]);
+            addUser.setVisible(false);
+            inicio.setVisible(false);
+            lista.setVisible(false);
+            editar.setVisible(true);
+            nombres1.setText(uVO.getUsua_nombres());
+            apellidos1.setText(uVO.getUsua_apellidos());
+            documento1.setText(uVO.getUsua_documento());
+            username1.setText(uVO.getUsua_usuario());
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_editActionPerformed
+
     /**
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -138,14 +525,53 @@ public class Administrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel addUser;
+    private javax.swing.JTextField apellidos;
+    private javax.swing.JTextField apellidos1;
+    private javax.swing.JLabel confirmar;
+    private javax.swing.JLabel confirmar1;
     private javax.swing.JMenuItem crear;
+    private javax.swing.JButton create;
+    private javax.swing.JButton delete;
+    private javax.swing.JLabel doc;
+    private javax.swing.JLabel doc1;
+    private javax.swing.JTextField documento;
+    private javax.swing.JTextField documento1;
+    private javax.swing.JButton edit;
+    private javax.swing.JPanel editar;
+    private javax.swing.JButton edition;
+    private javax.swing.JPanel inicio;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lastName;
+    private javax.swing.JLabel lastName1;
+    private javax.swing.JPanel lista;
     private javax.swing.JMenuItem listar;
+    private javax.swing.JMenuBar menu;
+    private javax.swing.JLabel names;
+    private javax.swing.JLabel names1;
+    private javax.swing.JTextField nombres;
+    private javax.swing.JTextField nombres1;
+    private javax.swing.JLabel pass;
+    private javax.swing.JLabel pass1;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JPasswordField password1;
+    private javax.swing.JTextField passwordConfirm;
+    private javax.swing.JTextField passwordConfirm1;
+    private javax.swing.JTable tabla;
+    private javax.swing.JLabel user;
+    private javax.swing.JLabel user1;
+    private javax.swing.JTextField username;
+    private javax.swing.JTextField username1;
     // End of variables declaration//GEN-END:variables
 }

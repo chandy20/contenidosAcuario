@@ -7,6 +7,8 @@ package contenidosacuario;
 
 import javax.swing.JOptionPane;
 import DAO.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -18,7 +20,9 @@ import objetos.UsuarioVO;
  * @author Alex
  */
 public class Principal extends javax.swing.JFrame {
+
     Administrador admin = new Administrador();
+
     /**
      * Creates new form Principal
      */
@@ -111,8 +115,9 @@ public class Principal extends javax.swing.JFrame {
                     nombres = uVO.getUsua_nombres();
                     apellidos = uVO.getUsua_apellidos();
                     JOptionPane.showMessageDialog(rootPane, "Bienvenido " + nombres + " " + apellidos + " haz click en aceptar para continuar");
+//                    admin.setExtendedState(admin.MAXIMIZED_BOTH);
+                    admin.setLocationRelativeTo(null);
                     admin.setVisible(true);
-                    admin.setLocation(-5, 0);
                     admin.setAlwaysOnTop(true);
                     this.dispose();
                 } else {
