@@ -82,9 +82,9 @@ public class Administrador extends javax.swing.JFrame {
         documento1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         edition = new javax.swing.JButton();
-        password1 = new javax.swing.JPasswordField();
+        passwordConfirm1 = new javax.swing.JPasswordField();
         confirmar1 = new javax.swing.JLabel();
-        passwordConfirm1 = new javax.swing.JTextField();
+        password1 = new javax.swing.JPasswordField();
         menu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         crear = new javax.swing.JMenuItem();
@@ -183,6 +183,7 @@ public class Administrador extends javax.swing.JFrame {
         jLabel4.setText("Lista de Usuarios");
         lista.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1110, -1));
 
+        tabla.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -191,9 +192,10 @@ public class Administrador extends javax.swing.JFrame {
                 "Nombres", "Apellidos", "Documento", "Nombre de Usuario"
             }
         ));
+        tabla.setFocusable(false);
         jScrollPane1.setViewportView(tabla);
 
-        lista.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, 110));
+        lista.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 470, 110));
 
         delete.setText("Eliminar");
         lista.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, -1, -1));
@@ -250,17 +252,22 @@ public class Administrador extends javax.swing.JFrame {
         editar.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1110, -1));
 
         edition.setText("Editar");
+        edition.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editionActionPerformed(evt);
+            }
+        });
         editar.add(edition, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, -1, -1));
 
-        password1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        editar.add(password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 128, -1));
+        passwordConfirm1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        editar.add(passwordConfirm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 128, -1));
 
         confirmar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         confirmar1.setText("Confirmar");
         editar.add(confirmar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, -1, 20));
 
-        passwordConfirm1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        editar.add(passwordConfirm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 128, -1));
+        password1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        editar.add(password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 128, -1));
 
         jMenu1.setText("Usuarios");
 
@@ -482,11 +489,22 @@ public class Administrador extends javax.swing.JFrame {
             apellidos1.setText(uVO.getUsua_apellidos());
             documento1.setText(uVO.getUsua_documento());
             username1.setText(uVO.getUsua_usuario());
+            documento1.setEditable(false);
         } catch (SQLException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_editActionPerformed
+
+    private void editionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editionActionPerformed
+        String nom = nombres1.getText();
+        String ape = apellidos1.getText();
+        String doc = documento1.getText();
+        String user = username1.getText();
+        String pass = passwordConfirm1.getText();        
+        String passConf = passwordConfirm1.getText();
+        
+    }//GEN-LAST:event_editionActionPerformed
 
     /**
      *
@@ -567,7 +585,7 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JPasswordField password;
     private javax.swing.JPasswordField password1;
     private javax.swing.JTextField passwordConfirm;
-    private javax.swing.JTextField passwordConfirm1;
+    private javax.swing.JPasswordField passwordConfirm1;
     private javax.swing.JTable tabla;
     private javax.swing.JLabel user;
     private javax.swing.JLabel user1;
