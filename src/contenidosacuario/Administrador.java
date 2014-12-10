@@ -28,9 +28,7 @@ public class Administrador extends javax.swing.JFrame {
      */
     public Administrador() {
         initComponents();
-        addUser.setVisible(false);
-        lista.setVisible(false);
-        editar.setVisible(false);
+        this.setContentPane(inicio);
     }
 
     public void alineamiento() {
@@ -364,10 +362,7 @@ public class Administrador extends javax.swing.JFrame {
 
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
         // TODO add your handling code here:
-        inicio.setVisible(false);
-        lista.setVisible(false);
-        editar.setVisible(false);
-        addUser.setVisible(true);
+        this.setContentPane(addUser);
     }//GEN-LAST:event_crearActionPerformed
 
     private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
@@ -449,9 +444,7 @@ public class Administrador extends javax.swing.JFrame {
 
     private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
         // TODO add your handling code here:
-        inicio.setVisible(false);
-        addUser.setVisible(false);
-        editar.setVisible(false);
+       this.setContentPane(lista);
         dftm = (DefaultTableModel) this.tabla.getModel();
         for (int i = 0; i < tabla.getRowCount(); i++) {
            dftm.removeRow(i);
@@ -481,10 +474,7 @@ public class Administrador extends javax.swing.JFrame {
         UsuarioVO uVO = new UsuarioVO();
         try {
             uVO = uDAO.getData((String)fila[0]);
-            addUser.setVisible(false);
-            inicio.setVisible(false);
-            lista.setVisible(false);
-            editar.setVisible(true);
+            this.setContentPane(editar);
             nombres1.setText(uVO.getUsua_nombres());
             apellidos1.setText(uVO.getUsua_apellidos());
             documento1.setText(uVO.getUsua_documento());
