@@ -32,8 +32,17 @@ public class PezVO implements Serializable{
     private String pez_alimentacion;
     private String pez_comportamiento;
     private boolean pez_estado;
+    private String pez_acuario;
     private int subf_id;
 
+    public String getPez_acuario() {
+        return pez_acuario;
+    }
+
+    public void setPez_acuario(String pez_acuario) {
+        this.pez_acuario = pez_acuario;
+    }
+    
     public int getPez_id() {
         return pez_id;
     }

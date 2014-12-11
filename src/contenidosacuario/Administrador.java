@@ -5,14 +5,16 @@
  */
 package contenidosacuario;
 
-import DAO.UsuarioDAO;
+import DAO.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import objetos.UsuarioVO;
+import objetos.*;
 
 /**
  *
@@ -21,7 +23,19 @@ import objetos.UsuarioVO;
 public class Administrador extends javax.swing.JFrame {
 
     UsuarioDAO uDAO = new UsuarioDAO();
+    PezDAO pDAO = new PezDAO();
+    OrdenDAO oDAO = new OrdenDAO();
+    FamiliaDAO fDAO = new FamiliaDAO();
+    SubfamiliaDAO sDAO = new SubfamiliaDAO();
     DefaultTableModel dftm;
+    DefaultTableModel dftm2;
+    ArrayList<PezVO> fishes = new ArrayList<PezVO>();
+    ArrayList<OrdenVO> orders = new ArrayList<OrdenVO>();
+    ArrayList<FamiliaVO> flias = new ArrayList<FamiliaVO>();
+    ArrayList<SubfamiliaVO> subflias = new ArrayList<SubfamiliaVO>();
+    int id_pezeditado = 0, id_ordeneditado = 0, id_familiaeditado = 0, id_subfamiliaeditado = 0;
+
+    ;
 
     /**
      * Creates new form Administrador
@@ -29,6 +43,201 @@ public class Administrador extends javax.swing.JFrame {
     public Administrador() {
         initComponents();
         this.setContentPane(inicio);
+        orden.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                familia.removeAllItems();
+                familia.addItem("Seleccione la familia");
+                subfamilia.removeAllItems();
+                subfamilia.addItem("Seleccione la subfamilia");
+                if (orders.size() > 0) {
+//                    System.out.println("select orden " + orden.getSelectedIndex());
+                    if (orden.getSelectedIndex() > 0) {
+                        OrdenVO oVO = (OrdenVO) orders.get(orden.getSelectedIndex() - 1);
+                        try {
+                            flias = fDAO.fliasList(oVO.getOrde_id());
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        if (flias != null) {
+                            for (int i = 0; i < flias.size(); i++) {
+                                familia.addItem(((FamiliaVO) flias.get(i)).getFami_descripcion());
+                            }
+//                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
+//                            lisSubids.add(Subeventos.get(i));
+//                        }
+                        } else {
+                            flias = null;
+                        }
+                    }
+                } else {
+                    flias = null;
+//                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
+                }
+            }
+        });
+        //ajax de subfamilia
+        familia.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                subfamilia.removeAllItems();
+                subfamilia.addItem("Seleccione la subfamilia");
+                if (flias.size() > 0) {
+//                    System.out.println("select familia " + familia.getSelectedIndex());
+                    if (familia.getSelectedIndex() > 0) {
+                        FamiliaVO fVO = (FamiliaVO) flias.get(familia.getSelectedIndex() - 1);
+                        try {
+                            subflias = sDAO.SubfliasList(fVO.getFami_id());
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        if (subflias != null) {
+                            for (int i = 0; i < subflias.size(); i++) {
+                                subfamilia.addItem(((SubfamiliaVO) subflias.get(i)).getSubf_descripcion());
+                            }
+//                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
+//                            lisSubids.add(Subeventos.get(i));
+//                        }
+                        } else {
+                            subflias = null;
+                        }
+                    }
+                } else {
+                    subflias = null;
+//                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
+                }
+            }
+        });
+        //ajax para creacion de subfamilias
+        orden1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                familia2.removeAllItems();
+                familia2.addItem("Seleccione la familia");
+                if (orders.size() > 0) {
+//                    System.out.println("select orden " + orden.getSelectedIndex());
+                    if (orden1.getSelectedIndex() > 0) {
+                        OrdenVO oVO = (OrdenVO) orders.get(orden1.getSelectedIndex() - 1);
+                        try {
+                            flias = fDAO.fliasList(oVO.getOrde_id());
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        if (flias != null) {
+                            for (int i = 0; i < flias.size(); i++) {
+                                familia2.addItem(((FamiliaVO) flias.get(i)).getFami_descripcion());
+                            }
+//                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
+//                            lisSubids.add(Subeventos.get(i));
+//                        }
+                        } else {
+                            flias = null;
+                        }
+                    }
+                } else {
+                    flias = null;
+//                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
+                }
+            }
+        });
+        //ajax para la edicion de subfamilias
+        orden3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                familia3.removeAllItems();
+                familia3.addItem("Seleccione la familia");
+                if (orders.size() > 0) {
+//                    System.out.println("select orden " + orden.getSelectedIndex());
+                    if (orden3.getSelectedIndex() > 0) {
+                        OrdenVO oVO = (OrdenVO) orders.get(orden3.getSelectedIndex() - 1);
+                        try {
+                            flias = fDAO.fliasList(oVO.getOrde_id());
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        if (flias != null) {
+                            for (int i = 0; i < flias.size(); i++) {
+                                familia3.addItem(((FamiliaVO) flias.get(i)).getFami_descripcion());
+                            }
+//                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
+//                            lisSubids.add(Subeventos.get(i));
+//                        }
+                        } else {
+                            flias = null;
+                        }
+                    }
+                } else {
+                    flias = null;
+//                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
+                }
+            }
+        });
+        //ajax para la edicion de peces
+        orden2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                familia1.removeAllItems();
+                familia1.addItem("Seleccione la familia");
+                subfamilia1.removeAllItems();
+                subfamilia1.addItem("Seleccione la subfamilia");
+                if (orders.size() > 0) {
+//                    System.out.println("select orden " + orden.getSelectedIndex());
+                    if (orden2.getSelectedIndex() > 0) {
+                        OrdenVO oVO = (OrdenVO) orders.get(orden2.getSelectedIndex() - 1);
+                        try {
+                            flias = fDAO.fliasList(oVO.getOrde_id());
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        if (flias != null) {
+                            for (int i = 0; i < flias.size(); i++) {
+                                familia1.addItem(((FamiliaVO) flias.get(i)).getFami_descripcion());
+                            }
+//                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
+//                            lisSubids.add(Subeventos.get(i));
+//                        }
+                        } else {
+                            flias = null;
+                        }
+                    }
+                } else {
+                    flias = null;
+//                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
+                }
+            }
+        });
+        //ajax de subfamilia
+        familia1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                subfamilia1.removeAllItems();
+                subfamilia1.addItem("Seleccione la subfamilia");
+                if (flias.size() > 0) {
+//                    System.out.println("select familia " + familia.getSelectedIndex());
+                    if (familia1.getSelectedIndex() > 0) {
+                        FamiliaVO fVO = (FamiliaVO) flias.get(familia1.getSelectedIndex() - 1);
+                        try {
+                            subflias = sDAO.SubfliasList(fVO.getFami_id());
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        if (subflias != null) {
+                            for (int i = 0; i < subflias.size(); i++) {
+                                subfamilia1.addItem(((SubfamiliaVO) subflias.get(i)).getSubf_descripcion());
+                            }
+//                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
+//                            lisSubids.add(Subeventos.get(i));
+//                        }
+                        } else {
+                            subflias = null;
+                        }
+                    }
+                } else {
+                    subflias = null;
+//                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
+                }
+            }
+        });
     }
 
     public void alineamiento() {
@@ -44,6 +253,7 @@ public class Administrador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem5 = new javax.swing.JMenuItem();
         addUser = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         nombres = new javax.swing.JTextField();
@@ -83,6 +293,164 @@ public class Administrador extends javax.swing.JFrame {
         passwordConfirm1 = new javax.swing.JPasswordField();
         confirmar1 = new javax.swing.JLabel();
         password1 = new javax.swing.JPasswordField();
+        addpez = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        orden = new javax.swing.JComboBox();
+        familia = new javax.swing.JComboBox();
+        subfamilia = new javax.swing.JComboBox();
+        jLabel19 = new javax.swing.JLabel();
+        nombrepez = new javax.swing.JTextField();
+        nombrecomun = new javax.swing.JTextField();
+        nombrecientifico = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        biotipo = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        distribucion = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        forma = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        coloracion = new javax.swing.JTextArea();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tamano = new javax.swing.JTextArea();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        temperatura = new javax.swing.JTextArea();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        agua = new javax.swing.JTextArea();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        acuario = new javax.swing.JTextArea();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        alimentacion = new javax.swing.JTextArea();
+        crearpez = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        comportamiento = new javax.swing.JTextArea();
+        fotos = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        ordenpane = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        descripcionorden = new javax.swing.JTextField();
+        crearorden = new javax.swing.JButton();
+        ordenpaneedit = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        descripcionorden2 = new javax.swing.JTextField();
+        finalizarorden = new javax.swing.JButton();
+        familiapane = new javax.swing.JPanel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        descripcionfamilia = new javax.swing.JTextField();
+        crearfamilia = new javax.swing.JButton();
+        jLabel32 = new javax.swing.JLabel();
+        ordenfamilia = new javax.swing.JComboBox();
+        subfamiliapane = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        descripcionsubfamilia = new javax.swing.JTextField();
+        crearsubfamilia = new javax.swing.JButton();
+        jLabel35 = new javax.swing.JLabel();
+        orden1 = new javax.swing.JComboBox();
+        jLabel36 = new javax.swing.JLabel();
+        familia2 = new javax.swing.JComboBox();
+        listapeces = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        tablapeces = new javax.swing.JTable();
+        habilitarpeces = new javax.swing.JButton();
+        editarpeces = new javax.swing.JButton();
+        editarpez = new javax.swing.JPanel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        orden2 = new javax.swing.JComboBox();
+        familia1 = new javax.swing.JComboBox();
+        subfamilia1 = new javax.swing.JComboBox();
+        jLabel49 = new javax.swing.JLabel();
+        nombrepez1 = new javax.swing.JTextField();
+        nombrecomun1 = new javax.swing.JTextField();
+        nombrecientifico1 = new javax.swing.JTextField();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        biotipo1 = new javax.swing.JTextArea();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        distribucion1 = new javax.swing.JTextArea();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        forma1 = new javax.swing.JTextArea();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        coloracion1 = new javax.swing.JTextArea();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        tamano1 = new javax.swing.JTextArea();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        temperatura1 = new javax.swing.JTextArea();
+        jScrollPane19 = new javax.swing.JScrollPane();
+        agua1 = new javax.swing.JTextArea();
+        jScrollPane20 = new javax.swing.JScrollPane();
+        acuario1 = new javax.swing.JTextArea();
+        jScrollPane21 = new javax.swing.JScrollPane();
+        alimentacion1 = new javax.swing.JTextArea();
+        editpez = new javax.swing.JButton();
+        jLabel55 = new javax.swing.JLabel();
+        jScrollPane22 = new javax.swing.JScrollPane();
+        comportamiento1 = new javax.swing.JTextArea();
+        listaordenes = new javax.swing.JPanel();
+        jLabel56 = new javax.swing.JLabel();
+        jScrollPane23 = new javax.swing.JScrollPane();
+        tablaordenes = new javax.swing.JTable();
+        editarorden = new javax.swing.JButton();
+        listafamilias = new javax.swing.JPanel();
+        jLabel57 = new javax.swing.JLabel();
+        jScrollPane24 = new javax.swing.JScrollPane();
+        tablafamilias = new javax.swing.JTable();
+        editarfamilia = new javax.swing.JButton();
+        familiapaneedit = new javax.swing.JPanel();
+        jLabel58 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        descripcionfamilia1 = new javax.swing.JTextField();
+        finalizarfamilia = new javax.swing.JButton();
+        jLabel60 = new javax.swing.JLabel();
+        ordenfamilia1 = new javax.swing.JComboBox();
+        listasubfamilias = new javax.swing.JPanel();
+        jLabel61 = new javax.swing.JLabel();
+        jScrollPane25 = new javax.swing.JScrollPane();
+        tablasubfamilias = new javax.swing.JTable();
+        editarsubfamilia = new javax.swing.JButton();
+        subfamiliapaneedit = new javax.swing.JPanel();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
+        descripcionsubfamilia1 = new javax.swing.JTextField();
+        finalizarsubfamilia = new javax.swing.JButton();
+        jLabel64 = new javax.swing.JLabel();
+        orden3 = new javax.swing.JComboBox();
+        jLabel65 = new javax.swing.JLabel();
+        familia3 = new javax.swing.JComboBox();
         menu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         crear = new javax.swing.JMenuItem();
@@ -91,7 +459,16 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+
+        jMenuItem5.setText("jMenuItem5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -192,6 +569,11 @@ public class Administrador extends javax.swing.JFrame {
         ));
         tabla.setFocusable(false);
         jScrollPane1.setViewportView(tabla);
+        if (tabla.getColumnModel().getColumnCount() > 0) {
+            tabla.getColumnModel().getColumn(1).setHeaderValue("Apellidos");
+            tabla.getColumnModel().getColumn(2).setHeaderValue("Documento");
+            tabla.getColumnModel().getColumn(3).setHeaderValue("Nombre de Usuario");
+        }
 
         lista.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 470, 110));
 
@@ -267,6 +649,922 @@ public class Administrador extends javax.swing.JFrame {
         password1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         editar.add(password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 128, -1));
 
+        addpez.setPreferredSize(new java.awt.Dimension(767, 615));
+
+        jLabel8.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel8.setText("CREAR PEZ");
+
+        jLabel9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel9.setText("Nombre");
+
+        jLabel10.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel10.setText("Nombre común");
+
+        jLabel11.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel11.setText("Nombre científico");
+
+        jLabel12.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel12.setText("Biótopo");
+
+        jLabel13.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel13.setText("Clasificación");
+
+        jLabel14.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel14.setText("Orden");
+
+        jLabel15.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel15.setText("Familia");
+
+        jLabel16.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel16.setText("Subfamilia");
+
+        jLabel17.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel17.setText("Distribución");
+
+        jLabel18.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel18.setText("Forma");
+
+        jLabel19.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel19.setText("Tamaño");
+
+        jLabel20.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel20.setText("Temperatura");
+
+        jLabel21.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel21.setText("Agua");
+
+        jLabel22.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel22.setText("Acuario");
+
+        jLabel23.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel23.setText("Alimentación");
+
+        jLabel24.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel24.setText("Coloración");
+
+        biotipo.setColumns(20);
+        biotipo.setRows(5);
+        jScrollPane2.setViewportView(biotipo);
+
+        distribucion.setColumns(20);
+        distribucion.setRows(5);
+        jScrollPane3.setViewportView(distribucion);
+
+        forma.setColumns(20);
+        forma.setRows(5);
+        jScrollPane4.setViewportView(forma);
+
+        coloracion.setColumns(20);
+        coloracion.setRows(5);
+        jScrollPane5.setViewportView(coloracion);
+
+        tamano.setColumns(20);
+        tamano.setRows(5);
+        jScrollPane6.setViewportView(tamano);
+
+        temperatura.setColumns(20);
+        temperatura.setRows(5);
+        jScrollPane7.setViewportView(temperatura);
+
+        agua.setColumns(20);
+        agua.setRows(5);
+        jScrollPane8.setViewportView(agua);
+
+        acuario.setColumns(20);
+        acuario.setRows(5);
+        jScrollPane9.setViewportView(acuario);
+
+        alimentacion.setColumns(20);
+        alimentacion.setRows(5);
+        jScrollPane10.setViewportView(alimentacion);
+
+        crearpez.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        crearpez.setText("CREAR");
+        crearpez.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearpezActionPerformed(evt);
+            }
+        });
+
+        jLabel25.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel25.setText("Comportamiento");
+
+        comportamiento.setColumns(20);
+        comportamiento.setRows(5);
+        jScrollPane11.setViewportView(comportamiento);
+
+        javax.swing.GroupLayout addpezLayout = new javax.swing.GroupLayout(addpez);
+        addpez.setLayout(addpezLayout);
+        addpezLayout.setHorizontalGroup(
+            addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addpezLayout.createSequentialGroup()
+                .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addpezLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(nombrepez, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(orden, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(187, 187, 187)
+                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel15))
+                            .addComponent(nombrecomun, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(familia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(188, 188, 188)
+                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel11)
+                            .addComponent(nombrecientifico)
+                            .addComponent(subfamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(addpezLayout.createSequentialGroup()
+                        .addGap(345, 345, 345)
+                        .addComponent(jLabel8))
+                    .addGroup(addpezLayout.createSequentialGroup()
+                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addpezLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel12)
+                                .addGap(151, 151, 151)
+                                .addComponent(jLabel17))
+                            .addGroup(addpezLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addpezLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)
+                                .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(43, 43, 43)
+                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel24)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel19)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(addpezLayout.createSequentialGroup()
+                        .addGap(466, 466, 466)
+                        .addComponent(crearpez)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        addpezLayout.setVerticalGroup(
+            addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addpezLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addpezLayout.createSequentialGroup()
+                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addpezLayout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nombrecientifico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel16)
+                                .addGap(18, 18, 18)
+                                .addComponent(subfamilia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addpezLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nombrecomun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel15)
+                                .addGap(18, 18, 18)
+                                .addComponent(familia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(13, 13, 13)
+                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(addpezLayout.createSequentialGroup()
+                                    .addGap(5, 5, 5)
+                                    .addComponent(jLabel24)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addpezLayout.createSequentialGroup()
+                                    .addComponent(jLabel19)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(addpezLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(addpezLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nombrepez, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel14)
+                        .addGap(18, 18, 18)
+                        .addComponent(orden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(31, 31, 31)
+                .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addpezLayout.createSequentialGroup()
+                            .addComponent(jLabel23)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addpezLayout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addGap(11, 11, 11)
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addpezLayout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(addpezLayout.createSequentialGroup()
+                            .addComponent(jLabel25)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(addpezLayout.createSequentialGroup()
+                        .addComponent(jLabel20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46)
+                .addComponent(crearpez)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel6.setText("cargar fotos");
+
+        jLabel7.setText("IMAGEN PRINCIPAL");
+
+        javax.swing.GroupLayout fotosLayout = new javax.swing.GroupLayout(fotos);
+        fotos.setLayout(fotosLayout);
+        fotosLayout.setHorizontalGroup(
+            fotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fotosLayout.createSequentialGroup()
+                .addGroup(fotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fotosLayout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(jLabel6))
+                    .addGroup(fotosLayout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(jLabel7)))
+                .addContainerGap(312, Short.MAX_VALUE))
+        );
+        fotosLayout.setVerticalGroup(
+            fotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fotosLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(jLabel7)
+                .addContainerGap(358, Short.MAX_VALUE))
+        );
+
+        ordenpane.setMaximumSize(new java.awt.Dimension(1024, 768));
+        ordenpane.setMinimumSize(new java.awt.Dimension(1024, 768));
+        ordenpane.setPreferredSize(new java.awt.Dimension(1024, 768));
+        ordenpane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel27.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel27.setText("CREAR ORDEN");
+        ordenpane.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+
+        jLabel26.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel26.setText("Descripcion");
+        ordenpane.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, -1, -1));
+
+        descripcionorden.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ordenpane.add(descripcionorden, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 210, 30));
+
+        crearorden.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        crearorden.setText("CREAR");
+        crearorden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearordenActionPerformed(evt);
+            }
+        });
+        ordenpane.add(crearorden, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, -1, -1));
+
+        ordenpaneedit.setMaximumSize(new java.awt.Dimension(1024, 768));
+        ordenpaneedit.setMinimumSize(new java.awt.Dimension(1024, 768));
+        ordenpaneedit.setPreferredSize(new java.awt.Dimension(1024, 768));
+        ordenpaneedit.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel28.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel28.setText("EDITAR ORDEN");
+        ordenpaneedit.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+
+        jLabel29.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel29.setText("Descripcion");
+        ordenpaneedit.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, -1, -1));
+
+        descripcionorden2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ordenpaneedit.add(descripcionorden2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, 210, 30));
+
+        finalizarorden.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        finalizarorden.setText("FINALIZAR");
+        finalizarorden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizarordenActionPerformed(evt);
+            }
+        });
+        ordenpaneedit.add(finalizarorden, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, -1, -1));
+
+        familiapane.setMaximumSize(new java.awt.Dimension(1024, 768));
+        familiapane.setMinimumSize(new java.awt.Dimension(1024, 768));
+        familiapane.setPreferredSize(new java.awt.Dimension(1024, 768));
+        familiapane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel30.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel30.setText("CREAR FAMILIA");
+        familiapane.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+
+        jLabel31.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel31.setText("Orden");
+        familiapane.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, -1, -1));
+
+        descripcionfamilia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        familiapane.add(descripcionfamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 210, 30));
+
+        crearfamilia.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        crearfamilia.setText("CREAR");
+        crearfamilia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearfamiliaActionPerformed(evt);
+            }
+        });
+        familiapane.add(crearfamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, -1, -1));
+
+        jLabel32.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel32.setText("Descripcion");
+        familiapane.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, -1, -1));
+
+        ordenfamilia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        familiapane.add(ordenfamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 210, 30));
+
+        subfamiliapane.setMaximumSize(new java.awt.Dimension(1024, 768));
+        subfamiliapane.setMinimumSize(new java.awt.Dimension(1024, 768));
+        subfamiliapane.setPreferredSize(new java.awt.Dimension(1024, 768));
+        subfamiliapane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel33.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel33.setText("CREAR SUBFAMILIA");
+        subfamiliapane.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, -1, -1));
+
+        jLabel34.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel34.setText("Orden");
+        subfamiliapane.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, -1, -1));
+
+        descripcionsubfamilia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        subfamiliapane.add(descripcionsubfamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, 210, 30));
+
+        crearsubfamilia.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        crearsubfamilia.setText("CREAR");
+        crearsubfamilia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearsubfamiliaActionPerformed(evt);
+            }
+        });
+        subfamiliapane.add(crearsubfamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, -1, -1));
+
+        jLabel35.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel35.setText("Descripcion");
+        subfamiliapane.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, -1, -1));
+
+        orden1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        subfamiliapane.add(orden1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 210, 30));
+
+        jLabel36.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel36.setText("Familia");
+        subfamiliapane.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, -1, -1));
+
+        familia2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        subfamiliapane.add(familia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 210, 30));
+
+        listapeces.setMaximumSize(new java.awt.Dimension(1024, 768));
+        listapeces.setMinimumSize(new java.awt.Dimension(1024, 768));
+        listapeces.setPreferredSize(new java.awt.Dimension(1024, 768));
+        listapeces.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel37.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel37.setText("Lista de peces");
+        listapeces.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 910, -1));
+
+        tablapeces.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tablapeces.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Nombre común", "Nombre científico", "Habilitado"
+            }
+        ));
+        tablapeces.setFocusable(false);
+        jScrollPane12.setViewportView(tablapeces);
+
+        listapeces.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 760, 180));
+
+        habilitarpeces.setText("HABILITAR");
+        habilitarpeces.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                habilitarpecesActionPerformed(evt);
+            }
+        });
+        listapeces.add(habilitarpeces, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, -1, -1));
+
+        editarpeces.setText("Editar");
+        editarpeces.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarpecesActionPerformed(evt);
+            }
+        });
+        listapeces.add(editarpeces, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, -1, -1));
+
+        editarpez.setPreferredSize(new java.awt.Dimension(767, 615));
+
+        jLabel38.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel38.setText("EDITAR PEZ");
+
+        jLabel39.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel39.setText("Nombre");
+
+        jLabel40.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel40.setText("Nombre común");
+
+        jLabel41.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel41.setText("Nombre científico");
+
+        jLabel42.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel42.setText("Biótopo");
+
+        jLabel43.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel43.setText("Clasificación");
+
+        jLabel44.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel44.setText("Orden");
+
+        jLabel45.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel45.setText("Familia");
+
+        jLabel46.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel46.setText("Subfamilia");
+
+        jLabel47.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel47.setText("Distribución");
+
+        jLabel48.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel48.setText("Forma");
+
+        jLabel49.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel49.setText("Tamaño");
+
+        jLabel50.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel50.setText("Temperatura");
+
+        jLabel51.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel51.setText("Agua");
+
+        jLabel52.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel52.setText("Acuario");
+
+        jLabel53.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel53.setText("Alimentación");
+
+        jLabel54.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel54.setText("Coloración");
+
+        biotipo1.setColumns(20);
+        biotipo1.setRows(5);
+        jScrollPane13.setViewportView(biotipo1);
+
+        distribucion1.setColumns(20);
+        distribucion1.setRows(5);
+        jScrollPane14.setViewportView(distribucion1);
+
+        forma1.setColumns(20);
+        forma1.setRows(5);
+        jScrollPane15.setViewportView(forma1);
+
+        coloracion1.setColumns(20);
+        coloracion1.setRows(5);
+        jScrollPane16.setViewportView(coloracion1);
+
+        tamano1.setColumns(20);
+        tamano1.setRows(5);
+        jScrollPane17.setViewportView(tamano1);
+
+        temperatura1.setColumns(20);
+        temperatura1.setRows(5);
+        jScrollPane18.setViewportView(temperatura1);
+
+        agua1.setColumns(20);
+        agua1.setRows(5);
+        jScrollPane19.setViewportView(agua1);
+
+        acuario1.setColumns(20);
+        acuario1.setRows(5);
+        jScrollPane20.setViewportView(acuario1);
+
+        alimentacion1.setColumns(20);
+        alimentacion1.setRows(5);
+        jScrollPane21.setViewportView(alimentacion1);
+
+        editpez.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        editpez.setText("FINALIZAR");
+        editpez.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editpezActionPerformed(evt);
+            }
+        });
+
+        jLabel55.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel55.setText("Comportamiento");
+
+        comportamiento1.setColumns(20);
+        comportamiento1.setRows(5);
+        jScrollPane22.setViewportView(comportamiento1);
+
+        javax.swing.GroupLayout editarpezLayout = new javax.swing.GroupLayout(editarpez);
+        editarpez.setLayout(editarpezLayout);
+        editarpezLayout.setHorizontalGroup(
+            editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editarpezLayout.createSequentialGroup()
+                .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editarpezLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel44)
+                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(nombrepez1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(orden2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(187, 187, 187)
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel45))
+                            .addComponent(nombrecomun1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(familia1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(188, 188, 188)
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel46)
+                            .addComponent(jLabel41)
+                            .addComponent(nombrecientifico1)
+                            .addComponent(subfamilia1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(editarpezLayout.createSequentialGroup()
+                        .addGap(345, 345, 345)
+                        .addComponent(jLabel38))
+                    .addGroup(editarpezLayout.createSequentialGroup()
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editarpezLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel42)
+                                .addGap(151, 151, 151)
+                                .addComponent(jLabel47))
+                            .addGroup(editarpezLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(editarpezLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel50)
+                                    .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)
+                                .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel51)
+                                    .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(43, 43, 43)
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel52)
+                            .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel53)
+                            .addComponent(jLabel54)
+                            .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel55)
+                            .addComponent(jLabel49)
+                            .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(editarpezLayout.createSequentialGroup()
+                        .addGap(466, 466, 466)
+                        .addComponent(editpez)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        editarpezLayout.setVerticalGroup(
+            editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarpezLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editarpezLayout.createSequentialGroup()
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editarpezLayout.createSequentialGroup()
+                                .addComponent(jLabel41)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nombrecientifico1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel46)
+                                .addGap(18, 18, 18)
+                                .addComponent(subfamilia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(editarpezLayout.createSequentialGroup()
+                                .addComponent(jLabel40)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nombrecomun1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel45)
+                                .addGap(18, 18, 18)
+                                .addComponent(familia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(13, 13, 13)
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(editarpezLayout.createSequentialGroup()
+                                    .addGap(5, 5, 5)
+                                    .addComponent(jLabel54)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarpezLayout.createSequentialGroup()
+                                    .addComponent(jLabel49)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(editarpezLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel48)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(editarpezLayout.createSequentialGroup()
+                        .addComponent(jLabel39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nombrepez1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel44)
+                        .addGap(18, 18, 18)
+                        .addComponent(orden2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(31, 31, 31)
+                .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editarpezLayout.createSequentialGroup()
+                            .addComponent(jLabel53)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editarpezLayout.createSequentialGroup()
+                                .addComponent(jLabel52)
+                                .addGap(11, 11, 11)
+                                .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(editarpezLayout.createSequentialGroup()
+                                .addComponent(jLabel51)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(editarpezLayout.createSequentialGroup()
+                            .addComponent(jLabel55)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(editarpezLayout.createSequentialGroup()
+                        .addComponent(jLabel50)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46)
+                .addComponent(editpez)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        listaordenes.setMaximumSize(new java.awt.Dimension(1024, 768));
+        listaordenes.setMinimumSize(new java.awt.Dimension(1024, 768));
+        listaordenes.setPreferredSize(new java.awt.Dimension(1024, 768));
+        listaordenes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel56.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel56.setText("LISTA DE ORDENES");
+        listaordenes.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 770, -1));
+
+        tablaordenes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tablaordenes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Descripcion"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaordenes.setFocusable(false);
+        jScrollPane23.setViewportView(tablaordenes);
+
+        listaordenes.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 470, 110));
+
+        editarorden.setText("Editar");
+        editarorden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarordenActionPerformed(evt);
+            }
+        });
+        listaordenes.add(editarorden, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, -1, -1));
+
+        listafamilias.setMaximumSize(new java.awt.Dimension(1024, 768));
+        listafamilias.setMinimumSize(new java.awt.Dimension(1024, 768));
+        listafamilias.setPreferredSize(new java.awt.Dimension(1024, 768));
+        listafamilias.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel57.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel57.setText("LISTA DE FAMILIAS");
+        listafamilias.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 770, -1));
+
+        tablafamilias.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tablafamilias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Descripcion", "Orden"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablafamilias.setFocusable(false);
+        jScrollPane24.setViewportView(tablafamilias);
+
+        listafamilias.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 470, 110));
+
+        editarfamilia.setText("Editar");
+        editarfamilia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarfamiliaActionPerformed(evt);
+            }
+        });
+        listafamilias.add(editarfamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, -1, -1));
+
+        familiapaneedit.setMaximumSize(new java.awt.Dimension(1024, 768));
+        familiapaneedit.setMinimumSize(new java.awt.Dimension(1024, 768));
+        familiapaneedit.setPreferredSize(new java.awt.Dimension(1024, 768));
+        familiapaneedit.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel58.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel58.setText("EDITAR FAMILIA");
+        familiapaneedit.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+
+        jLabel59.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel59.setText("Orden");
+        familiapaneedit.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, -1, -1));
+
+        descripcionfamilia1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        familiapaneedit.add(descripcionfamilia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 210, 30));
+
+        finalizarfamilia.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        finalizarfamilia.setText("FINALIZAR");
+        finalizarfamilia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizarfamiliaActionPerformed(evt);
+            }
+        });
+        familiapaneedit.add(finalizarfamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 400, -1, -1));
+
+        jLabel60.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel60.setText("Descripcion");
+        familiapaneedit.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, -1, -1));
+
+        ordenfamilia1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        familiapaneedit.add(ordenfamilia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 210, 30));
+
+        listasubfamilias.setMaximumSize(new java.awt.Dimension(1024, 768));
+        listasubfamilias.setMinimumSize(new java.awt.Dimension(1024, 768));
+        listasubfamilias.setPreferredSize(new java.awt.Dimension(1024, 768));
+        listasubfamilias.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel61.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel61.setText("LISTA DE SUBFAMILIAS");
+        listasubfamilias.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 770, -1));
+
+        tablasubfamilias.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tablasubfamilias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Descripcion", "Familia"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablasubfamilias.setFocusable(false);
+        jScrollPane25.setViewportView(tablasubfamilias);
+
+        listasubfamilias.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 470, 110));
+
+        editarsubfamilia.setText("Editar");
+        editarsubfamilia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarsubfamiliaActionPerformed(evt);
+            }
+        });
+        listasubfamilias.add(editarsubfamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, -1, -1));
+
+        subfamiliapaneedit.setMaximumSize(new java.awt.Dimension(1024, 768));
+        subfamiliapaneedit.setMinimumSize(new java.awt.Dimension(1024, 768));
+        subfamiliapaneedit.setPreferredSize(new java.awt.Dimension(1024, 768));
+        subfamiliapaneedit.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel62.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel62.setText("EDITAR SUBFAMILIA");
+        subfamiliapaneedit.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, -1, -1));
+
+        jLabel63.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel63.setText("Orden");
+        subfamiliapaneedit.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, -1, -1));
+
+        descripcionsubfamilia1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        subfamiliapaneedit.add(descripcionsubfamilia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, 210, 30));
+
+        finalizarsubfamilia.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        finalizarsubfamilia.setText("FINALIZAR");
+        finalizarsubfamilia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizarsubfamiliaActionPerformed(evt);
+            }
+        });
+        subfamiliapaneedit.add(finalizarsubfamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 480, -1, -1));
+
+        jLabel64.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel64.setText("Descripcion");
+        subfamiliapaneedit.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, -1, -1));
+
+        orden3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        subfamiliapaneedit.add(orden3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 210, 30));
+
+        jLabel65.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel65.setText("Familia");
+        subfamiliapaneedit.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, -1, -1));
+
+        familia3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        subfamiliapaneedit.add(familia3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 210, 30));
+
         jMenu1.setText("Usuarios");
 
         crear.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
@@ -296,23 +1594,96 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fishAdd.png"))); // NOI18N
         jMenuItem1.setText("Crear Pez");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/userList.png"))); // NOI18N
         jMenuItem2.setText("Listar Peces");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         menu.add(jMenu2);
 
-        jMenu3.setText("Ayuda");
+        jMenu3.setText("Clasificación");
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/about.png"))); // NOI18N
-        jMenuItem3.setText("Acerca de...");
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem4.setText("Crear Orden");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/userList.png"))); // NOI18N
+        jMenuItem3.setText("Lista Ordenes");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/about.png"))); // NOI18N
+        jMenuItem7.setText("Crear Familia");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem7);
+
+        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/userList.png"))); // NOI18N
+        jMenuItem8.setText("Lista Familias");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem8);
+
+        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/about.png"))); // NOI18N
+        jMenuItem9.setText("Crear Subfamilia");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem9);
+
+        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/userList.png"))); // NOI18N
+        jMenuItem10.setText("Lista Subfamilias");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem10);
+
         menu.add(jMenu3);
+
+        jMenu4.setText("Ayuda");
+
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/about.png"))); // NOI18N
+        jMenuItem6.setText("Acerca de...");
+        jMenu4.add(jMenuItem6);
+
+        menu.add(jMenu4);
 
         setJMenuBar(menu);
 
@@ -320,7 +1691,7 @@ public class Administrador extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(addUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(addUser, javax.swing.GroupLayout.DEFAULT_SIZE, 1244, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -336,10 +1707,72 @@ public class Administrador extends javax.swing.JFrame {
                     .addContainerGap()
                     .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(131, Short.MAX_VALUE)
+                    .addComponent(fotos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(482, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(addpez, javax.swing.GroupLayout.DEFAULT_SIZE, 1244, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(ordenpane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(ordenpaneedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(familiapane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(subfamiliapane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(listapeces, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(editarpez, javax.swing.GroupLayout.DEFAULT_SIZE, 1224, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(listaordenes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(listafamilias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(familiapaneedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(listasubfamilias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(subfamiliapaneedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(addUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(addUser, javax.swing.GroupLayout.DEFAULT_SIZE, 914, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(10, 10, 10)
@@ -355,6 +1788,68 @@ public class Administrador extends javax.swing.JFrame {
                     .addGap(21, 21, 21)
                     .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(59, Short.MAX_VALUE)
+                    .addComponent(fotos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(361, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(addpez, javax.swing.GroupLayout.DEFAULT_SIZE, 914, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(ordenpane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(21, 21, 21)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(ordenpaneedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(11, 11, 11)
+                    .addComponent(familiapane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(21, 21, 21)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(subfamiliapane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(11, 11, 11)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(listapeces, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(11, 11, 11)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(editarpez, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(listaordenes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(11, 11, 11)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(31, 31, 31)
+                    .addComponent(listafamilias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(1, 1, 1)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(familiapaneedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(11, 11, 11)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(41, 41, 41)
+                    .addComponent(listasubfamilias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(31, 31, 31)
+                    .addComponent(subfamiliapaneedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(1, 1, 1)))
         );
 
         pack();
@@ -444,18 +1939,18 @@ public class Administrador extends javax.swing.JFrame {
 
     private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
         // TODO add your handling code here:
-       this.setContentPane(lista);
+        this.setContentPane(lista);
         dftm = (DefaultTableModel) this.tabla.getModel();
         for (int i = 0; i < tabla.getRowCount(); i++) {
-           dftm.removeRow(i);
-           i-=1;
-       }
+            dftm.removeRow(i);
+            i -= 1;
+        }
         ArrayList<UsuarioVO> users = new ArrayList<UsuarioVO>();
         try {
             users = uDAO.userList();
         } catch (SQLException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
         String[] fila = new String[4];
         for (UsuarioVO uVO : users) {
             fila[0] = uVO.getUsua_nombres();
@@ -473,7 +1968,7 @@ public class Administrador extends javax.swing.JFrame {
         fila[0] = tabla.getValueAt(x, 2);
         UsuarioVO uVO = new UsuarioVO();
         try {
-            uVO = uDAO.getData((String)fila[0]);
+            uVO = uDAO.getData((String) fila[0]);
             this.setContentPane(editar);
             nombres1.setText(uVO.getUsua_nombres());
             apellidos1.setText(uVO.getUsua_apellidos());
@@ -491,10 +1986,628 @@ public class Administrador extends javax.swing.JFrame {
         String ape = apellidos1.getText();
         String doc = documento1.getText();
         String user = username1.getText();
-        String pass = passwordConfirm1.getText();        
+        String pass = passwordConfirm1.getText();
         String passConf = passwordConfirm1.getText();
-        
+
     }//GEN-LAST:event_editionActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        try {
+            orders = oDAO.orderList();
+            orden.removeAllItems();
+            orden.addItem("Seleccione el orden");
+            for (int i = 0; i < orders.size(); i++) {
+                orden.addItem(((OrdenVO) orders.get(i)).getOrde_descripcion());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setContentPane(addpez);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void crearpezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearpezActionPerformed
+        if (!nombrepez.getText().trim().equals("") == true && !nombrecomun.getText().trim().equals("") == true && !nombrecientifico.getText().trim().equals("") == true && subfamilia.getSelectedIndex() > 0) { //&& !biotipo.getText().trim().equals("") == true && !distribucion.getText().trim().equals("") == true && !forma.getText().trim().equals("") == true && !coloracion.getText().trim().equals("") == true && !tamano.getText().trim().equals("") == true && !temperatura.getText().trim().equals("") == true && !acuario.getText().trim().equals("") == true && !agua.getText().trim().equals("") == true && !alimentacion.getText().trim().equals("") == true
+            boolean fish;
+            try {
+                fish = pDAO.getFishName(nombrepez.getText());
+                if (fish == true) {
+                    JOptionPane.showMessageDialog(rootPane, "El nombre del pez ya existe");
+                } else {
+                    PezVO pez = new PezVO();
+                    pez.setPez_nombre(nombrepez.getText());
+                    pez.setPez_nombComun(nombrecomun.getText());
+                    pez.setPez_nombCientifico(nombrecientifico.getText());
+                    pez.setSubf_id(((SubfamiliaVO) subflias.get(subfamilia.getSelectedIndex() - 1)).getSubf_id());//capturar el id de la subfamilia de la lista
+                    pez.setPez_distribucion(distribucion.getText());
+                    pez.setPez_agua(agua.getText());
+                    pez.setPez_alimentacion(alimentacion.getText());
+                    pez.setPez_biotopo(biotipo.getText());
+                    pez.setPez_coloracion(coloracion.getText());
+                    pez.setPez_comportamiento(comportamiento.getText());
+                    pez.setPez_forma(forma.getText());
+                    pez.setPez_tamano(tamano.getText());
+                    pez.setPez_tempreatura(temperatura.getText());
+                    pez.setPez_estado(true);
+                    pez.setPez_acuario(acuario.getText());
+                    try {
+                        boolean sw = (boolean) pDAO.fishRegister(pez);
+                        if (sw == true) {
+                            JOptionPane.showMessageDialog(rootPane, "Pez creado correctamente");
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "El pez no pudo ser creado, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Los campos nombre, nombre común, nombre cientifico, orden, familia y subfamilia son obligatorios");
+        }
+    }//GEN-LAST:event_crearpezActionPerformed
+
+    private void crearordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearordenActionPerformed
+
+        if (!descripcionorden.getText().trim().equals("") == true) {
+            try {
+                boolean existe = oDAO.getOrderDescripcion(descripcionorden.getText());
+                if (existe == true) {
+                    JOptionPane.showMessageDialog(rootPane, "La orden ya fue creada");
+                } else {
+                    OrdenVO orVO = new OrdenVO();
+                    orVO.setOrde_descripcion(descripcionorden.getText());
+                    try {
+                        boolean insert = oDAO.orderRegister(orVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "Orden creada correctamente");
+                            descripcionorden.setText("");
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "La orden no pudo ser creada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "El campo descripcion es obligatorio");
+        }
+    }//GEN-LAST:event_crearordenActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        this.setContentPane(ordenpane);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void finalizarordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarordenActionPerformed
+        if (!descripcionorden2.getText().trim().equals("") == true) {
+            try {
+                boolean existe = oDAO.getOrderDescripcionEdit(descripcionorden2.getText(), id_ordeneditado);
+                if (existe == true) {
+                    JOptionPane.showMessageDialog(rootPane, "La orden ya fue creada");
+                } else {
+                    OrdenVO orVO = new OrdenVO();
+                    orVO.setOrde_descripcion(descripcionorden2.getText());
+                    try {
+                        boolean insert = oDAO.orderRegister(orVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "Orden actualizada correctamente");
+                            descripcionorden.setText("");
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "La orden no pudo ser actualizada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            pintartablaordenes();
+            this.setContentPane(listaordenes);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "El campo descripcion es obligatorio");
+        }
+    }//GEN-LAST:event_finalizarordenActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        pintartablaordenes();
+        this.setContentPane(listaordenes);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void crearfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearfamiliaActionPerformed
+        if (ordenfamilia.getSelectedIndex() > 0 && !descripcionfamilia.getText().trim().equals("") == true) {
+            FamiliaVO fami = new FamiliaVO();
+            fami.setFami_descripcion(descripcionfamilia.getText());
+            fami.setOrde_id(((OrdenVO) orders.get(ordenfamilia.getSelectedIndex() - 1)).getOrde_id());
+            try {
+                boolean existe = fDAO.getFamilyDescripcion(fami);
+                if (existe == true) {
+                    JOptionPane.showMessageDialog(rootPane, "La familia ya existe");
+                } else {
+                    boolean insert = fDAO.FamilyRegister(fami);
+                    if (insert == true) {
+                        JOptionPane.showMessageDialog(rootPane, "Familia creada correctamente");
+                        ordenfamilia.setSelectedIndex(0);
+                        descripcionfamilia.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "La familia no pudo ser creada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "El campo orden y descripcion son obligatorios");
+        }
+    }//GEN-LAST:event_crearfamiliaActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        try {
+            orders = oDAO.orderList();
+            ordenfamilia.removeAllItems();
+            ordenfamilia.addItem("Seleccione el orden");
+            for (int i = 0; i < orders.size(); i++) {
+                ordenfamilia.addItem(((OrdenVO) orders.get(i)).getOrde_descripcion());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setContentPane(familiapane);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void crearsubfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearsubfamiliaActionPerformed
+        if (orden1.getSelectedIndex() > 0 && familia2.getSelectedIndex() > 0 && !descripcionsubfamilia.getText().trim().equals("") == true) {
+            SubfamiliaVO sfami = new SubfamiliaVO();
+            sfami.setSubf_descripcion(descripcionsubfamilia.getText());
+            sfami.setFami_id(((FamiliaVO) flias.get(familia2.getSelectedIndex() - 1)).getFami_id());
+            try {
+                boolean existe = sDAO.getSubFamilyDescripcion(sfami);
+                if (existe == true) {
+                    JOptionPane.showMessageDialog(rootPane, "La subfamilia ya existe");
+                } else {
+                    boolean insert = sDAO.SubFamilyRegister(sfami);
+                    if (insert == true) {
+                        JOptionPane.showMessageDialog(rootPane, "Subfamilia creada correctamente");
+                        orden1.setSelectedIndex(0);
+                        familia2.setSelectedIndex(0);
+                        descripcionsubfamilia.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "La subfamilia no pudo ser creada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "El campo orden, familia y descripcion son obligatorios");
+        }
+    }//GEN-LAST:event_crearsubfamiliaActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        try {
+            orders = oDAO.orderList();
+            orden1.removeAllItems();
+            orden1.addItem("Seleccione el orden");
+            for (int i = 0; i < orders.size(); i++) {
+                orden1.addItem(((OrdenVO) orders.get(i)).getOrde_descripcion());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setContentPane(subfamiliapane);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void editarpecesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarpecesActionPerformed
+        try {
+            orders = oDAO.orderList();
+            orden2.removeAllItems();
+            orden2.addItem("Seleccione el orden");
+            for (int i = 0; i < orders.size(); i++) {
+                orden2.addItem(((OrdenVO) orders.get(i)).getOrde_descripcion());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //llenando campos 
+        int x = -1;
+        x = tablapeces.getSelectedRow();
+//        System.out.println("pisicion de la fila " + x);
+        if (x >= 0) {
+            if (fishes.size() > 0) {
+                id_pezeditado = ((PezVO) fishes.get(x)).getPez_id();
+                nombrepez1.setText(((PezVO) fishes.get(x)).getPez_nombre());
+                nombrecomun1.setText(((PezVO) fishes.get(x)).getPez_nombComun());
+                nombrecientifico1.setText(((PezVO) fishes.get(x)).getPez_nombCientifico());
+                biotipo1.setText(((PezVO) fishes.get(x)).getPez_biotopo());
+                distribucion1.setText(((PezVO) fishes.get(x)).getPez_distribucion());
+                forma1.setText(((PezVO) fishes.get(x)).getPez_forma());
+                coloracion1.setText(((PezVO) fishes.get(x)).getPez_coloracion());
+                tamano.setText(((PezVO) fishes.get(x)).getPez_tamano());
+                temperatura1.setText(((PezVO) fishes.get(x)).getPez_tempreatura());
+                agua1.setText(((PezVO) fishes.get(x)).getPez_agua());
+                acuario1.setText(((PezVO) fishes.get(x)).getPez_acuario());
+                alimentacion1.setText(((PezVO) fishes.get(x)).getPez_alimentacion());
+                comportamiento1.setText(((PezVO) fishes.get(x)).getPez_comportamiento());
+                try {
+                    ArrayList datos = (ArrayList) sDAO.getfamilyAndOrder(((PezVO) fishes.get(x)).getSubf_id());
+                    for (int i = 0; i < orders.size(); i++) {
+                        if (((OrdenVO) orders.get(i)).getOrde_id() == ((int) datos.get(1))) {
+                            int j = i + 1;
+                            orden2.setSelectedIndex(j);
+                        }
+                    }
+                    for (int i = 0; i < flias.size(); i++) {
+                        if (((FamiliaVO) flias.get(i)).getFami_id() == ((int) datos.get(0))) {
+                            int j = i + 1;
+                            familia1.setSelectedIndex(j);
+                        }
+                    }
+                    for (int i = 0; i < subflias.size(); i++) {
+                        if (((SubfamiliaVO) subflias.get(i)).getSubf_id() == ((PezVO) fishes.get(x)).getSubf_id()) {
+                            int j = i + 1;
+                            subfamilia1.setSelectedIndex(j);
+                        }
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            this.setContentPane(editarpez);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione el pez que desea editar");
+        }
+    }//GEN-LAST:event_editarpecesActionPerformed
+
+    private void habilitarpecesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habilitarpecesActionPerformed
+
+        //llenando campos 
+        int x = -1;
+        x = tablapeces.getSelectedRow();
+//        System.out.println("pisicion de la fila " + x);
+        if (x >= 0) {
+            if (fishes.size() > 0) {
+                id_pezeditado = ((PezVO) fishes.get(x)).getPez_id();
+                boolean estadoActual = ((PezVO) fishes.get(x)).isPez_estado();
+                if (estadoActual == true) {
+                    try {
+                        boolean update = pDAO.fishUpdateStatus(id_pezeditado, false);
+                        if (update == true) {
+                            JOptionPane.showMessageDialog(rootPane, "Se deshabilito el pez correctamente");
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "El pez no pudo ser deshabilitado, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    try {
+                        boolean update = pDAO.fishUpdateStatus(id_pezeditado, true);
+                        if (update == true) {
+                            JOptionPane.showMessageDialog(rootPane, "Se habilito el pez correctamente");
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "El pez no pudo ser habilitado, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            pintartablapeces();
+            this.setContentPane(listapeces);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione el pez que desea habilitar o deshabilitar");
+        }
+    }//GEN-LAST:event_habilitarpecesActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        pintartablapeces();
+        this.setContentPane(listapeces);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void editpezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editpezActionPerformed
+        if (!nombrepez1.getText().trim().equals("") == true && !nombrecomun1.getText().trim().equals("") == true && !nombrecientifico1.getText().trim().equals("") == true && subfamilia1.getSelectedIndex() > 0) { //&& !biotipo.getText().trim().equals("") == true && !distribucion.getText().trim().equals("") == true && !forma.getText().trim().equals("") == true && !coloracion.getText().trim().equals("") == true && !tamano.getText().trim().equals("") == true && !temperatura.getText().trim().equals("") == true && !acuario.getText().trim().equals("") == true && !agua.getText().trim().equals("") == true && !alimentacion.getText().trim().equals("") == true
+            boolean fish;
+            try {
+                fish = pDAO.getFishNameEdit(nombrepez1.getText(), id_pezeditado);
+                if (fish == true) {
+                    JOptionPane.showMessageDialog(rootPane, "El nombre del pez ya existe");
+                } else {
+                    PezVO pez = new PezVO();
+                    pez.setPez_id(id_pezeditado);
+                    pez.setPez_nombre(nombrepez1.getText());
+                    pez.setPez_nombComun(nombrecomun1.getText());
+                    pez.setPez_nombCientifico(nombrecientifico1.getText());
+                    pez.setSubf_id(((SubfamiliaVO) subflias.get(subfamilia1.getSelectedIndex() - 1)).getSubf_id());//capturar el id de la subfamilia de la lista
+                    pez.setPez_distribucion(distribucion1.getText());
+                    pez.setPez_agua(agua1.getText());
+                    pez.setPez_alimentacion(alimentacion1.getText());
+                    pez.setPez_biotopo(biotipo1.getText());
+                    pez.setPez_coloracion(coloracion1.getText());
+                    pez.setPez_comportamiento(comportamiento1.getText());
+                    pez.setPez_forma(forma1.getText());
+                    pez.setPez_tamano(tamano1.getText());
+                    pez.setPez_tempreatura(temperatura1.getText());
+                    pez.setPez_acuario(acuario1.getText());
+                    try {
+                        boolean sw = (boolean) pDAO.fishUpdate(pez);
+                        if (sw == true) {
+                            JOptionPane.showMessageDialog(rootPane, "Pez Actualizado correctamente");
+                            pintartablapeces();
+                            this.setContentPane(listapeces);
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "El pez no pudo ser actualizado, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Los campos nombre, nombre común, nombre cientifico, orden, familia y subfamilia son obligatorios");
+        }
+    }//GEN-LAST:event_editpezActionPerformed
+
+    private void editarordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarordenActionPerformed
+        int x = -1;
+        x = tablaordenes.getSelectedRow();
+//        System.out.println("pisicion de la fila " + x);
+        if (x >= 0) {
+            if (orders.size() > 0) {
+                id_ordeneditado = ((OrdenVO) orders.get(x)).getOrde_id();
+                descripcionorden2.setText(((OrdenVO) orders.get(x)).getOrde_descripcion());
+            }
+            this.setContentPane(ordenpaneedit);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione la orden que desea editar");
+        }
+    }//GEN-LAST:event_editarordenActionPerformed
+
+    private void editarfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarfamiliaActionPerformed
+        try {
+            orders = oDAO.orderList();
+            ordenfamilia1.removeAllItems();
+            ordenfamilia1.addItem("Seleccione el orden");
+            for (int i = 0; i < orders.size(); i++) {
+                ordenfamilia1.addItem(((OrdenVO) orders.get(i)).getOrde_descripcion());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        int x = -1;
+        x = tablafamilias.getSelectedRow();
+//        System.out.println("pisicion de la fila " + x);
+        if (x >= 0) {
+            if (flias.size() > 0) {
+                id_familiaeditado = ((FamiliaVO) flias.get(x)).getFami_id();
+                descripcionfamilia1.setText(((FamiliaVO) flias.get(x)).getFami_descripcion());
+                for (int i = 0; i < orders.size(); i++) {
+                    if (((OrdenVO) orders.get(i)).getOrde_id() == (((FamiliaVO) flias.get(x)).getOrde_id())) {
+                        int j = i + 1;
+                        ordenfamilia1.setSelectedIndex(j);
+                    }
+                }
+            }
+            this.setContentPane(familiapaneedit);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione la familia que desea editar");
+        }
+    }//GEN-LAST:event_editarfamiliaActionPerformed
+
+    private void finalizarfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarfamiliaActionPerformed
+        if (ordenfamilia1.getSelectedIndex() > 0 && !descripcionfamilia1.getText().trim().equals("") == true) {
+            FamiliaVO fami = new FamiliaVO();
+            fami.setFami_id(id_familiaeditado);
+            fami.setFami_descripcion(descripcionfamilia1.getText());
+            fami.setOrde_id(((OrdenVO) orders.get(ordenfamilia1.getSelectedIndex() - 1)).getOrde_id());
+            try {
+                boolean existe = fDAO.getFamilyDescripcionEdit(fami);
+                if (existe == true) {
+                    JOptionPane.showMessageDialog(rootPane, "La familia ya existe");
+                } else {
+                    boolean insert = fDAO.FamilyUpdate(fami);
+                    if (insert == true) {
+                        JOptionPane.showMessageDialog(rootPane, "Familia actualizada correctamente");
+                        ordenfamilia1.setSelectedIndex(0);
+                        descripcionfamilia1.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "La familia no pudo ser actualizada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            pintartablafamilias();
+            this.setContentPane(listafamilias);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "El campo orden y descripcion son obligatorios");
+        }
+    }//GEN-LAST:event_finalizarfamiliaActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        pintartablafamilias();
+        this.setContentPane(listafamilias);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void editarsubfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarsubfamiliaActionPerformed
+        try {
+            orders = oDAO.orderList();
+            orden3.removeAllItems();
+            orden3.addItem("Seleccione el orden");
+            for (int i = 0; i < orders.size(); i++) {
+                orden3.addItem(((OrdenVO) orders.get(i)).getOrde_descripcion());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        int x = -1;
+        x = tablasubfamilias.getSelectedRow();
+//        System.out.println("pisicion de la fila " + x);
+        if (x >= 0) {
+            if (subflias.size() > 0) {
+                id_subfamiliaeditado = ((SubfamiliaVO) subflias.get(x)).getSubf_id();
+                descripcionsubfamilia1.setText(((SubfamiliaVO) subflias.get(x)).getSubf_descripcion());
+                try {
+                    ArrayList datos = sDAO.getfamilyAndOrder(id_subfamiliaeditado);
+
+                    for (int i = 0; i < orders.size(); i++) {
+                        if (((OrdenVO) orders.get(i)).getOrde_id() == (((int) datos.get(1)))) {
+                            int j = i + 1;
+                            orden3.setSelectedIndex(j);
+                        }
+                    }
+
+                    for (int i = 0; i < flias.size(); i++) {
+                        if (((FamiliaVO) flias.get(i)).getFami_id() == (((int) datos.get(0)))) {
+                            int j = i + 1;
+                            familia3.setSelectedIndex(j);
+                        }
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            this.setContentPane(subfamiliapaneedit);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione la familia que desea editar");
+        }
+    }//GEN-LAST:event_editarsubfamiliaActionPerformed
+
+    private void finalizarsubfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarsubfamiliaActionPerformed
+        if (orden3.getSelectedIndex() > 0 && familia3.getSelectedIndex() > 0 && !descripcionsubfamilia1.getText().trim().equals("") == true) {
+            SubfamiliaVO sfami = new SubfamiliaVO();
+            sfami.setSubf_id(id_subfamiliaeditado);
+            sfami.setSubf_descripcion(descripcionsubfamilia1.getText());
+            sfami.setFami_id(((FamiliaVO) flias.get(familia3.getSelectedIndex() - 1)).getFami_id());
+            try {
+                boolean existe = sDAO.getSubFamilyDescripcionEdit(sfami);
+                if (existe == true) {
+                    JOptionPane.showMessageDialog(rootPane, "La subfamilia ya existe");
+                } else {
+                    boolean insert = sDAO.SubFamilyUpdate(sfami);
+                    if (insert == true) {
+                        JOptionPane.showMessageDialog(rootPane, "Subfamilia actualizada correctamente");
+                        orden3.setSelectedIndex(0);
+                        familia3.setSelectedIndex(0);
+                        descripcionsubfamilia1.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "La subfamilia no pudo ser actualizada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            pintartablasubfamilias();
+            this.setContentPane(listasubfamilias);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "El campo orden, familia y descripcion son obligatorios");
+        }
+    }//GEN-LAST:event_finalizarsubfamiliaActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        pintartablasubfamilias();
+        this.setContentPane(listasubfamilias);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void pintartablapeces() {
+        dftm2 = (DefaultTableModel) this.tablapeces.getModel();
+        for (int i = 0; i < tablapeces.getRowCount(); i++) {
+            dftm2.removeRow(i);
+            i -= 1;
+        }
+        try {
+            fishes = pDAO.fishList();
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String[] fila = new String[4];
+        for (PezVO pVO : fishes) {
+            fila[0] = pVO.getPez_nombre();
+            fila[1] = pVO.getPez_nombComun();
+            fila[2] = pVO.getPez_nombCientifico();
+            if (pVO.isPez_estado() == true) {
+                fila[3] = "Si";
+            } else {
+                fila[3] = "No";
+            }
+            dftm2.addRow(fila);
+        }
+    }
+
+    private void pintartablaordenes() {
+        dftm2 = (DefaultTableModel) this.tablaordenes.getModel();
+        for (int i = 0; i < tablaordenes.getRowCount(); i++) {
+            dftm2.removeRow(i);
+            i -= 1;
+        }
+        try {
+            orders = oDAO.orderList();
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String[] fila = new String[1];
+        for (OrdenVO oVO : orders) {
+            fila[0] = oVO.getOrde_descripcion();
+            dftm2.addRow(fila);
+        }
+    }
+
+    private void pintartablafamilias() {
+        dftm2 = (DefaultTableModel) this.tablafamilias.getModel();
+        for (int i = 0; i < tablafamilias.getRowCount(); i++) {
+            dftm2.removeRow(i);
+            i -= 1;
+        }
+        try {
+            flias = fDAO.fliasList();
+            orders = oDAO.orderList();
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String[] fila = new String[2];
+        for (FamiliaVO fVO : flias) {
+            fila[0] = fVO.getFami_descripcion();
+            for (OrdenVO oVO : orders) {
+                if (fVO.getOrde_id() == oVO.getOrde_id()) {
+                    fila[1] = oVO.getOrde_descripcion();
+                }
+            }
+            dftm2.addRow(fila);
+        }
+    }
+
+    private void pintartablasubfamilias() {
+        dftm2 = (DefaultTableModel) this.tablasubfamilias.getModel();
+        for (int i = 0; i < tablasubfamilias.getRowCount(); i++) {
+            dftm2.removeRow(i);
+            i -= 1;
+        }
+        try {
+            subflias = sDAO.SubfliasList();
+            flias = fDAO.fliasList();
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String[] fila = new String[2];
+        for (SubfamiliaVO sVO : subflias) {
+            fila[0] = sVO.getSubf_descripcion();
+            for (FamiliaVO fVO : flias) {
+                if (sVO.getFami_id() == fVO.getFami_id()) {
+                    fila[1] = fVO.getFami_descripcion();
+                }
+            }
+            dftm2.addRow(fila);
+        }
+    }
 
     /**
      *
@@ -533,50 +2646,216 @@ public class Administrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea acuario;
+    private javax.swing.JTextArea acuario1;
     private javax.swing.JPanel addUser;
+    private javax.swing.JPanel addpez;
+    private javax.swing.JTextArea agua;
+    private javax.swing.JTextArea agua1;
+    private javax.swing.JTextArea alimentacion;
+    private javax.swing.JTextArea alimentacion1;
     private javax.swing.JTextField apellidos;
     private javax.swing.JTextField apellidos1;
+    private javax.swing.JTextArea biotipo;
+    private javax.swing.JTextArea biotipo1;
+    private javax.swing.JTextArea coloracion;
+    private javax.swing.JTextArea coloracion1;
+    private javax.swing.JTextArea comportamiento;
+    private javax.swing.JTextArea comportamiento1;
     private javax.swing.JLabel confirmar;
     private javax.swing.JLabel confirmar1;
     private javax.swing.JMenuItem crear;
+    private javax.swing.JButton crearfamilia;
+    private javax.swing.JButton crearorden;
+    private javax.swing.JButton crearpez;
+    private javax.swing.JButton crearsubfamilia;
     private javax.swing.JButton create;
     private javax.swing.JButton delete;
+    private javax.swing.JTextField descripcionfamilia;
+    private javax.swing.JTextField descripcionfamilia1;
+    private javax.swing.JTextField descripcionorden;
+    private javax.swing.JTextField descripcionorden2;
+    private javax.swing.JTextField descripcionsubfamilia;
+    private javax.swing.JTextField descripcionsubfamilia1;
+    private javax.swing.JTextArea distribucion;
+    private javax.swing.JTextArea distribucion1;
     private javax.swing.JLabel doc;
     private javax.swing.JLabel doc1;
     private javax.swing.JTextField documento;
     private javax.swing.JTextField documento1;
     private javax.swing.JButton edit;
     private javax.swing.JPanel editar;
+    private javax.swing.JButton editarfamilia;
+    private javax.swing.JButton editarorden;
+    private javax.swing.JButton editarpeces;
+    private javax.swing.JPanel editarpez;
+    private javax.swing.JButton editarsubfamilia;
     private javax.swing.JButton edition;
+    private javax.swing.JButton editpez;
+    private javax.swing.JComboBox familia;
+    private javax.swing.JComboBox familia1;
+    private javax.swing.JComboBox familia2;
+    private javax.swing.JComboBox familia3;
+    private javax.swing.JPanel familiapane;
+    private javax.swing.JPanel familiapaneedit;
+    private javax.swing.JButton finalizarfamilia;
+    private javax.swing.JButton finalizarorden;
+    private javax.swing.JButton finalizarsubfamilia;
+    private javax.swing.JTextArea forma;
+    private javax.swing.JTextArea forma1;
+    private javax.swing.JPanel fotos;
+    private javax.swing.JButton habilitarpeces;
     private javax.swing.JPanel inicio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JScrollPane jScrollPane19;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane20;
+    private javax.swing.JScrollPane jScrollPane21;
+    private javax.swing.JScrollPane jScrollPane22;
+    private javax.swing.JScrollPane jScrollPane23;
+    private javax.swing.JScrollPane jScrollPane24;
+    private javax.swing.JScrollPane jScrollPane25;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JLabel lastName;
     private javax.swing.JLabel lastName1;
     private javax.swing.JPanel lista;
+    private javax.swing.JPanel listafamilias;
+    private javax.swing.JPanel listaordenes;
+    private javax.swing.JPanel listapeces;
     private javax.swing.JMenuItem listar;
+    private javax.swing.JPanel listasubfamilias;
     private javax.swing.JMenuBar menu;
     private javax.swing.JLabel names;
     private javax.swing.JLabel names1;
+    private javax.swing.JTextField nombrecientifico;
+    private javax.swing.JTextField nombrecientifico1;
+    private javax.swing.JTextField nombrecomun;
+    private javax.swing.JTextField nombrecomun1;
+    private javax.swing.JTextField nombrepez;
+    private javax.swing.JTextField nombrepez1;
     private javax.swing.JTextField nombres;
     private javax.swing.JTextField nombres1;
+    private javax.swing.JComboBox orden;
+    private javax.swing.JComboBox orden1;
+    private javax.swing.JComboBox orden2;
+    private javax.swing.JComboBox orden3;
+    private javax.swing.JComboBox ordenfamilia;
+    private javax.swing.JComboBox ordenfamilia1;
+    private javax.swing.JPanel ordenpane;
+    private javax.swing.JPanel ordenpaneedit;
     private javax.swing.JLabel pass;
     private javax.swing.JLabel pass1;
     private javax.swing.JPasswordField password;
     private javax.swing.JPasswordField password1;
     private javax.swing.JTextField passwordConfirm;
     private javax.swing.JPasswordField passwordConfirm1;
+    private javax.swing.JComboBox subfamilia;
+    private javax.swing.JComboBox subfamilia1;
+    private javax.swing.JPanel subfamiliapane;
+    private javax.swing.JPanel subfamiliapaneedit;
     private javax.swing.JTable tabla;
+    private javax.swing.JTable tablafamilias;
+    private javax.swing.JTable tablaordenes;
+    private javax.swing.JTable tablapeces;
+    private javax.swing.JTable tablasubfamilias;
+    private javax.swing.JTextArea tamano;
+    private javax.swing.JTextArea tamano1;
+    private javax.swing.JTextArea temperatura;
+    private javax.swing.JTextArea temperatura1;
     private javax.swing.JLabel user;
     private javax.swing.JLabel user1;
     private javax.swing.JTextField username;
