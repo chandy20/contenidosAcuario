@@ -37,15 +37,15 @@ public class Administrador extends javax.swing.JFrame {
     OrdenDAO oDAO = new OrdenDAO();
     FamiliaDAO fDAO = new FamiliaDAO();
     SubfamiliaDAO sDAO = new SubfamiliaDAO();
+    FotoDAO phDAO = new FotoDAO();
     DefaultTableModel dftm;
     DefaultTableModel dftm2;
     ArrayList<PezVO> fishes = new ArrayList<PezVO>();
     ArrayList<OrdenVO> orders = new ArrayList<OrdenVO>();
     ArrayList<FamiliaVO> flias = new ArrayList<FamiliaVO>();
     ArrayList<SubfamiliaVO> subflias = new ArrayList<SubfamiliaVO>();
-    int id_pezeditado = 0, id_ordeneditado = 0, id_familiaeditado = 0, id_subfamiliaeditado = 0;
-
-    ;
+    ArrayList<FotoVO> fotos = new ArrayList<FotoVO>();
+    int id_pezeditado = 0, id_ordeneditado = 0, id_familiaeditado = 0, id_subfamiliaeditado = 0, id_fotoeditada = 0;
 
     /**
      * Creates new form Administrador
@@ -349,9 +349,6 @@ public class Administrador extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jScrollPane11 = new javax.swing.JScrollPane();
         comportamiento = new javax.swing.JTextArea();
-        fotos = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         ordenpane = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
@@ -385,7 +382,7 @@ public class Administrador extends javax.swing.JFrame {
         habilitarpeces = new javax.swing.JButton();
         editarpeces = new javax.swing.JButton();
         fotoprinc = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        fotosgenerales = new javax.swing.JButton();
         editarpez = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
@@ -472,6 +469,39 @@ public class Administrador extends javax.swing.JFrame {
         ruta = new javax.swing.JLabel();
         rutadisco = new javax.swing.JLabel();
         idpez = new javax.swing.JLabel();
+        fotopantalla = new javax.swing.JPanel();
+        namefishgeneral = new javax.swing.JLabel();
+        namefish1 = new javax.swing.JLabel();
+        imagengeneral5 = new javax.swing.JLabel();
+        examinaryguardar1 = new javax.swing.JButton();
+        namefish2 = new javax.swing.JLabel();
+        namefish3 = new javax.swing.JLabel();
+        namefish4 = new javax.swing.JLabel();
+        namefish5 = new javax.swing.JLabel();
+        namefish6 = new javax.swing.JLabel();
+        namefish7 = new javax.swing.JLabel();
+        namefish8 = new javax.swing.JLabel();
+        namefish9 = new javax.swing.JLabel();
+        namefish10 = new javax.swing.JLabel();
+        imagengeneral1 = new javax.swing.JLabel();
+        imagengeneral2 = new javax.swing.JLabel();
+        imagengeneral3 = new javax.swing.JLabel();
+        imagengeneral4 = new javax.swing.JLabel();
+        imagengeneral10 = new javax.swing.JLabel();
+        imagengeneral6 = new javax.swing.JLabel();
+        imagengeneral7 = new javax.swing.JLabel();
+        imagengeneral8 = new javax.swing.JLabel();
+        imagengeneral9 = new javax.swing.JLabel();
+        examinaryguardar2 = new javax.swing.JButton();
+        examinaryguardar3 = new javax.swing.JButton();
+        examinaryguardar4 = new javax.swing.JButton();
+        examinaryguardar5 = new javax.swing.JButton();
+        examinaryguardar6 = new javax.swing.JButton();
+        examinaryguardar7 = new javax.swing.JButton();
+        examinaryguardar8 = new javax.swing.JButton();
+        examinaryguardar9 = new javax.swing.JButton();
+        examinaryguardar10 = new javax.swing.JButton();
+        jLabel68 = new javax.swing.JLabel();
         menu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         crear = new javax.swing.JMenuItem();
@@ -938,34 +968,6 @@ public class Administrador extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel6.setText("cargar fotos");
-
-        jLabel7.setText("IMAGEN PRINCIPAL");
-
-        javax.swing.GroupLayout fotosLayout = new javax.swing.GroupLayout(fotos);
-        fotos.setLayout(fotosLayout);
-        fotosLayout.setHorizontalGroup(
-            fotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fotosLayout.createSequentialGroup()
-                .addGroup(fotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(fotosLayout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(jLabel6))
-                    .addGroup(fotosLayout.createSequentialGroup()
-                        .addGap(239, 239, 239)
-                        .addComponent(jLabel7)))
-                .addContainerGap(297, Short.MAX_VALUE))
-        );
-        fotosLayout.setVerticalGroup(
-            fotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fotosLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126)
-                .addComponent(jLabel7)
-                .addContainerGap(291, Short.MAX_VALUE))
-        );
-
         ordenpane.setMaximumSize(new java.awt.Dimension(1024, 768));
         ordenpane.setMinimumSize(new java.awt.Dimension(1024, 768));
         ordenpane.setPreferredSize(new java.awt.Dimension(1024, 768));
@@ -1135,8 +1137,13 @@ public class Administrador extends javax.swing.JFrame {
         });
         listapeces.add(fotoprinc, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 320, -1, -1));
 
-        jButton2.setText("FOTOS PANTALLA");
-        listapeces.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 320, -1, -1));
+        fotosgenerales.setText("FOTOS PANTALLA");
+        fotosgenerales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fotosgeneralesActionPerformed(evt);
+            }
+        });
+        listapeces.add(fotosgenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 320, -1, -1));
 
         editarpez.setPreferredSize(new java.awt.Dimension(767, 615));
 
@@ -1640,6 +1647,199 @@ public class Administrador extends javax.swing.JFrame {
             fotoprincipal.add(rutadisco, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 570, -1, -1));
             fotoprincipal.add(idpez, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 570, -1, -1));
 
+            fotopantalla.setMaximumSize(new java.awt.Dimension(1024, 768));
+            fotopantalla.setMinimumSize(new java.awt.Dimension(1024, 768));
+            fotopantalla.setPreferredSize(new java.awt.Dimension(1024, 768));
+            fotopantalla.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+            namefishgeneral.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+            namefishgeneral.setText("DESCRIPCION");
+            fotopantalla.add(namefishgeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, 40));
+
+            namefish1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+            namefish1.setText("1");
+            fotopantalla.add(namefish1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 20, -1));
+
+            imagengeneral5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            imagengeneral5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            imagengeneral5.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+            fotopantalla.add(imagengeneral5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 250, 190, 130));
+
+            examinaryguardar1.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
+            examinaryguardar1.setText("EXAMINAR & GUARDAR");
+            examinaryguardar1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    examinaryguardar1ActionPerformed(evt);
+                }
+            });
+            fotopantalla.add(examinaryguardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
+
+            namefish2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+            namefish2.setText("2");
+            fotopantalla.add(namefish2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 10, -1));
+
+            namefish3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+            namefish3.setText("3");
+            fotopantalla.add(namefish3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 10, -1));
+
+            namefish4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+            namefish4.setText("4");
+            fotopantalla.add(namefish4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 200, 10, -1));
+
+            namefish5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+            namefish5.setText("5");
+            fotopantalla.add(namefish5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 200, 10, -1));
+
+            namefish6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+            namefish6.setText("6");
+            fotopantalla.add(namefish6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 530, 10, -1));
+
+            namefish7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+            namefish7.setText("7");
+            fotopantalla.add(namefish7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 530, 10, -1));
+
+            namefish8.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+            namefish8.setText("8");
+            fotopantalla.add(namefish8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 530, 10, -1));
+
+            namefish9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+            namefish9.setText("9");
+            fotopantalla.add(namefish9, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 530, 10, -1));
+
+            namefish10.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+            namefish10.setText("10");
+            fotopantalla.add(namefish10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 530, 20, -1));
+
+            imagengeneral1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            imagengeneral1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            imagengeneral1.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+            fotopantalla.add(imagengeneral1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 190, 130));
+
+            imagengeneral2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            imagengeneral2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            imagengeneral2.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+            fotopantalla.add(imagengeneral2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 190, 130));
+
+            imagengeneral3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            imagengeneral3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            imagengeneral3.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+            fotopantalla.add(imagengeneral3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 190, 130));
+
+            imagengeneral4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            imagengeneral4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            imagengeneral4.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+            fotopantalla.add(imagengeneral4, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 250, 190, 130));
+
+            imagengeneral10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            imagengeneral10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            imagengeneral10.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+            fotopantalla.add(imagengeneral10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 590, 190, 130));
+
+            imagengeneral6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            imagengeneral6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            imagengeneral6.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+            fotopantalla.add(imagengeneral6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 590, 190, 130));
+
+            imagengeneral7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            imagengeneral7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            imagengeneral7.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+            fotopantalla.add(imagengeneral7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 590, 190, 130));
+
+            imagengeneral8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            imagengeneral8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            imagengeneral8.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+            fotopantalla.add(imagengeneral8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 590, 190, 130));
+
+            imagengeneral9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            imagengeneral9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            imagengeneral9.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+            fotopantalla.add(imagengeneral9, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 590, 190, 130));
+
+            examinaryguardar2.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
+            examinaryguardar2.setText("EXAMINAR & GUARDAR");
+            examinaryguardar2.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    examinaryguardar2ActionPerformed(evt);
+                }
+            });
+            fotopantalla.add(examinaryguardar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, -1, -1));
+
+            examinaryguardar3.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
+            examinaryguardar3.setText("EXAMINAR & GUARDAR");
+            examinaryguardar3.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    examinaryguardar3ActionPerformed(evt);
+                }
+            });
+            fotopantalla.add(examinaryguardar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, -1, -1));
+
+            examinaryguardar4.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
+            examinaryguardar4.setText("EXAMINAR & GUARDAR");
+            examinaryguardar4.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    examinaryguardar4ActionPerformed(evt);
+                }
+            });
+            fotopantalla.add(examinaryguardar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, -1, -1));
+
+            examinaryguardar5.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
+            examinaryguardar5.setText("EXAMINAR & GUARDAR");
+            examinaryguardar5.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    examinaryguardar5ActionPerformed(evt);
+                }
+            });
+            fotopantalla.add(examinaryguardar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 410, -1, -1));
+
+            examinaryguardar6.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
+            examinaryguardar6.setText("EXAMINAR & GUARDAR");
+            examinaryguardar6.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    examinaryguardar6ActionPerformed(evt);
+                }
+            });
+            fotopantalla.add(examinaryguardar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 750, -1, -1));
+
+            examinaryguardar7.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
+            examinaryguardar7.setText("EXAMINAR & GUARDAR");
+            examinaryguardar7.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    examinaryguardar7ActionPerformed(evt);
+                }
+            });
+            fotopantalla.add(examinaryguardar7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 750, -1, -1));
+
+            examinaryguardar8.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
+            examinaryguardar8.setText("EXAMINAR & GUARDAR");
+            examinaryguardar8.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    examinaryguardar8ActionPerformed(evt);
+                }
+            });
+            fotopantalla.add(examinaryguardar8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 750, -1, -1));
+
+            examinaryguardar9.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
+            examinaryguardar9.setText("EXAMINAR & GUARDAR");
+            examinaryguardar9.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    examinaryguardar9ActionPerformed(evt);
+                }
+            });
+            fotopantalla.add(examinaryguardar9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 750, -1, -1));
+
+            examinaryguardar10.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
+            examinaryguardar10.setText("EXAMINAR & GUARDAR");
+            examinaryguardar10.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    examinaryguardar10ActionPerformed(evt);
+                }
+            });
+            fotopantalla.add(examinaryguardar10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 750, -1, -1));
+
+            jLabel68.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+            jLabel68.setText("FOTOS PANTALLA");
+            fotopantalla.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
+
             jMenu1.setText("Usuarios");
 
             crear.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
@@ -1783,11 +1983,6 @@ public class Administrador extends javax.swing.JFrame {
                         .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap()))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(131, Short.MAX_VALUE)
-                        .addComponent(fotos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(482, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addpez, javax.swing.GroupLayout.DEFAULT_SIZE, 1244, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -1849,6 +2044,11 @@ public class Administrador extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(fotoprincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap()))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(fotopantalla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1868,11 +2068,6 @@ public class Administrador extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap()))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(59, Short.MAX_VALUE)
-                        .addComponent(fotos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(361, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addpez, javax.swing.GroupLayout.DEFAULT_SIZE, 914, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1935,6 +2130,11 @@ public class Administrador extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addComponent(fotoprincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(11, 11, 11)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(fotopantalla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(1, 1, 1)))
             );
 
             pack();
@@ -2608,23 +2808,67 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(ruta.getText());
-                FileOutputStream envio = new FileOutputStream(rutadisco.getText() + idpez.getText() + "\\" + namefish.getText() + ".png");
-                try {
-                    int i = archivofoto.read(readData);
-
-                    while (i != -1) {
-                        envio.write(readData, 0, i);
-                        i = archivofoto.read(readData);
+                File directorio = new File("c:\\acuario\\" + id_pezeditado);
+                if (directorio.mkdirs()) {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish.getText() + ".png";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+                        FotoVO fVO = new FotoVO();
+                        fVO.setFoto_ruta(rutadisco);
+                        fVO.setPez_id(id_pezeditado);
+                        fVO.setTipo(true);
+                        boolean insert = phDAO.FotoRegister(fVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen principal se guardo correctamente.");
+                            imagenprincipal.setIcon(null);
+                            ruta.setText("");
+                            pintartablapeces();
+                            this.setContentPane(listapeces);
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                            imagenprincipal.setIcon(null);
+                            ruta.setText("");
+                            pintartablapeces();
+                            this.setContentPane(listapeces);
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    archivofoto.close();
-                    envio.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                } else {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish.getText() + ".png";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+
+                        JOptionPane.showMessageDialog(rootPane, "La imagen principal se actualizo correctamente.");
+                        imagenprincipal.setIcon(null);
+                        ruta.setText("");
+                        pintartablapeces();
+                        this.setContentPane(listapeces);
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Debe examinar una imagen, es obligatoria");
         }
     }//GEN-LAST:event_alamcenarActionPerformed
@@ -2639,7 +2883,6 @@ public class Administrador extends javax.swing.JFrame {
         if (ventana == JFileChooser.APPROVE_OPTION) {
             File file = archivo.getSelectedFile();
             ruta.setText(String.valueOf(file));
-            idpez.setText(String.valueOf(id_pezeditado));
             Image foto = getToolkit().getImage(ruta.getText());
 //            System.out.println("alto "+String.valueOf());
 //            foto = foto.getScaledInstance(700, 300, Image.SCALE_DEFAULT);
@@ -2655,10 +2898,851 @@ public class Administrador extends javax.swing.JFrame {
             if (fishes.size() > 0) {
                 id_pezeditado = ((PezVO) fishes.get(x)).getPez_id();
                 namefish.setText(((PezVO) fishes.get(x)).getPez_nombre());
+                try {
+                    FotoVO f = (FotoVO) phDAO.getRutaPrincipal(id_pezeditado);
+                    System.out.println("Foto" + f.getFoto_id());
+                    if (f != null) {
+                        ruta.setText(f.getFoto_ruta());
+                        Image foto = getToolkit().getImage(ruta.getText());
+//            System.out.println("alto "+String.valueOf());
+//            foto = foto.getScaledInstance(700, 300, Image.SCALE_DEFAULT);
+                        imagenprincipal.setIcon(new ImageIcon(foto));
+                        id_fotoeditada = f.getFoto_id();
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+//                
                 this.setContentPane(fotoprincipal);
             }
         }
     }//GEN-LAST:event_fotoprincActionPerformed
+
+    private void examinaryguardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar1ActionPerformed
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
+        archivo.setDialogTitle("Abrir Archivo");
+        int ventana = archivo.showOpenDialog(rootPane);
+        String rutaselect = "";
+        if (ventana == JFileChooser.APPROVE_OPTION) {
+            File file = archivo.getSelectedFile();
+            rutaselect = String.valueOf(file);
+            //se almacena
+            try {
+                byte[] readData = new byte[1024];
+                FileInputStream archivofoto = new FileInputStream(rutaselect);
+                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish1.getText() + ".jpg");
+
+                if (!directorio.exists()) {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish1.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+                        FotoVO fVO = new FotoVO();
+                        fVO.setFoto_ruta(rutadisco);
+                        fVO.setPez_id(id_pezeditado);
+                        fVO.setTipo(false);
+                        boolean insert = phDAO.FotoRegister(fVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
+                            Image foto = getToolkit().getImage(rutadisco);
+                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                            imagengeneral1.setIcon(new ImageIcon(foto));
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish1.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+
+                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
+                        Image foto = getToolkit().getImage(rutadisco);
+                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                        imagengeneral1.setIcon(new ImageIcon(foto));
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //fin almacena
+        }
+    }//GEN-LAST:event_examinaryguardar1ActionPerformed
+
+    private void examinaryguardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar2ActionPerformed
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
+        archivo.setDialogTitle("Abrir Archivo");
+        int ventana = archivo.showOpenDialog(rootPane);
+        String rutaselect = "";
+        if (ventana == JFileChooser.APPROVE_OPTION) {
+            File file = archivo.getSelectedFile();
+            rutaselect = String.valueOf(file);
+            //se almacena
+            try {
+                byte[] readData = new byte[1024];
+                FileInputStream archivofoto = new FileInputStream(rutaselect);
+                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish2.getText() + ".jpg");
+
+                if (!directorio.exists()) {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish2.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+                        FotoVO fVO = new FotoVO();
+                        fVO.setFoto_ruta(rutadisco);
+                        fVO.setPez_id(id_pezeditado);
+                        fVO.setTipo(false);
+                        boolean insert = phDAO.FotoRegister(fVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
+                            Image foto = getToolkit().getImage(rutadisco);
+                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                            imagengeneral2.setIcon(new ImageIcon(foto));
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish2.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+
+                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
+                        Image foto = getToolkit().getImage(rutadisco);
+                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                        imagengeneral2.setIcon(new ImageIcon(foto));
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //fin almacena
+        }
+    }//GEN-LAST:event_examinaryguardar2ActionPerformed
+
+    private void examinaryguardar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar3ActionPerformed
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
+        archivo.setDialogTitle("Abrir Archivo");
+        int ventana = archivo.showOpenDialog(rootPane);
+        String rutaselect = "";
+        if (ventana == JFileChooser.APPROVE_OPTION) {
+            File file = archivo.getSelectedFile();
+            rutaselect = String.valueOf(file);
+            //se almacena
+            try {
+                byte[] readData = new byte[1024];
+                FileInputStream archivofoto = new FileInputStream(rutaselect);
+                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish3.getText() + ".jpg");
+
+                if (!directorio.exists()) {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish3.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+                        FotoVO fVO = new FotoVO();
+                        fVO.setFoto_ruta(rutadisco);
+                        fVO.setPez_id(id_pezeditado);
+                        fVO.setTipo(false);
+                        boolean insert = phDAO.FotoRegister(fVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
+                            Image foto = getToolkit().getImage(rutadisco);
+                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                            imagengeneral3.setIcon(new ImageIcon(foto));
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish3.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+
+                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
+                        Image foto = getToolkit().getImage(rutadisco);
+                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                        imagengeneral3.setIcon(new ImageIcon(foto));
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //fin almacena
+        }
+    }//GEN-LAST:event_examinaryguardar3ActionPerformed
+
+    private void examinaryguardar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar4ActionPerformed
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
+        archivo.setDialogTitle("Abrir Archivo");
+        int ventana = archivo.showOpenDialog(rootPane);
+        String rutaselect = "";
+        if (ventana == JFileChooser.APPROVE_OPTION) {
+            File file = archivo.getSelectedFile();
+            rutaselect = String.valueOf(file);
+            //se almacena
+            try {
+                byte[] readData = new byte[1024];
+                FileInputStream archivofoto = new FileInputStream(rutaselect);
+                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish4.getText() + ".jpg");
+
+                if (!directorio.exists()) {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish4.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+                        FotoVO fVO = new FotoVO();
+                        fVO.setFoto_ruta(rutadisco);
+                        fVO.setPez_id(id_pezeditado);
+                        fVO.setTipo(false);
+                        boolean insert = phDAO.FotoRegister(fVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
+                            Image foto = getToolkit().getImage(rutadisco);
+                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                            imagengeneral4.setIcon(new ImageIcon(foto));
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish4.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+
+                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
+                        Image foto = getToolkit().getImage(rutadisco);
+                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                        imagengeneral4.setIcon(new ImageIcon(foto));
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //fin almacena
+        }
+    }//GEN-LAST:event_examinaryguardar4ActionPerformed
+
+    private void examinaryguardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar5ActionPerformed
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
+        archivo.setDialogTitle("Abrir Archivo");
+        int ventana = archivo.showOpenDialog(rootPane);
+        String rutaselect = "";
+        if (ventana == JFileChooser.APPROVE_OPTION) {
+            File file = archivo.getSelectedFile();
+            rutaselect = String.valueOf(file);
+            //se almacena
+            try {
+                byte[] readData = new byte[1024];
+                FileInputStream archivofoto = new FileInputStream(rutaselect);
+                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish5.getText() + ".jpg");
+
+                if (!directorio.exists()) {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish5.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+                        FotoVO fVO = new FotoVO();
+                        fVO.setFoto_ruta(rutadisco);
+                        fVO.setPez_id(id_pezeditado);
+                        fVO.setTipo(false);
+                        boolean insert = phDAO.FotoRegister(fVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
+                            Image foto = getToolkit().getImage(rutadisco);
+                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                            imagengeneral5.setIcon(new ImageIcon(foto));
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish5.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+
+                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
+                        Image foto = getToolkit().getImage(rutadisco);
+                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                        imagengeneral5.setIcon(new ImageIcon(foto));
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //fin almacena
+        }
+    }//GEN-LAST:event_examinaryguardar5ActionPerformed
+
+    private void examinaryguardar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar6ActionPerformed
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
+        archivo.setDialogTitle("Abrir Archivo");
+        int ventana = archivo.showOpenDialog(rootPane);
+        String rutaselect = "";
+        if (ventana == JFileChooser.APPROVE_OPTION) {
+            File file = archivo.getSelectedFile();
+            rutaselect = String.valueOf(file);
+            //se almacena
+            try {
+                byte[] readData = new byte[1024];
+                FileInputStream archivofoto = new FileInputStream(rutaselect);
+                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish6.getText() + ".jpg");
+
+                if (!directorio.exists()) {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish6.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+                        FotoVO fVO = new FotoVO();
+                        fVO.setFoto_ruta(rutadisco);
+                        fVO.setPez_id(id_pezeditado);
+                        fVO.setTipo(false);
+                        boolean insert = phDAO.FotoRegister(fVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
+                            Image foto = getToolkit().getImage(rutadisco);
+                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                            imagengeneral6.setIcon(new ImageIcon(foto));
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish6.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+
+                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
+                        Image foto = getToolkit().getImage(rutadisco);
+                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                        imagengeneral6.setIcon(new ImageIcon(foto));
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //fin almacena
+        }
+    }//GEN-LAST:event_examinaryguardar6ActionPerformed
+
+    private void examinaryguardar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar7ActionPerformed
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
+        archivo.setDialogTitle("Abrir Archivo");
+        int ventana = archivo.showOpenDialog(rootPane);
+        String rutaselect = "";
+        if (ventana == JFileChooser.APPROVE_OPTION) {
+            File file = archivo.getSelectedFile();
+            rutaselect = String.valueOf(file);
+            //se almacena
+            try {
+                byte[] readData = new byte[1024];
+                FileInputStream archivofoto = new FileInputStream(rutaselect);
+                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish7.getText() + ".jpg");
+
+                if (!directorio.exists()) {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish7.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+                        FotoVO fVO = new FotoVO();
+                        fVO.setFoto_ruta(rutadisco);
+                        fVO.setPez_id(id_pezeditado);
+                        fVO.setTipo(false);
+                        boolean insert = phDAO.FotoRegister(fVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
+                            Image foto = getToolkit().getImage(rutadisco);
+                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                            imagengeneral7.setIcon(new ImageIcon(foto));
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish7.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+
+                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
+                        Image foto = getToolkit().getImage(rutadisco);
+                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                        imagengeneral7.setIcon(new ImageIcon(foto));
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //fin almacena
+        }
+    }//GEN-LAST:event_examinaryguardar7ActionPerformed
+
+    private void examinaryguardar8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar8ActionPerformed
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
+        archivo.setDialogTitle("Abrir Archivo");
+        int ventana = archivo.showOpenDialog(rootPane);
+        String rutaselect = "";
+        if (ventana == JFileChooser.APPROVE_OPTION) {
+            File file = archivo.getSelectedFile();
+            rutaselect = String.valueOf(file);
+            //se almacena
+            try {
+                byte[] readData = new byte[1024];
+                FileInputStream archivofoto = new FileInputStream(rutaselect);
+                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish8.getText() + ".jpg");
+
+                if (!directorio.exists()) {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish8.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+                        FotoVO fVO = new FotoVO();
+                        fVO.setFoto_ruta(rutadisco);
+                        fVO.setPez_id(id_pezeditado);
+                        fVO.setTipo(false);
+                        boolean insert = phDAO.FotoRegister(fVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
+                            Image foto = getToolkit().getImage(rutadisco);
+                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                            imagengeneral8.setIcon(new ImageIcon(foto));
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish8.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+
+                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
+                        Image foto = getToolkit().getImage(rutadisco);
+                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                        imagengeneral8.setIcon(new ImageIcon(foto));
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //fin almacena
+        }
+    }//GEN-LAST:event_examinaryguardar8ActionPerformed
+
+    private void examinaryguardar9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar9ActionPerformed
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
+        archivo.setDialogTitle("Abrir Archivo");
+        int ventana = archivo.showOpenDialog(rootPane);
+        String rutaselect = "";
+        if (ventana == JFileChooser.APPROVE_OPTION) {
+            File file = archivo.getSelectedFile();
+            rutaselect = String.valueOf(file);
+            //se almacena
+            try {
+                byte[] readData = new byte[1024];
+                FileInputStream archivofoto = new FileInputStream(rutaselect);
+                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish9.getText() + ".jpg");
+
+                if (!directorio.exists()) {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish9.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+                        FotoVO fVO = new FotoVO();
+                        fVO.setFoto_ruta(rutadisco);
+                        fVO.setPez_id(id_pezeditado);
+                        fVO.setTipo(false);
+                        boolean insert = phDAO.FotoRegister(fVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
+                            Image foto = getToolkit().getImage(rutadisco);
+                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                            imagengeneral9.setIcon(new ImageIcon(foto));
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish9.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+
+                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
+                        Image foto = getToolkit().getImage(rutadisco);
+                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                        imagengeneral9.setIcon(new ImageIcon(foto));
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //fin almacena
+        }
+    }//GEN-LAST:event_examinaryguardar9ActionPerformed
+
+    private void examinaryguardar10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar10ActionPerformed
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
+        archivo.setDialogTitle("Abrir Archivo");
+        int ventana = archivo.showOpenDialog(rootPane);
+        String rutaselect = "";
+        if (ventana == JFileChooser.APPROVE_OPTION) {
+            File file = archivo.getSelectedFile();
+            rutaselect = String.valueOf(file);
+            //se almacena
+            try {
+                byte[] readData = new byte[1024];
+                FileInputStream archivofoto = new FileInputStream(rutaselect);
+                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish10.getText() + ".jpg");
+
+                if (!directorio.exists()) {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish10.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+                        FotoVO fVO = new FotoVO();
+                        fVO.setFoto_ruta(rutadisco);
+                        fVO.setPez_id(id_pezeditado);
+                        fVO.setTipo(false);
+                        boolean insert = phDAO.FotoRegister(fVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
+                            Image foto = getToolkit().getImage(rutadisco);
+                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                            imagengeneral10.setIcon(new ImageIcon(foto));
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish10.getText() + ".jpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+
+                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
+                        Image foto = getToolkit().getImage(rutadisco);
+                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                        imagengeneral10.setIcon(new ImageIcon(foto));
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //fin almacena
+        }
+    }//GEN-LAST:event_examinaryguardar10ActionPerformed
+
+    private void fotosgeneralesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotosgeneralesActionPerformed
+        int x = -1;
+        x = tablapeces.getSelectedRow();
+//        System.out.println("pisicion de la fila " + x);
+        if (x >= 0) {
+            imagengeneral1.setIcon(null);
+            imagengeneral2.setIcon(null);
+            imagengeneral3.setIcon(null);
+            imagengeneral4.setIcon(null);
+            imagengeneral5.setIcon(null);
+            imagengeneral6.setIcon(null);
+            imagengeneral7.setIcon(null);
+            imagengeneral8.setIcon(null);
+            imagengeneral9.setIcon(null);
+            imagengeneral10.setIcon(null);
+            if (fishes.size() > 0) {
+                id_pezeditado = ((PezVO) fishes.get(x)).getPez_id();
+                namefishgeneral.setText(((PezVO) fishes.get(x)).getPez_nombre());
+
+//                String prueba = "adfsdh";
+//                if(prueba.contains("df")==true){
+//                    System.out.println("se encontro");
+//                }
+//                else{
+//                    System.out.println("rechazo");
+//                }
+                try {
+                    fotos = phDAO.ListFotosJPG(id_pezeditado);
+                    if (fotos.size() > 0) {
+                        for (int i = 0; i < fotos.size(); i++) {
+                            FotoVO f = (FotoVO) fotos.get(i);
+                            if (f != null) {
+                                if(f.getFoto_ruta().contains("1.jpg")==true){
+                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
+                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                                    imagengeneral1.setIcon(new ImageIcon(foto));
+                                }
+                                if(f.getFoto_ruta().contains("2.jpg")==true){
+                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
+                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                                    imagengeneral2.setIcon(new ImageIcon(foto));
+                                }
+                                if(f.getFoto_ruta().contains("3.jpg")==true){
+                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
+                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                                    imagengeneral3.setIcon(new ImageIcon(foto));
+                                }
+                                if(f.getFoto_ruta().contains("4.jpg")==true){
+                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
+                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                                    imagengeneral4.setIcon(new ImageIcon(foto));
+                                }
+                                if(f.getFoto_ruta().contains("5.jpg")==true){
+                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
+                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                                    imagengeneral5.setIcon(new ImageIcon(foto));
+                                }
+                                if(f.getFoto_ruta().contains("6.jpg")==true){
+                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
+                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                                    imagengeneral6.setIcon(new ImageIcon(foto));
+                                }
+                                if(f.getFoto_ruta().contains("7.jpg")==true){
+                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
+                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                                    imagengeneral7.setIcon(new ImageIcon(foto));
+                                }
+                                if(f.getFoto_ruta().contains("8.jpg")==true){
+                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
+                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                                    imagengeneral8.setIcon(new ImageIcon(foto));
+                                }
+                                if(f.getFoto_ruta().contains("9.jpg")==true){
+                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
+                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                                    imagengeneral9.setIcon(new ImageIcon(foto));
+                                }
+                                if(f.getFoto_ruta().contains("10.jpg")==true){
+                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
+                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
+                                    imagengeneral10.setIcon(new ImageIcon(foto));
+                                }
+                            }
+                        }
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                this.setContentPane(fotopantalla);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un pez");
+        }
+    }//GEN-LAST:event_fotosgeneralesActionPerformed
 
     private void pintartablapeces() {
         dftm2 = (DefaultTableModel) this.tablapeces.getModel();
@@ -2836,6 +3920,16 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton edition;
     private javax.swing.JButton editpez;
     private javax.swing.JButton examinar;
+    private javax.swing.JButton examinaryguardar1;
+    private javax.swing.JButton examinaryguardar10;
+    private javax.swing.JButton examinaryguardar2;
+    private javax.swing.JButton examinaryguardar3;
+    private javax.swing.JButton examinaryguardar4;
+    private javax.swing.JButton examinaryguardar5;
+    private javax.swing.JButton examinaryguardar6;
+    private javax.swing.JButton examinaryguardar7;
+    private javax.swing.JButton examinaryguardar8;
+    private javax.swing.JButton examinaryguardar9;
     private javax.swing.JComboBox familia;
     private javax.swing.JComboBox familia1;
     private javax.swing.JComboBox familia2;
@@ -2847,14 +3941,24 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton finalizarsubfamilia;
     private javax.swing.JTextArea forma;
     private javax.swing.JTextArea forma1;
+    private javax.swing.JPanel fotopantalla;
     private javax.swing.JButton fotoprinc;
     private javax.swing.JPanel fotoprincipal;
-    private javax.swing.JPanel fotos;
+    private javax.swing.JButton fotosgenerales;
     private javax.swing.JButton habilitarpeces;
     private javax.swing.JLabel idpez;
+    private javax.swing.JLabel imagengeneral1;
+    private javax.swing.JLabel imagengeneral10;
+    private javax.swing.JLabel imagengeneral2;
+    private javax.swing.JLabel imagengeneral3;
+    private javax.swing.JLabel imagengeneral4;
+    private javax.swing.JLabel imagengeneral5;
+    private javax.swing.JLabel imagengeneral6;
+    private javax.swing.JLabel imagengeneral7;
+    private javax.swing.JLabel imagengeneral8;
+    private javax.swing.JLabel imagengeneral9;
     private javax.swing.JLabel imagenprincipal;
     private javax.swing.JPanel inicio;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2910,7 +4014,6 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
@@ -2918,7 +4021,7 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
@@ -2970,6 +4073,17 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JPanel listasubfamilias;
     private javax.swing.JMenuBar menu;
     private javax.swing.JLabel namefish;
+    private javax.swing.JLabel namefish1;
+    private javax.swing.JLabel namefish10;
+    private javax.swing.JLabel namefish2;
+    private javax.swing.JLabel namefish3;
+    private javax.swing.JLabel namefish4;
+    private javax.swing.JLabel namefish5;
+    private javax.swing.JLabel namefish6;
+    private javax.swing.JLabel namefish7;
+    private javax.swing.JLabel namefish8;
+    private javax.swing.JLabel namefish9;
+    private javax.swing.JLabel namefishgeneral;
     private javax.swing.JLabel names;
     private javax.swing.JLabel names1;
     private javax.swing.JTextField nombrecientifico;
