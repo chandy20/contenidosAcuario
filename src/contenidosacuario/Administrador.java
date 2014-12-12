@@ -286,7 +286,6 @@ public class Administrador extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        delete = new javax.swing.JButton();
         edit = new javax.swing.JButton();
         editar = new javax.swing.JPanel();
         nombres1 = new javax.swing.JTextField();
@@ -628,16 +627,13 @@ public class Administrador extends javax.swing.JFrame {
 
         lista.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 470, 110));
 
-        delete.setText("Eliminar");
-        lista.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, -1, -1));
-
         edit.setText("Editar");
         edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editActionPerformed(evt);
             }
         });
-        lista.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, -1, -1));
+        lista.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 200, -1, -1));
 
         editar.setMaximumSize(new java.awt.Dimension(1024, 768));
         editar.setMinimumSize(new java.awt.Dimension(1024, 768));
@@ -1654,16 +1650,16 @@ public class Administrador extends javax.swing.JFrame {
 
             namefishgeneral.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
             namefishgeneral.setText("DESCRIPCION");
-            fotopantalla.add(namefishgeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, 40));
+            fotopantalla.add(namefishgeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, 40));
 
             namefish1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
             namefish1.setText("1");
-            fotopantalla.add(namefish1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 20, -1));
+            fotopantalla.add(namefish1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 20, -1));
 
             imagengeneral5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
             imagengeneral5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             imagengeneral5.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 250, 190, 130));
+            fotopantalla.add(imagengeneral5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 190, 190, 130));
 
             examinaryguardar1.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar1.setText("EXAMINAR & GUARDAR");
@@ -1672,88 +1668,88 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar1ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
+            fotopantalla.add(examinaryguardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
 
             namefish2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
             namefish2.setText("2");
-            fotopantalla.add(namefish2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 10, -1));
+            fotopantalla.add(namefish2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 10, -1));
 
             namefish3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
             namefish3.setText("3");
-            fotopantalla.add(namefish3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 10, -1));
+            fotopantalla.add(namefish3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 10, -1));
 
             namefish4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
             namefish4.setText("4");
-            fotopantalla.add(namefish4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 200, 10, -1));
+            fotopantalla.add(namefish4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 140, 10, -1));
 
             namefish5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
             namefish5.setText("5");
-            fotopantalla.add(namefish5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 200, 10, -1));
+            fotopantalla.add(namefish5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 140, 10, -1));
 
             namefish6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
             namefish6.setText("6");
-            fotopantalla.add(namefish6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 530, 10, -1));
+            fotopantalla.add(namefish6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 10, -1));
 
             namefish7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
             namefish7.setText("7");
-            fotopantalla.add(namefish7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 530, 10, -1));
+            fotopantalla.add(namefish7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 10, -1));
 
             namefish8.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
             namefish8.setText("8");
-            fotopantalla.add(namefish8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 530, 10, -1));
+            fotopantalla.add(namefish8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 400, 10, -1));
 
             namefish9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
             namefish9.setText("9");
-            fotopantalla.add(namefish9, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 530, 10, -1));
+            fotopantalla.add(namefish9, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 400, 10, -1));
 
             namefish10.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
             namefish10.setText("10");
-            fotopantalla.add(namefish10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 530, 20, -1));
+            fotopantalla.add(namefish10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 400, 20, -1));
 
             imagengeneral1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
             imagengeneral1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             imagengeneral1.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 190, 130));
+            fotopantalla.add(imagengeneral1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 190, 130));
 
             imagengeneral2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
             imagengeneral2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             imagengeneral2.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 190, 130));
+            fotopantalla.add(imagengeneral2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 190, 130));
 
             imagengeneral3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
             imagengeneral3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             imagengeneral3.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 190, 130));
+            fotopantalla.add(imagengeneral3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 190, 130));
 
             imagengeneral4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
             imagengeneral4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             imagengeneral4.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral4, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 250, 190, 130));
+            fotopantalla.add(imagengeneral4, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 190, 190, 130));
 
             imagengeneral10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
             imagengeneral10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             imagengeneral10.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 590, 190, 130));
+            fotopantalla.add(imagengeneral10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 460, 190, 130));
 
             imagengeneral6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
             imagengeneral6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             imagengeneral6.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 590, 190, 130));
+            fotopantalla.add(imagengeneral6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 190, 130));
 
             imagengeneral7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
             imagengeneral7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             imagengeneral7.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 590, 190, 130));
+            fotopantalla.add(imagengeneral7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 460, 190, 130));
 
             imagengeneral8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
             imagengeneral8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             imagengeneral8.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 590, 190, 130));
+            fotopantalla.add(imagengeneral8, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 460, 190, 130));
 
             imagengeneral9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
             imagengeneral9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             imagengeneral9.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral9, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 590, 190, 130));
+            fotopantalla.add(imagengeneral9, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 460, 190, 130));
 
             examinaryguardar2.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar2.setText("EXAMINAR & GUARDAR");
@@ -1762,7 +1758,7 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar2ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, -1, -1));
+            fotopantalla.add(examinaryguardar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
 
             examinaryguardar3.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar3.setText("EXAMINAR & GUARDAR");
@@ -1771,7 +1767,7 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar3ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, -1, -1));
+            fotopantalla.add(examinaryguardar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, -1, -1));
 
             examinaryguardar4.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar4.setText("EXAMINAR & GUARDAR");
@@ -1780,7 +1776,7 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar4ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, -1, -1));
+            fotopantalla.add(examinaryguardar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 350, -1, -1));
 
             examinaryguardar5.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar5.setText("EXAMINAR & GUARDAR");
@@ -1789,7 +1785,7 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar5ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 410, -1, -1));
+            fotopantalla.add(examinaryguardar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 350, -1, -1));
 
             examinaryguardar6.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar6.setText("EXAMINAR & GUARDAR");
@@ -1798,7 +1794,7 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar6ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 750, -1, -1));
+            fotopantalla.add(examinaryguardar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 620, -1, -1));
 
             examinaryguardar7.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar7.setText("EXAMINAR & GUARDAR");
@@ -1807,7 +1803,7 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar7ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 750, -1, -1));
+            fotopantalla.add(examinaryguardar7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 620, -1, -1));
 
             examinaryguardar8.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar8.setText("EXAMINAR & GUARDAR");
@@ -1816,7 +1812,7 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar8ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 750, -1, -1));
+            fotopantalla.add(examinaryguardar8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 620, -1, -1));
 
             examinaryguardar9.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar9.setText("EXAMINAR & GUARDAR");
@@ -1825,7 +1821,7 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar9ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 750, -1, -1));
+            fotopantalla.add(examinaryguardar9, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 620, -1, -1));
 
             examinaryguardar10.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar10.setText("EXAMINAR & GUARDAR");
@@ -1834,11 +1830,11 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar10ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 750, -1, -1));
+            fotopantalla.add(examinaryguardar10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 620, -1, -1));
 
             jLabel68.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
             jLabel68.setText("FOTOS PANTALLA");
-            fotopantalla.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
+            fotopantalla.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
 
             jMenu1.setText("Usuarios");
 
@@ -1966,7 +1962,7 @@ public class Administrador extends javax.swing.JFrame {
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(addUser, javax.swing.GroupLayout.DEFAULT_SIZE, 1244, Short.MAX_VALUE)
+                .addComponent(addUser, javax.swing.GroupLayout.DEFAULT_SIZE, 1366, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -1983,7 +1979,7 @@ public class Administrador extends javax.swing.JFrame {
                         .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap()))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addpez, javax.swing.GroupLayout.DEFAULT_SIZE, 1244, Short.MAX_VALUE))
+                    .addComponent(addpez, javax.swing.GroupLayout.DEFAULT_SIZE, 1366, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -2012,7 +2008,7 @@ public class Administrador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(editarpez, javax.swing.GroupLayout.DEFAULT_SIZE, 1224, Short.MAX_VALUE)
+                        .addComponent(editarpez, javax.swing.GroupLayout.DEFAULT_SIZE, 1346, Short.MAX_VALUE)
                         .addContainerGap()))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -2052,7 +2048,7 @@ public class Administrador extends javax.swing.JFrame {
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(addUser, javax.swing.GroupLayout.DEFAULT_SIZE, 914, Short.MAX_VALUE)
+                .addComponent(addUser, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -2069,7 +2065,7 @@ public class Administrador extends javax.swing.JFrame {
                         .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap()))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addpez, javax.swing.GroupLayout.DEFAULT_SIZE, 914, Short.MAX_VALUE))
+                    .addComponent(addpez, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -2098,7 +2094,7 @@ public class Administrador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(editarpez, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
+                        .addComponent(editarpez, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
                         .addContainerGap()))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -2900,7 +2896,7 @@ public class Administrador extends javax.swing.JFrame {
                 namefish.setText(((PezVO) fishes.get(x)).getPez_nombre());
                 try {
                     FotoVO f = (FotoVO) phDAO.getRutaPrincipal(id_pezeditado);
-                    System.out.println("Foto" + f.getFoto_id());
+//                    System.out.println("Foto" + f.getFoto_id());
                     if (f != null) {
                         ruta.setText(f.getFoto_ruta());
                         Image foto = getToolkit().getImage(ruta.getText());
@@ -3897,7 +3893,6 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton crearpez;
     private javax.swing.JButton crearsubfamilia;
     private javax.swing.JButton create;
-    private javax.swing.JButton delete;
     private javax.swing.JTextField descripcionfamilia;
     private javax.swing.JTextField descripcionfamilia1;
     private javax.swing.JTextField descripcionorden;
