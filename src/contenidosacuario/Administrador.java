@@ -2804,9 +2804,10 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(ruta.getText());
-                File directorio = new File("c:\\acuario\\" + id_pezeditado);
-                if (directorio.mkdirs()) {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish.getText() + ".png";
+                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado);
+                if (!directorio.exists()) {
+                    directorio.mkdirs();
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish.getText() + ".png";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -2840,7 +2841,7 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish.getText() + ".png";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish.getText() + ".png";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -2881,7 +2882,7 @@ public class Administrador extends javax.swing.JFrame {
             ruta.setText(String.valueOf(file));
             Image foto = getToolkit().getImage(ruta.getText());
 //            System.out.println("alto "+String.valueOf());
-//            foto = foto.getScaledInstance(700, 300, Image.SCALE_DEFAULT);
+            foto = foto.getScaledInstance(700, 300, Image.SCALE_DEFAULT);
             imagenprincipal.setIcon(new ImageIcon(foto));
         }
     }//GEN-LAST:event_examinarActionPerformed
@@ -2891,6 +2892,8 @@ public class Administrador extends javax.swing.JFrame {
         x = tablapeces.getSelectedRow();
 //        System.out.println("pisicion de la fila " + x);
         if (x >= 0) {
+            imagenprincipal.setIcon(null);
+            ruta.setText("");
             if (fishes.size() > 0) {
                 id_pezeditado = ((PezVO) fishes.get(x)).getPez_id();
                 namefish.setText(((PezVO) fishes.get(x)).getPez_nombre());
@@ -2901,7 +2904,7 @@ public class Administrador extends javax.swing.JFrame {
                         ruta.setText(f.getFoto_ruta());
                         Image foto = getToolkit().getImage(ruta.getText());
 //            System.out.println("alto "+String.valueOf());
-//            foto = foto.getScaledInstance(700, 300, Image.SCALE_DEFAULT);
+            foto = foto.getScaledInstance(700, 300, Image.SCALE_DEFAULT);
                         imagenprincipal.setIcon(new ImageIcon(foto));
                         id_fotoeditada = f.getFoto_id();
                     }
@@ -2928,10 +2931,10 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish1.getText() + ".jpg");
+                File directorio = new File("\\\\\\\\JAK\\\\acuario\\" + id_pezeditado + "\\" + namefish1.getText() + ".jpg");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish1.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish1.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -2960,7 +2963,7 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish1.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish1.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3001,10 +3004,10 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish2.getText() + ".jpg");
+                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish2.getText() + ".jpg");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish2.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish2.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3033,7 +3036,7 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish2.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish2.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3074,10 +3077,10 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish3.getText() + ".jpg");
+                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish3.getText() + ".jpg");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish3.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish3.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3106,7 +3109,7 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish3.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish3.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3147,10 +3150,10 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish4.getText() + ".jpg");
+                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish4.getText() + ".jpg");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish4.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish4.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3179,7 +3182,7 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish4.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish4.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3220,10 +3223,10 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish5.getText() + ".jpg");
+                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish5.getText() + ".jpg");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish5.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish5.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3252,7 +3255,7 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish5.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish5.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3293,10 +3296,10 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish6.getText() + ".jpg");
+                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish6.getText() + ".jpg");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish6.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish6.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3325,7 +3328,7 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish6.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish6.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3366,10 +3369,10 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish7.getText() + ".jpg");
+                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish7.getText() + ".jpg");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish7.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish7.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3398,7 +3401,7 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish7.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish7.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3439,10 +3442,10 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish8.getText() + ".jpg");
+                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish8.getText() + ".jpg");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish8.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish8.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3471,7 +3474,7 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish8.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish8.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3512,10 +3515,10 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish9.getText() + ".jpg");
+                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish9.getText() + ".jpg");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish9.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish9.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3544,7 +3547,7 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish9.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\\\" + namefish9.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3585,10 +3588,10 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("c:\\acuario\\" + id_pezeditado + "\\" + namefish10.getText() + ".jpg");
+                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish10.getText() + ".jpg");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish10.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish10.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3617,7 +3620,7 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "c:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish10.getText() + ".jpg";
+                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish10.getText() + ".jpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
