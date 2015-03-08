@@ -53,201 +53,201 @@ public class Administrador extends javax.swing.JFrame {
     public Administrador() {
         initComponents();
         this.setContentPane(inicio);
-        orden.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                familia.removeAllItems();
-                familia.addItem("Seleccione la familia");
-                subfamilia.removeAllItems();
-                subfamilia.addItem("Seleccione la subfamilia");
-                if (orders.size() > 0) {
-//                    System.out.println("select orden " + orden.getSelectedIndex());
-                    if (orden.getSelectedIndex() > 0) {
-                        OrdenVO oVO = (OrdenVO) orders.get(orden.getSelectedIndex() - 1);
-                        try {
-                            flias = fDAO.fliasList(oVO.getOrde_id());
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                        if (flias != null) {
-                            for (int i = 0; i < flias.size(); i++) {
-                                familia.addItem(((FamiliaVO) flias.get(i)).getFami_descripcion());
-                            }
-//                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
-//                            lisSubids.add(Subeventos.get(i));
+//        orden.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                familia.removeAllItems();
+//                familia.addItem("Seleccione la familia");
+//                subfamilia.removeAllItems();
+//                subfamilia.addItem("Seleccione la subfamilia");
+//                if (orders.size() > 0) {
+////                    System.out.println("select orden " + orden.getSelectedIndex());
+//                    if (orden.getSelectedIndex() > 0) {
+//                        OrdenVO oVO = (OrdenVO) orders.get(orden.getSelectedIndex() - 1);
+//                        try {
+//                            flias = fDAO.fliasList(oVO.getOrde_id());
+//                        } catch (SQLException ex) {
+//                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
 //                        }
-                        } else {
-                            flias = null;
-                        }
-                    }
-                } else {
-                    flias = null;
-//                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
-                }
-            }
-        });
+//
+//                        if (flias != null) {
+//                            for (int i = 0; i < flias.size(); i++) {
+//                                familia.addItem(((FamiliaVO) flias.get(i)).getFami_descripcion());
+//                            }
+////                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
+////                            lisSubids.add(Subeventos.get(i));
+////                        }
+//                        } else {
+//                            flias = null;
+//                        }
+//                    }
+//                } else {
+//                    flias = null;
+////                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
+//                }
+//            }
+//        });
         //ajax de subfamilia
-        familia.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                subfamilia.removeAllItems();
-                subfamilia.addItem("Seleccione la subfamilia");
-                if (flias.size() > 0) {
-//                    System.out.println("select familia " + familia.getSelectedIndex());
-                    if (familia.getSelectedIndex() > 0) {
-                        FamiliaVO fVO = (FamiliaVO) flias.get(familia.getSelectedIndex() - 1);
-                        try {
-                            subflias = sDAO.SubfliasList(fVO.getFami_id());
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                        if (subflias != null) {
-                            for (int i = 0; i < subflias.size(); i++) {
-                                subfamilia.addItem(((SubfamiliaVO) subflias.get(i)).getSubf_descripcion());
-                            }
-//                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
-//                            lisSubids.add(Subeventos.get(i));
+//        familia.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                subfamilia.removeAllItems();
+//                subfamilia.addItem("Seleccione la subfamilia");
+//                if (flias.size() > 0) {
+////                    System.out.println("select familia " + familia.getSelectedIndex());
+//                    if (familia.getSelectedIndex() > 0) {
+//                        FamiliaVO fVO = (FamiliaVO) flias.get(familia.getSelectedIndex() - 1);
+//                        try {
+//                            subflias = sDAO.SubfliasList(fVO.getFami_id());
+//                        } catch (SQLException ex) {
+//                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
 //                        }
-                        } else {
-                            subflias = null;
-                        }
-                    }
-                } else {
-                    subflias = null;
-//                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
-                }
-            }
-        });
+//
+//                        if (subflias != null) {
+//                            for (int i = 0; i < subflias.size(); i++) {
+//                                subfamilia.addItem(((SubfamiliaVO) subflias.get(i)).getSubf_descripcion());
+//                            }
+////                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
+////                            lisSubids.add(Subeventos.get(i));
+////                        }
+//                        } else {
+//                            subflias = null;
+//                        }
+//                    }
+//                } else {
+//                    subflias = null;
+////                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
+//                }
+//            }
+//        });
         //ajax para creacion de subfamilias
-        orden1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                familia2.removeAllItems();
-                familia2.addItem("Seleccione la familia");
-                if (orders.size() > 0) {
-//                    System.out.println("select orden " + orden.getSelectedIndex());
-                    if (orden1.getSelectedIndex() > 0) {
-                        OrdenVO oVO = (OrdenVO) orders.get(orden1.getSelectedIndex() - 1);
-                        try {
-                            flias = fDAO.fliasList(oVO.getOrde_id());
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                        if (flias != null) {
-                            for (int i = 0; i < flias.size(); i++) {
-                                familia2.addItem(((FamiliaVO) flias.get(i)).getFami_descripcion());
-                            }
-//                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
-//                            lisSubids.add(Subeventos.get(i));
+//        orden1.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                familia2.removeAllItems();
+//                familia2.addItem("Seleccione la familia");
+//                if (orders.size() > 0) {
+////                    System.out.println("select orden " + orden.getSelectedIndex());
+//                    if (orden1.getSelectedIndex() > 0) {
+//                        OrdenVO oVO = (OrdenVO) orders.get(orden1.getSelectedIndex() - 1);
+//                        try {
+//                            flias = fDAO.fliasList(oVO.getOrde_id());
+//                        } catch (SQLException ex) {
+//                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
 //                        }
-                        } else {
-                            flias = null;
-                        }
-                    }
-                } else {
-                    flias = null;
-//                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
-                }
-            }
-        });
+//
+//                        if (flias != null) {
+//                            for (int i = 0; i < flias.size(); i++) {
+//                                familia2.addItem(((FamiliaVO) flias.get(i)).getFami_descripcion());
+//                            }
+////                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
+////                            lisSubids.add(Subeventos.get(i));
+////                        }
+//                        } else {
+//                            flias = null;
+//                        }
+//                    }
+//                } else {
+//                    flias = null;
+////                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
+//                }
+//            }
+//        });
         //ajax para la edicion de subfamilias
-        orden3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                familia3.removeAllItems();
-                familia3.addItem("Seleccione la familia");
-                if (orders.size() > 0) {
-//                    System.out.println("select orden " + orden.getSelectedIndex());
-                    if (orden3.getSelectedIndex() > 0) {
-                        OrdenVO oVO = (OrdenVO) orders.get(orden3.getSelectedIndex() - 1);
-                        try {
-                            flias = fDAO.fliasList(oVO.getOrde_id());
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                        if (flias != null) {
-                            for (int i = 0; i < flias.size(); i++) {
-                                familia3.addItem(((FamiliaVO) flias.get(i)).getFami_descripcion());
-                            }
-//                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
-//                            lisSubids.add(Subeventos.get(i));
+//        orden3.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                familia3.removeAllItems();
+//                familia3.addItem("Seleccione la familia");
+//                if (orders.size() > 0) {
+////                    System.out.println("select orden " + orden.getSelectedIndex());
+//                    if (orden3.getSelectedIndex() > 0) {
+//                        OrdenVO oVO = (OrdenVO) orders.get(orden3.getSelectedIndex() - 1);
+//                        try {
+//                            flias = fDAO.fliasList(oVO.getOrde_id());
+//                        } catch (SQLException ex) {
+//                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
 //                        }
-                        } else {
-                            flias = null;
-                        }
-                    }
-                } else {
-                    flias = null;
-//                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
-                }
-            }
-        });
+//
+//                        if (flias != null) {
+//                            for (int i = 0; i < flias.size(); i++) {
+//                                familia3.addItem(((FamiliaVO) flias.get(i)).getFami_descripcion());
+//                            }
+////                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
+////                            lisSubids.add(Subeventos.get(i));
+////                        }
+//                        } else {
+//                            flias = null;
+//                        }
+//                    }
+//                } else {
+//                    flias = null;
+////                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
+//                }
+//            }
+//        });
         //ajax para la edicion de peces
-        orden2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                familia1.removeAllItems();
-                familia1.addItem("Seleccione la familia");
-                subfamilia1.removeAllItems();
-                subfamilia1.addItem("Seleccione la subfamilia");
-                if (orders.size() > 0) {
-//                    System.out.println("select orden " + orden.getSelectedIndex());
-                    if (orden2.getSelectedIndex() > 0) {
-                        OrdenVO oVO = (OrdenVO) orders.get(orden2.getSelectedIndex() - 1);
-                        try {
-                            flias = fDAO.fliasList(oVO.getOrde_id());
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                        if (flias != null) {
-                            for (int i = 0; i < flias.size(); i++) {
-                                familia1.addItem(((FamiliaVO) flias.get(i)).getFami_descripcion());
-                            }
-//                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
-//                            lisSubids.add(Subeventos.get(i));
+//        orden2.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                familia1.removeAllItems();
+//                familia1.addItem("Seleccione la familia");
+//                subfamilia1.removeAllItems();
+//                subfamilia1.addItem("Seleccione la subfamilia");
+//                if (orders.size() > 0) {
+////                    System.out.println("select orden " + orden.getSelectedIndex());
+//                    if (orden2.getSelectedIndex() > 0) {
+//                        OrdenVO oVO = (OrdenVO) orders.get(orden2.getSelectedIndex() - 1);
+//                        try {
+//                            flias = fDAO.fliasList(oVO.getOrde_id());
+//                        } catch (SQLException ex) {
+//                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
 //                        }
-                        } else {
-                            flias = null;
-                        }
-                    }
-                } else {
-                    flias = null;
-//                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
-                }
-            }
-        });
+//
+//                        if (flias != null) {
+//                            for (int i = 0; i < flias.size(); i++) {
+//                                familia1.addItem(((FamiliaVO) flias.get(i)).getFami_descripcion());
+//                            }
+////                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
+////                            lisSubids.add(Subeventos.get(i));
+////                        }
+//                        } else {
+//                            flias = null;
+//                        }
+//                    }
+//                } else {
+//                    flias = null;
+////                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
+//                }
+//            }
+//        });
         //ajax de subfamilia
-        familia1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                subfamilia1.removeAllItems();
-                subfamilia1.addItem("Seleccione la subfamilia");
-                if (flias.size() > 0) {
-//                    System.out.println("select familia " + familia.getSelectedIndex());
-                    if (familia1.getSelectedIndex() > 0) {
-                        FamiliaVO fVO = (FamiliaVO) flias.get(familia1.getSelectedIndex() - 1);
-                        try {
-                            subflias = sDAO.SubfliasList(fVO.getFami_id());
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                        if (subflias != null) {
-                            for (int i = 0; i < subflias.size(); i++) {
-                                subfamilia1.addItem(((SubfamiliaVO) subflias.get(i)).getSubf_descripcion());
-                            }
-//                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
-//                            lisSubids.add(Subeventos.get(i));
+//        familia1.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                subfamilia1.removeAllItems();
+//                subfamilia1.addItem("Seleccione la subfamilia");
+//                if (flias.size() > 0) {
+////                    System.out.println("select familia " + familia.getSelectedIndex());
+//                    if (familia1.getSelectedIndex() > 0) {
+//                        FamiliaVO fVO = (FamiliaVO) flias.get(familia1.getSelectedIndex() - 1);
+//                        try {
+//                            subflias = sDAO.SubfliasList(fVO.getFami_id());
+//                        } catch (SQLException ex) {
+//                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
 //                        }
-                        } else {
-                            subflias = null;
-                        }
-                    }
-                } else {
-                    subflias = null;
-//                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
-                }
-            }
-        });
+//
+//                        if (subflias != null) {
+//                            for (int i = 0; i < subflias.size(); i++) {
+//                                subfamilia1.addItem(((SubfamiliaVO) subflias.get(i)).getSubf_descripcion());
+//                            }
+////                        for (int i = 0; i < Subeventos.size(); i = i + 2) {
+////                            lisSubids.add(Subeventos.get(i));
+////                        }
+//                        } else {
+//                            subflias = null;
+//                        }
+//                    }
+//                } else {
+//                    subflias = null;
+////                    jLabel1.setText("NO EXISTEN EVENTOS ACTIVOS");
+//                }
+//            }
+//        });
     }
 
     public void alineamiento() {
@@ -304,50 +304,24 @@ public class Administrador extends javax.swing.JFrame {
         password1 = new javax.swing.JPasswordField();
         addpez = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        orden = new javax.swing.JComboBox();
-        familia = new javax.swing.JComboBox();
-        subfamilia = new javax.swing.JComboBox();
         jLabel19 = new javax.swing.JLabel();
-        nombrepez = new javax.swing.JTextField();
         nombrecomun = new javax.swing.JTextField();
         nombrecientifico = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        biotipo = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        distribucion = new javax.swing.JTextArea();
+        pez_distribucion = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
-        forma = new javax.swing.JTextArea();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        coloracion = new javax.swing.JTextArea();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        tamano = new javax.swing.JTextArea();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        temperatura = new javax.swing.JTextArea();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        agua = new javax.swing.JTextArea();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        acuario = new javax.swing.JTextArea();
-        jScrollPane10 = new javax.swing.JScrollPane();
         alimentacion = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        generalidades = new javax.swing.JTextArea();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        curiosidades = new javax.swing.JTextArea();
         crearpez = new javax.swing.JButton();
-        jLabel25 = new javax.swing.JLabel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        comportamiento = new javax.swing.JTextArea();
         ordenpane = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
@@ -381,53 +355,27 @@ public class Administrador extends javax.swing.JFrame {
         habilitarpeces = new javax.swing.JButton();
         editarpeces = new javax.swing.JButton();
         fotoprinc = new javax.swing.JButton();
-        fotosgenerales = new javax.swing.JButton();
+        videosGenerales = new javax.swing.JButton();
+        videoInactividad = new javax.swing.JButton();
         editarpez = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
-        orden2 = new javax.swing.JComboBox();
-        familia1 = new javax.swing.JComboBox();
-        subfamilia1 = new javax.swing.JComboBox();
-        jLabel49 = new javax.swing.JLabel();
-        nombrepez1 = new javax.swing.JTextField();
         nombrecomun1 = new javax.swing.JTextField();
         nombrecientifico1 = new javax.swing.JTextField();
-        jLabel50 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
-        jLabel52 = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
-        jLabel54 = new javax.swing.JLabel();
-        jScrollPane13 = new javax.swing.JScrollPane();
-        biotipo1 = new javax.swing.JTextArea();
         jScrollPane14 = new javax.swing.JScrollPane();
-        distribucion1 = new javax.swing.JTextArea();
+        pez_distribucion1 = new javax.swing.JTextArea();
         jScrollPane15 = new javax.swing.JScrollPane();
-        forma1 = new javax.swing.JTextArea();
+        pez_alimentacion1 = new javax.swing.JTextArea();
         jScrollPane16 = new javax.swing.JScrollPane();
-        coloracion1 = new javax.swing.JTextArea();
-        jScrollPane17 = new javax.swing.JScrollPane();
-        tamano1 = new javax.swing.JTextArea();
-        jScrollPane18 = new javax.swing.JScrollPane();
-        temperatura1 = new javax.swing.JTextArea();
-        jScrollPane19 = new javax.swing.JScrollPane();
-        agua1 = new javax.swing.JTextArea();
-        jScrollPane20 = new javax.swing.JScrollPane();
-        acuario1 = new javax.swing.JTextArea();
-        jScrollPane21 = new javax.swing.JScrollPane();
-        alimentacion1 = new javax.swing.JTextArea();
+        pez_generalidades1 = new javax.swing.JTextArea();
         editpez = new javax.swing.JButton();
-        jLabel55 = new javax.swing.JLabel();
-        jScrollPane22 = new javax.swing.JScrollPane();
-        comportamiento1 = new javax.swing.JTextArea();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        pez_curiosidades1 = new javax.swing.JTextArea();
         listaordenes = new javax.swing.JPanel();
         jLabel56 = new javax.swing.JLabel();
         jScrollPane23 = new javax.swing.JScrollPane();
@@ -471,35 +419,15 @@ public class Administrador extends javax.swing.JFrame {
         fotopantalla = new javax.swing.JPanel();
         namefishgeneral = new javax.swing.JLabel();
         namefish1 = new javax.swing.JLabel();
-        imagengeneral5 = new javax.swing.JLabel();
         examinaryguardar1 = new javax.swing.JButton();
         namefish2 = new javax.swing.JLabel();
         namefish3 = new javax.swing.JLabel();
         namefish4 = new javax.swing.JLabel();
         namefish5 = new javax.swing.JLabel();
-        namefish6 = new javax.swing.JLabel();
-        namefish7 = new javax.swing.JLabel();
-        namefish8 = new javax.swing.JLabel();
-        namefish9 = new javax.swing.JLabel();
-        namefish10 = new javax.swing.JLabel();
-        imagengeneral1 = new javax.swing.JLabel();
-        imagengeneral2 = new javax.swing.JLabel();
-        imagengeneral3 = new javax.swing.JLabel();
-        imagengeneral4 = new javax.swing.JLabel();
-        imagengeneral10 = new javax.swing.JLabel();
-        imagengeneral6 = new javax.swing.JLabel();
-        imagengeneral7 = new javax.swing.JLabel();
-        imagengeneral8 = new javax.swing.JLabel();
-        imagengeneral9 = new javax.swing.JLabel();
         examinaryguardar2 = new javax.swing.JButton();
         examinaryguardar3 = new javax.swing.JButton();
         examinaryguardar4 = new javax.swing.JButton();
         examinaryguardar5 = new javax.swing.JButton();
-        examinaryguardar6 = new javax.swing.JButton();
-        examinaryguardar7 = new javax.swing.JButton();
-        examinaryguardar8 = new javax.swing.JButton();
-        examinaryguardar9 = new javax.swing.JButton();
-        examinaryguardar10 = new javax.swing.JButton();
         jLabel68 = new javax.swing.JLabel();
         menu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -508,13 +436,6 @@ public class Administrador extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
 
@@ -701,9 +622,6 @@ public class Administrador extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
         jLabel8.setText("CREAR PEZ");
 
-        jLabel9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel9.setText("Nombre");
-
         jLabel10.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel10.setText("Nombre común");
 
@@ -711,79 +629,34 @@ public class Administrador extends javax.swing.JFrame {
         jLabel11.setText("Nombre científico");
 
         jLabel12.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel12.setText("Biótopo");
-
-        jLabel13.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel13.setText("Clasificación");
-
-        jLabel14.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel14.setText("Orden");
-
-        jLabel15.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel15.setText("Familia");
-
-        jLabel16.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel16.setText("Subfamilia");
 
         jLabel17.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel17.setText("Distribución");
+        jLabel17.setText("Me encuentro en");
 
         jLabel18.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel18.setText("Forma");
+        jLabel18.setText("Que Como");
 
         jLabel19.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel19.setText("Tamaño");
-
-        jLabel20.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel20.setText("Temperatura");
-
-        jLabel21.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel21.setText("Agua");
-
-        jLabel22.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel22.setText("Acuario");
-
-        jLabel23.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel23.setText("Alimentación");
+        jLabel19.setText("Mis Curiosidades");
 
         jLabel24.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel24.setText("Coloración");
+        jLabel24.setText("Generalidades");
 
-        biotipo.setColumns(20);
-        biotipo.setRows(5);
-        jScrollPane2.setViewportView(biotipo);
-
-        distribucion.setColumns(20);
-        distribucion.setRows(5);
-        jScrollPane3.setViewportView(distribucion);
-
-        forma.setColumns(20);
-        forma.setRows(5);
-        jScrollPane4.setViewportView(forma);
-
-        coloracion.setColumns(20);
-        coloracion.setRows(5);
-        jScrollPane5.setViewportView(coloracion);
-
-        tamano.setColumns(20);
-        tamano.setRows(5);
-        jScrollPane6.setViewportView(tamano);
-
-        temperatura.setColumns(20);
-        temperatura.setRows(5);
-        jScrollPane7.setViewportView(temperatura);
-
-        agua.setColumns(20);
-        agua.setRows(5);
-        jScrollPane8.setViewportView(agua);
-
-        acuario.setColumns(20);
-        acuario.setRows(5);
-        jScrollPane9.setViewportView(acuario);
+        pez_distribucion.setColumns(20);
+        pez_distribucion.setRows(5);
+        jScrollPane3.setViewportView(pez_distribucion);
 
         alimentacion.setColumns(20);
         alimentacion.setRows(5);
-        jScrollPane10.setViewportView(alimentacion);
+        jScrollPane4.setViewportView(alimentacion);
+
+        generalidades.setColumns(20);
+        generalidades.setRows(5);
+        jScrollPane5.setViewportView(generalidades);
+
+        curiosidades.setColumns(20);
+        curiosidades.setRows(5);
+        jScrollPane6.setViewportView(curiosidades);
 
         crearpez.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         crearpez.setText("CREAR");
@@ -793,13 +666,6 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
-        jLabel25.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel25.setText("Comportamiento");
-
-        comportamiento.setColumns(20);
-        comportamiento.setRows(5);
-        jScrollPane11.setViewportView(comportamiento);
-
         javax.swing.GroupLayout addpezLayout = new javax.swing.GroupLayout(addpez);
         addpez.setLayout(addpezLayout);
         addpezLayout.setHorizontalGroup(
@@ -807,71 +673,40 @@ public class Administrador extends javax.swing.JFrame {
             .addGroup(addpezLayout.createSequentialGroup()
                 .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addpezLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(nombrepez, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(orden, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(187, 187, 187)
-                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel15))
-                            .addComponent(nombrecomun, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(familia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(188, 188, 188)
-                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel11)
-                            .addComponent(nombrecientifico)
-                            .addComponent(subfamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(addpezLayout.createSequentialGroup()
                         .addGap(345, 345, 345)
                         .addComponent(jLabel8))
                     .addGroup(addpezLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel12)
+                        .addGap(102, 102, 102)
                         .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(addpezLayout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jLabel12)
-                                .addGap(151, 151, 151)
+                                .addGap(37, 37, 37)
                                 .addComponent(jLabel17))
-                            .addGroup(addpezLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(addpezLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel20)
-                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(30, 30, 30)
-                                .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel21)
-                                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(43, 43, 43)
                         .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel22)
-                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel23)
                             .addComponent(jLabel24)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel25)
                             .addComponent(jLabel19)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(addpezLayout.createSequentialGroup()
-                        .addGap(466, 466, 466)
+                        .addGap(255, 255, 255)
+                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombrecomun, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(188, 188, 188)
+                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(nombrecientifico, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(addpezLayout.createSequentialGroup()
+                        .addGap(479, 479, 479)
                         .addComponent(crearpez)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -883,26 +718,16 @@ public class Administrador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addpezLayout.createSequentialGroup()
-                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addpezLayout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nombrecientifico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel16)
-                                .addGap(18, 18, 18)
-                                .addComponent(subfamilia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(addpezLayout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nombrecomun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel15)
-                                .addGap(18, 18, 18)
-                                .addComponent(familia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(13, 13, 13)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nombrecientifico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addpezLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nombrecomun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addpezLayout.createSequentialGroup()
+                        .addGap(113, 113, 113)
                         .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(addpezLayout.createSequentialGroup()
@@ -920,48 +745,15 @@ public class Administrador extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(addpezLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nombrepez, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel14)
-                        .addGap(18, 18, 18)
-                        .addComponent(orden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(118, 118, 118)
                         .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(31, 31, 31)
-                .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addpezLayout.createSequentialGroup()
-                            .addComponent(jLabel23)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addpezLayout.createSequentialGroup()
-                                .addComponent(jLabel22)
-                                .addGap(11, 11, 11)
-                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(addpezLayout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(addpezLayout.createSequentialGroup()
-                            .addComponent(jLabel25)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(addpezLayout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(56, 56, 56)
                 .addComponent(crearpez)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         ordenpane.setMaximumSize(new java.awt.Dimension(1024, 768));
@@ -1101,13 +893,13 @@ public class Administrador extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Nombre común", "Nombre científico", "Habilitado"
+                "Nombre común", "Nombre científico", "Habilitado"
             }
         ));
         tablapeces.setFocusable(false);
         jScrollPane12.setViewportView(tablapeces);
 
-        listapeces.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 760, 180));
+        listapeces.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 750, 290));
 
         habilitarpeces.setText("HABILITAR");
         habilitarpeces.addActionListener(new java.awt.event.ActionListener() {
@@ -1115,15 +907,15 @@ public class Administrador extends javax.swing.JFrame {
                 habilitarpecesActionPerformed(evt);
             }
         });
-        listapeces.add(habilitarpeces, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, -1, -1));
+        listapeces.add(habilitarpeces, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, -1, -1));
 
-        editarpeces.setText("Editar");
+        editarpeces.setText("EDITAR");
         editarpeces.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarpecesActionPerformed(evt);
             }
         });
-        listapeces.add(editarpeces, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, -1, -1));
+        listapeces.add(editarpeces, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, -1, -1));
 
         fotoprinc.setText("FOTO PRINCIPAL");
         fotoprinc.addActionListener(new java.awt.event.ActionListener() {
@@ -1131,23 +923,28 @@ public class Administrador extends javax.swing.JFrame {
                 fotoprincActionPerformed(evt);
             }
         });
-        listapeces.add(fotoprinc, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 320, -1, -1));
+        listapeces.add(fotoprinc, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, -1, -1));
 
-        fotosgenerales.setText("FOTOS PANTALLA");
-        fotosgenerales.addActionListener(new java.awt.event.ActionListener() {
+        videosGenerales.setText("VIDEOS PEZ");
+        videosGenerales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fotosgeneralesActionPerformed(evt);
+                videosGeneralesActionPerformed(evt);
             }
         });
-        listapeces.add(fotosgenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 320, -1, -1));
+        listapeces.add(videosGenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 410, -1, -1));
+
+        videoInactividad.setText("VIDEO INACTIVIDAD");
+        videoInactividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                videoInactividadActionPerformed(evt);
+            }
+        });
+        listapeces.add(videoInactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 410, -1, -1));
 
         editarpez.setPreferredSize(new java.awt.Dimension(767, 615));
 
         jLabel38.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
         jLabel38.setText("EDITAR PEZ");
-
-        jLabel39.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel39.setText("Nombre");
 
         jLabel40.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel40.setText("Nombre común");
@@ -1155,258 +952,133 @@ public class Administrador extends javax.swing.JFrame {
         jLabel41.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel41.setText("Nombre científico");
 
-        jLabel42.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel42.setText("Biótopo");
+        pez_distribucion1.setColumns(20);
+        pez_distribucion1.setRows(5);
+        jScrollPane14.setViewportView(pez_distribucion1);
 
-        jLabel43.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel43.setText("Clasificación");
+        pez_alimentacion1.setColumns(20);
+        pez_alimentacion1.setRows(5);
+        jScrollPane15.setViewportView(pez_alimentacion1);
 
-        jLabel44.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel44.setText("Orden");
-
-        jLabel45.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel45.setText("Familia");
-
-        jLabel46.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel46.setText("Subfamilia");
-
-        jLabel47.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel47.setText("Distribución");
-
-        jLabel48.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel48.setText("Forma");
-
-        jLabel49.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel49.setText("Tamaño");
-
-        jLabel50.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel50.setText("Temperatura");
-
-        jLabel51.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel51.setText("Agua");
-
-        jLabel52.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel52.setText("Acuario");
-
-        jLabel53.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel53.setText("Alimentación");
-
-        jLabel54.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel54.setText("Coloración");
-
-        biotipo1.setColumns(20);
-        biotipo1.setRows(5);
-        jScrollPane13.setViewportView(biotipo1);
-
-        distribucion1.setColumns(20);
-        distribucion1.setRows(5);
-        jScrollPane14.setViewportView(distribucion1);
-
-        forma1.setColumns(20);
-        forma1.setRows(5);
-        jScrollPane15.setViewportView(forma1);
-
-        coloracion1.setColumns(20);
-        coloracion1.setRows(5);
-        jScrollPane16.setViewportView(coloracion1);
-
-        tamano1.setColumns(20);
-        tamano1.setRows(5);
-        jScrollPane17.setViewportView(tamano1);
-
-        temperatura1.setColumns(20);
-        temperatura1.setRows(5);
-        jScrollPane18.setViewportView(temperatura1);
-
-        agua1.setColumns(20);
-        agua1.setRows(5);
-        jScrollPane19.setViewportView(agua1);
-
-        acuario1.setColumns(20);
-        acuario1.setRows(5);
-        jScrollPane20.setViewportView(acuario1);
-
-        alimentacion1.setColumns(20);
-        alimentacion1.setRows(5);
-        jScrollPane21.setViewportView(alimentacion1);
+        pez_generalidades1.setColumns(20);
+        pez_generalidades1.setRows(5);
+        jScrollPane16.setViewportView(pez_generalidades1);
 
         editpez.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        editpez.setText("FINALIZAR");
+        editpez.setText("EDITAR");
         editpez.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editpezActionPerformed(evt);
             }
         });
 
-        jLabel55.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel55.setText("Comportamiento");
+        jLabel20.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel20.setText("Me encuentro en");
 
-        comportamiento1.setColumns(20);
-        comportamiento1.setRows(5);
-        jScrollPane22.setViewportView(comportamiento1);
+        jLabel21.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel21.setText("Que Como");
+
+        jLabel25.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel25.setText("Generalidades");
+
+        jLabel39.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel39.setText("Curiosidades");
+
+        pez_curiosidades1.setColumns(20);
+        pez_curiosidades1.setRows(5);
+        jScrollPane17.setViewportView(pez_curiosidades1);
 
         javax.swing.GroupLayout editarpezLayout = new javax.swing.GroupLayout(editarpez);
         editarpez.setLayout(editarpezLayout);
         editarpezLayout.setHorizontalGroup(
             editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editarpezLayout.createSequentialGroup()
+                .addGap(77, 77, 77)
                 .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(editarpezLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel44)
-                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(nombrepez1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(orden2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(187, 187, 187)
-                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel45))
-                            .addComponent(nombrecomun1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(familia1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(188, 188, 188)
-                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel46)
-                            .addComponent(jLabel41)
-                            .addComponent(nombrecientifico1)
-                            .addComponent(subfamilia1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(editarpezLayout.createSequentialGroup()
-                        .addGap(345, 345, 345)
-                        .addComponent(jLabel38))
-                    .addGroup(editarpezLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarpezLayout.createSequentialGroup()
                         .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(editarpezLayout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jLabel42)
-                                .addGap(151, 151, 151)
-                                .addComponent(jLabel47))
+                                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(editarpezLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel20)
+                                .addGap(141, 141, 141)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(86, 86, 86)
+                                .addComponent(jLabel25)))
+                        .addGap(74, 74, 74)
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(editarpezLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
+                                .addGap(17, 17, 17)
+                                .addComponent(jLabel39))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarpezLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarpezLayout.createSequentialGroup()
+                                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(195, 195, 195))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarpezLayout.createSequentialGroup()
                                 .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel50)
-                                    .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(30, 30, 30)
+                                    .addComponent(nombrecomun1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarpezLayout.createSequentialGroup()
+                                        .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)))
+                                .addGap(188, 188, 188)
                                 .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel51)
-                                    .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(43, 43, 43)
-                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel52)
-                            .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel53)
-                            .addComponent(jLabel54)
-                            .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel55)
-                            .addComponent(jLabel49)
-                            .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(editarpezLayout.createSequentialGroup()
-                        .addGap(466, 466, 466)
-                        .addComponent(editpez)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(nombrecientifico1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(editarpezLayout.createSequentialGroup()
+                                        .addGap(24, 24, 24)
+                                        .addComponent(jLabel41)))
+                                .addGap(94, 94, 94))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarpezLayout.createSequentialGroup()
+                                .addComponent(jLabel38)
+                                .addGap(217, 217, 217))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarpezLayout.createSequentialGroup()
+                                .addComponent(editpez)
+                                .addGap(328, 328, 328)))))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
         editarpezLayout.setVerticalGroup(
             editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarpezLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addComponent(jLabel38)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(editarpezLayout.createSequentialGroup()
-                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(editarpezLayout.createSequentialGroup()
-                                .addComponent(jLabel41)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nombrecientifico1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel46)
-                                .addGap(18, 18, 18)
-                                .addComponent(subfamilia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(editarpezLayout.createSequentialGroup()
-                                .addComponent(jLabel40)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nombrecomun1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel45)
-                                .addGap(18, 18, 18)
-                                .addComponent(familia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(13, 13, 13)
-                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(editarpezLayout.createSequentialGroup()
-                                    .addGap(5, 5, 5)
-                                    .addComponent(jLabel54)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarpezLayout.createSequentialGroup()
-                                    .addComponent(jLabel49)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(editarpezLayout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(jLabel48)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel41)
+                            .addComponent(jLabel40))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nombrecientifico1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(editarpezLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(nombrecomun1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(90, 90, 90)
+                .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(editarpezLayout.createSequentialGroup()
+                            .addComponent(jLabel25)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(editarpezLayout.createSequentialGroup()
+                            .addComponent(jLabel20)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(editarpezLayout.createSequentialGroup()
+                            .addComponent(jLabel21)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(editarpezLayout.createSequentialGroup()
                         .addComponent(jLabel39)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nombrepez1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel44)
-                        .addGap(18, 18, 18)
-                        .addComponent(orden2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(31, 31, 31)
-                .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editarpezLayout.createSequentialGroup()
-                            .addComponent(jLabel53)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editarpezLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editarpezLayout.createSequentialGroup()
-                                .addComponent(jLabel52)
-                                .addGap(11, 11, 11)
-                                .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(editarpezLayout.createSequentialGroup()
-                                .addComponent(jLabel51)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(editarpezLayout.createSequentialGroup()
-                            .addComponent(jLabel55)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(editarpezLayout.createSequentialGroup()
-                        .addComponent(jLabel50)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
+                        .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(editpez)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
 
         listaordenes.setMaximumSize(new java.awt.Dimension(1024, 768));
@@ -1650,16 +1322,11 @@ public class Administrador extends javax.swing.JFrame {
 
             namefishgeneral.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
             namefishgeneral.setText("DESCRIPCION");
-            fotopantalla.add(namefishgeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, 40));
+            fotopantalla.add(namefishgeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, -1, 40));
 
             namefish1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-            namefish1.setText("1");
-            fotopantalla.add(namefish1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 20, -1));
-
-            imagengeneral5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-            imagengeneral5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            imagengeneral5.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 190, 190, 130));
+            namefish1.setText("Vivo en");
+            fotopantalla.add(namefish1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 70, -1));
 
             examinaryguardar1.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar1.setText("EXAMINAR & GUARDAR");
@@ -1668,88 +1335,23 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar1ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
+            fotopantalla.add(examinaryguardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
 
             namefish2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-            namefish2.setText("2");
-            fotopantalla.add(namefish2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 10, -1));
+            namefish2.setText("Mi cuerpo es");
+            fotopantalla.add(namefish2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 100, -1));
 
             namefish3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-            namefish3.setText("3");
-            fotopantalla.add(namefish3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 10, -1));
+            namefish3.setText("Mis medidas son");
+            fotopantalla.add(namefish3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 210, 120, -1));
 
             namefish4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-            namefish4.setText("4");
-            fotopantalla.add(namefish4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 140, 10, -1));
+            namefish4.setText("Temperatura");
+            fotopantalla.add(namefish4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, 130, -1));
 
             namefish5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-            namefish5.setText("5");
-            fotopantalla.add(namefish5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 140, 10, -1));
-
-            namefish6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-            namefish6.setText("6");
-            fotopantalla.add(namefish6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 10, -1));
-
-            namefish7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-            namefish7.setText("7");
-            fotopantalla.add(namefish7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 10, -1));
-
-            namefish8.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-            namefish8.setText("8");
-            fotopantalla.add(namefish8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 400, 10, -1));
-
-            namefish9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-            namefish9.setText("9");
-            fotopantalla.add(namefish9, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 400, 10, -1));
-
-            namefish10.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-            namefish10.setText("10");
-            fotopantalla.add(namefish10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 400, 20, -1));
-
-            imagengeneral1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-            imagengeneral1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            imagengeneral1.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 190, 130));
-
-            imagengeneral2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-            imagengeneral2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            imagengeneral2.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 190, 130));
-
-            imagengeneral3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-            imagengeneral3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            imagengeneral3.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 190, 130));
-
-            imagengeneral4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-            imagengeneral4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            imagengeneral4.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral4, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 190, 190, 130));
-
-            imagengeneral10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-            imagengeneral10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            imagengeneral10.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 460, 190, 130));
-
-            imagengeneral6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-            imagengeneral6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            imagengeneral6.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 190, 130));
-
-            imagengeneral7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-            imagengeneral7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            imagengeneral7.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 460, 190, 130));
-
-            imagengeneral8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-            imagengeneral8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            imagengeneral8.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral8, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 460, 190, 130));
-
-            imagengeneral9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-            imagengeneral9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            imagengeneral9.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-            fotopantalla.add(imagengeneral9, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 460, 190, 130));
+            namefish5.setText("General");
+            fotopantalla.add(namefish5, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 210, 80, -1));
 
             examinaryguardar2.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar2.setText("EXAMINAR & GUARDAR");
@@ -1758,7 +1360,7 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar2ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
+            fotopantalla.add(examinaryguardar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, -1, -1));
 
             examinaryguardar3.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar3.setText("EXAMINAR & GUARDAR");
@@ -1767,7 +1369,7 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar3ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, -1, -1));
+            fotopantalla.add(examinaryguardar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, -1, -1));
 
             examinaryguardar4.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar4.setText("EXAMINAR & GUARDAR");
@@ -1776,7 +1378,7 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar4ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 350, -1, -1));
+            fotopantalla.add(examinaryguardar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 260, -1, -1));
 
             examinaryguardar5.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
             examinaryguardar5.setText("EXAMINAR & GUARDAR");
@@ -1785,56 +1387,11 @@ public class Administrador extends javax.swing.JFrame {
                     examinaryguardar5ActionPerformed(evt);
                 }
             });
-            fotopantalla.add(examinaryguardar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 350, -1, -1));
-
-            examinaryguardar6.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
-            examinaryguardar6.setText("EXAMINAR & GUARDAR");
-            examinaryguardar6.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    examinaryguardar6ActionPerformed(evt);
-                }
-            });
-            fotopantalla.add(examinaryguardar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 620, -1, -1));
-
-            examinaryguardar7.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
-            examinaryguardar7.setText("EXAMINAR & GUARDAR");
-            examinaryguardar7.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    examinaryguardar7ActionPerformed(evt);
-                }
-            });
-            fotopantalla.add(examinaryguardar7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 620, -1, -1));
-
-            examinaryguardar8.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
-            examinaryguardar8.setText("EXAMINAR & GUARDAR");
-            examinaryguardar8.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    examinaryguardar8ActionPerformed(evt);
-                }
-            });
-            fotopantalla.add(examinaryguardar8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 620, -1, -1));
-
-            examinaryguardar9.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
-            examinaryguardar9.setText("EXAMINAR & GUARDAR");
-            examinaryguardar9.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    examinaryguardar9ActionPerformed(evt);
-                }
-            });
-            fotopantalla.add(examinaryguardar9, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 620, -1, -1));
-
-            examinaryguardar10.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
-            examinaryguardar10.setText("EXAMINAR & GUARDAR");
-            examinaryguardar10.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    examinaryguardar10ActionPerformed(evt);
-                }
-            });
-            fotopantalla.add(examinaryguardar10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 620, -1, -1));
+            fotopantalla.add(examinaryguardar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 260, -1, -1));
 
             jLabel68.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
-            jLabel68.setText("FOTOS PANTALLA");
-            fotopantalla.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
+            jLabel68.setText("VIDEOS");
+            fotopantalla.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
             jMenu1.setText("Usuarios");
 
@@ -1883,69 +1440,6 @@ public class Administrador extends javax.swing.JFrame {
             jMenu2.add(jMenuItem2);
 
             menu.add(jMenu2);
-
-            jMenu3.setText("Clasificación");
-
-            jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK));
-            jMenuItem4.setText("Crear Orden");
-            jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jMenuItem4ActionPerformed(evt);
-                }
-            });
-            jMenu3.add(jMenuItem4);
-
-            jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-            jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/userList.png"))); // NOI18N
-            jMenuItem3.setText("Lista Ordenes");
-            jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jMenuItem3ActionPerformed(evt);
-                }
-            });
-            jMenu3.add(jMenuItem3);
-
-            jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-            jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/about.png"))); // NOI18N
-            jMenuItem7.setText("Crear Familia");
-            jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jMenuItem7ActionPerformed(evt);
-                }
-            });
-            jMenu3.add(jMenuItem7);
-
-            jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-            jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/userList.png"))); // NOI18N
-            jMenuItem8.setText("Lista Familias");
-            jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jMenuItem8ActionPerformed(evt);
-                }
-            });
-            jMenu3.add(jMenuItem8);
-
-            jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-            jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/about.png"))); // NOI18N
-            jMenuItem9.setText("Crear Subfamilia");
-            jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jMenuItem9ActionPerformed(evt);
-                }
-            });
-            jMenu3.add(jMenuItem9);
-
-            jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-            jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/userList.png"))); // NOI18N
-            jMenuItem10.setText("Lista Subfamilias");
-            jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jMenuItem10ActionPerformed(evt);
-                }
-            });
-            jMenu3.add(jMenuItem10);
-
-            menu.add(jMenu3);
 
             jMenu4.setText("Ayuda");
 
@@ -2273,46 +1767,34 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_editionActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        try {
-            orders = oDAO.orderList();
-            orden.removeAllItems();
-            orden.addItem("Seleccione el orden");
-            for (int i = 0; i < orders.size(); i++) {
-                orden.addItem(((OrdenVO) orders.get(i)).getOrde_descripcion());
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-        }
         this.setContentPane(addpez);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void crearpezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearpezActionPerformed
-        if (!nombrepez.getText().trim().equals("") == true && !nombrecomun.getText().trim().equals("") == true && !nombrecientifico.getText().trim().equals("") == true && subfamilia.getSelectedIndex() > 0) { //&& !biotipo.getText().trim().equals("") == true && !distribucion.getText().trim().equals("") == true && !forma.getText().trim().equals("") == true && !coloracion.getText().trim().equals("") == true && !tamano.getText().trim().equals("") == true && !temperatura.getText().trim().equals("") == true && !acuario.getText().trim().equals("") == true && !agua.getText().trim().equals("") == true && !alimentacion.getText().trim().equals("") == true
+        if (!nombrecomun.getText().trim().equals("") == true && !nombrecientifico.getText().trim().equals("") == true) { //&& !biotipo.getText().trim().equals("") == true && !distribucion.getText().trim().equals("") == true && !forma.getText().trim().equals("") == true && !coloracion.getText().trim().equals("") == true && !tamano.getText().trim().equals("") == true && !temperatura.getText().trim().equals("") == true && !acuario.getText().trim().equals("") == true && !agua.getText().trim().equals("") == true && !alimentacion.getText().trim().equals("") == true
             boolean fish;
             try {
-                fish = pDAO.getFishName(nombrepez.getText());
+                fish = pDAO.getFishName(nombrecomun.getText());
                 if (fish == true) {
                     JOptionPane.showMessageDialog(rootPane, "El nombre del pez ya existe");
                 } else {
                     PezVO pez = new PezVO();
-                    pez.setPez_nombre(nombrepez.getText());
                     pez.setPez_nombComun(nombrecomun.getText());
                     pez.setPez_nombCientifico(nombrecientifico.getText());
-                    pez.setSubf_id(((SubfamiliaVO) subflias.get(subfamilia.getSelectedIndex() - 1)).getSubf_id());//capturar el id de la subfamilia de la lista
-                    pez.setPez_distribucion(distribucion.getText());
-                    pez.setPez_agua(agua.getText());
+                    pez.setPez_distribucion(pez_distribucion.getText());
                     pez.setPez_alimentacion(alimentacion.getText());
-                    pez.setPez_biotopo(biotipo.getText());
-                    pez.setPez_coloracion(coloracion.getText());
-                    pez.setPez_comportamiento(comportamiento.getText());
-                    pez.setPez_forma(forma.getText());
-                    pez.setPez_tamano(tamano.getText());
-                    pez.setPez_tempreatura(temperatura.getText());
+                    pez.setPez_generalidades(generalidades.getText());
+                    pez.setPez_curiosidades(curiosidades.getText());
                     pez.setPez_estado(true);
-                    pez.setPez_acuario(acuario.getText());
                     try {
                         boolean sw = (boolean) pDAO.fishRegister(pez);
                         if (sw == true) {
+                            nombrecomun.setText("");
+                            nombrecientifico.setText("");
+                            pez_distribucion.setText("");
+                            alimentacion.setText("");
+                            generalidades.setText("");
+                            curiosidades.setText("");
                             JOptionPane.showMessageDialog(rootPane, "Pez creado correctamente");
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "El pez no pudo ser creado, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
@@ -2325,7 +1807,7 @@ public class Administrador extends javax.swing.JFrame {
                 Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Los campos nombre, nombre común, nombre cientifico, orden, familia y subfamilia son obligatorios");
+            JOptionPane.showMessageDialog(rootPane, "Los campos, nombre común, nombre cientifico");
         }
     }//GEN-LAST:event_crearpezActionPerformed
 
@@ -2359,10 +1841,6 @@ public class Administrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_crearordenActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        this.setContentPane(ordenpane);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
     private void finalizarordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarordenActionPerformed
         if (!descripcionorden2.getText().trim().equals("") == true) {
             try {
@@ -2394,11 +1872,6 @@ public class Administrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_finalizarordenActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        pintartablaordenes();
-        this.setContentPane(listaordenes);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void crearfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearfamiliaActionPerformed
         if (ordenfamilia.getSelectedIndex() > 0 && !descripcionfamilia.getText().trim().equals("") == true) {
             FamiliaVO fami = new FamiliaVO();
@@ -2425,20 +1898,6 @@ public class Administrador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "El campo orden y descripcion son obligatorios");
         }
     }//GEN-LAST:event_crearfamiliaActionPerformed
-
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        try {
-            orders = oDAO.orderList();
-            ordenfamilia.removeAllItems();
-            ordenfamilia.addItem("Seleccione el orden");
-            for (int i = 0; i < orders.size(); i++) {
-                ordenfamilia.addItem(((OrdenVO) orders.get(i)).getOrde_descripcion());
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.setContentPane(familiapane);
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void crearsubfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearsubfamiliaActionPerformed
         if (orden1.getSelectedIndex() > 0 && familia2.getSelectedIndex() > 0 && !descripcionsubfamilia.getText().trim().equals("") == true) {
@@ -2468,32 +1927,7 @@ public class Administrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_crearsubfamiliaActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        try {
-            orders = oDAO.orderList();
-            orden1.removeAllItems();
-            orden1.addItem("Seleccione el orden");
-            for (int i = 0; i < orders.size(); i++) {
-                orden1.addItem(((OrdenVO) orders.get(i)).getOrde_descripcion());
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.setContentPane(subfamiliapane);
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
-
     private void editarpecesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarpecesActionPerformed
-        try {
-            orders = oDAO.orderList();
-            orden2.removeAllItems();
-            orden2.addItem("Seleccione el orden");
-            for (int i = 0; i < orders.size(); i++) {
-                orden2.addItem(((OrdenVO) orders.get(i)).getOrde_descripcion());
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         //llenando campos 
         int x = -1;
         x = tablapeces.getSelectedRow();
@@ -2501,42 +1935,12 @@ public class Administrador extends javax.swing.JFrame {
         if (x >= 0) {
             if (fishes.size() > 0) {
                 id_pezeditado = ((PezVO) fishes.get(x)).getPez_id();
-                nombrepez1.setText(((PezVO) fishes.get(x)).getPez_nombre());
                 nombrecomun1.setText(((PezVO) fishes.get(x)).getPez_nombComun());
                 nombrecientifico1.setText(((PezVO) fishes.get(x)).getPez_nombCientifico());
-                biotipo1.setText(((PezVO) fishes.get(x)).getPez_biotopo());
-                distribucion1.setText(((PezVO) fishes.get(x)).getPez_distribucion());
-                forma1.setText(((PezVO) fishes.get(x)).getPez_forma());
-                coloracion1.setText(((PezVO) fishes.get(x)).getPez_coloracion());
-                tamano.setText(((PezVO) fishes.get(x)).getPez_tamano());
-                temperatura1.setText(((PezVO) fishes.get(x)).getPez_tempreatura());
-                agua1.setText(((PezVO) fishes.get(x)).getPez_agua());
-                acuario1.setText(((PezVO) fishes.get(x)).getPez_acuario());
-                alimentacion1.setText(((PezVO) fishes.get(x)).getPez_alimentacion());
-                comportamiento1.setText(((PezVO) fishes.get(x)).getPez_comportamiento());
-                try {
-                    ArrayList datos = (ArrayList) sDAO.getfamilyAndOrder(((PezVO) fishes.get(x)).getSubf_id());
-                    for (int i = 0; i < orders.size(); i++) {
-                        if (((OrdenVO) orders.get(i)).getOrde_id() == ((int) datos.get(1))) {
-                            int j = i + 1;
-                            orden2.setSelectedIndex(j);
-                        }
-                    }
-                    for (int i = 0; i < flias.size(); i++) {
-                        if (((FamiliaVO) flias.get(i)).getFami_id() == ((int) datos.get(0))) {
-                            int j = i + 1;
-                            familia1.setSelectedIndex(j);
-                        }
-                    }
-                    for (int i = 0; i < subflias.size(); i++) {
-                        if (((SubfamiliaVO) subflias.get(i)).getSubf_id() == ((PezVO) fishes.get(x)).getSubf_id()) {
-                            int j = i + 1;
-                            subfamilia1.setSelectedIndex(j);
-                        }
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                pez_distribucion1.setText(((PezVO) fishes.get(x)).getPez_distribucion());
+                pez_alimentacion1.setText(((PezVO) fishes.get(x)).getPez_alimentacion());
+                pez_generalidades1.setText(((PezVO) fishes.get(x)).getPez_alimentacion());
+                pez_curiosidades1.setText(((PezVO) fishes.get(x)).getPez_curiosidades());
             }
             this.setContentPane(editarpez);
         } else {
@@ -2591,29 +1995,22 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void editpezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editpezActionPerformed
-        if (!nombrepez1.getText().trim().equals("") == true && !nombrecomun1.getText().trim().equals("") == true && !nombrecientifico1.getText().trim().equals("") == true && subfamilia1.getSelectedIndex() > 0) { //&& !biotipo.getText().trim().equals("") == true && !distribucion.getText().trim().equals("") == true && !forma.getText().trim().equals("") == true && !coloracion.getText().trim().equals("") == true && !tamano.getText().trim().equals("") == true && !temperatura.getText().trim().equals("") == true && !acuario.getText().trim().equals("") == true && !agua.getText().trim().equals("") == true && !alimentacion.getText().trim().equals("") == true
+        if (!nombrecomun1.getText().trim().equals("") == true && !nombrecientifico1.getText().trim().equals("") == true) { //&& !biotipo.getText().trim().equals("") == true && !distribucion.getText().trim().equals("") == true && !forma.getText().trim().equals("") == true && !coloracion.getText().trim().equals("") == true && !tamano.getText().trim().equals("") == true && !temperatura.getText().trim().equals("") == true && !acuario.getText().trim().equals("") == true && !agua.getText().trim().equals("") == true && !alimentacion.getText().trim().equals("") == true
             boolean fish;
             try {
-                fish = pDAO.getFishNameEdit(nombrepez1.getText(), id_pezeditado);
+                fish = pDAO.getFishNameEdit(nombrecomun1.getText(), id_pezeditado);
                 if (fish == true) {
                     JOptionPane.showMessageDialog(rootPane, "El nombre del pez ya existe");
                 } else {
                     PezVO pez = new PezVO();
                     pez.setPez_id(id_pezeditado);
-                    pez.setPez_nombre(nombrepez1.getText());
                     pez.setPez_nombComun(nombrecomun1.getText());
                     pez.setPez_nombCientifico(nombrecientifico1.getText());
-                    pez.setSubf_id(((SubfamiliaVO) subflias.get(subfamilia1.getSelectedIndex() - 1)).getSubf_id());//capturar el id de la subfamilia de la lista
-                    pez.setPez_distribucion(distribucion1.getText());
-                    pez.setPez_agua(agua1.getText());
-                    pez.setPez_alimentacion(alimentacion1.getText());
-                    pez.setPez_biotopo(biotipo1.getText());
-                    pez.setPez_coloracion(coloracion1.getText());
-                    pez.setPez_comportamiento(comportamiento1.getText());
-                    pez.setPez_forma(forma1.getText());
-                    pez.setPez_tamano(tamano1.getText());
-                    pez.setPez_tempreatura(temperatura1.getText());
-                    pez.setPez_acuario(acuario1.getText());
+                    pez.setPez_alimentacion(pez_alimentacion1.getText());
+                    pez.setPez_distribucion(pez_distribucion1.getText());
+                    pez.setPez_curiosidades(pez_curiosidades1.getText());
+                    pez.setPez_generalidades(pez_generalidades1.getText());
+
                     try {
                         boolean sw = (boolean) pDAO.fishUpdate(pez);
                         if (sw == true) {
@@ -2631,7 +2028,7 @@ public class Administrador extends javax.swing.JFrame {
                 Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Los campos nombre, nombre común, nombre cientifico, orden, familia y subfamilia son obligatorios");
+            JOptionPane.showMessageDialog(rootPane, "Los campos nombre común, nombre cientifico son obligatorios");
         }
     }//GEN-LAST:event_editpezActionPerformed
 
@@ -2712,11 +2109,6 @@ public class Administrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_finalizarfamiliaActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        pintartablafamilias();
-        this.setContentPane(listafamilias);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
-
     private void editarsubfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarsubfamiliaActionPerformed
         try {
             orders = oDAO.orderList();
@@ -2794,20 +2186,15 @@ public class Administrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_finalizarsubfamiliaActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        pintartablasubfamilias();
-        this.setContentPane(listasubfamilias);
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
-
     private void alamcenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alamcenarActionPerformed
         if (!ruta.getText().trim().equals("") == true) {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(ruta.getText());
-                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado);
+                File directorio = new File("C:\\acuario\\" + id_pezeditado);
                 if (!directorio.exists()) {
                     directorio.mkdirs();
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish.getText() + ".png";
+                    String rutadisco = "C:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish.getText() + ".png";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -2841,7 +2228,7 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish.getText() + ".png";
+                    String rutadisco = "C:\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish.getText() + ".png";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -2891,12 +2278,11 @@ public class Administrador extends javax.swing.JFrame {
         int x = -1;
         x = tablapeces.getSelectedRow();
 //        System.out.println("pisicion de la fila " + x);
-        if (x >= 0) {
+        if (x > 0) {
             imagenprincipal.setIcon(null);
             ruta.setText("");
             if (fishes.size() > 0) {
                 id_pezeditado = ((PezVO) fishes.get(x)).getPez_id();
-                namefish.setText(((PezVO) fishes.get(x)).getPez_nombre());
                 try {
                     FotoVO f = (FotoVO) phDAO.getRutaPrincipal(id_pezeditado);
 //                    System.out.println("Foto" + f.getFoto_id());
@@ -2904,7 +2290,7 @@ public class Administrador extends javax.swing.JFrame {
                         ruta.setText(f.getFoto_ruta());
                         Image foto = getToolkit().getImage(ruta.getText());
 //            System.out.println("alto "+String.valueOf());
-            foto = foto.getScaledInstance(700, 300, Image.SCALE_DEFAULT);
+                        foto = foto.getScaledInstance(700, 300, Image.SCALE_DEFAULT);
                         imagenprincipal.setIcon(new ImageIcon(foto));
                         id_fotoeditada = f.getFoto_id();
                     }
@@ -2914,11 +2300,13 @@ public class Administrador extends javax.swing.JFrame {
 //                
                 this.setContentPane(fotoprincipal);
             }
+        }else{
+           JOptionPane.showMessageDialog(rootPane, "Por favor seleccione un pez para la foto principal."); 
         }
     }//GEN-LAST:event_fotoprincActionPerformed
 
     private void examinaryguardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar1ActionPerformed
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.mpg", "mpg", "mpeg");
         JFileChooser archivo = new JFileChooser();
         archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
         archivo.setDialogTitle("Abrir Archivo");
@@ -2931,10 +2319,11 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("\\\\\\\\JAK\\\\acuario\\" + id_pezeditado + "\\" + namefish1.getText() + ".jpg");
+                File directorio = new File("C:\\\\acuario\\" + id_pezeditado + "\\videos\\");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish1.getText() + ".jpg";
+                    directorio.mkdirs();
+                    String rutadisco = "C:\\\\acuario\\\\" + id_pezeditado + "\\\\videos\\\\vivo.mpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -2950,12 +2339,9 @@ public class Administrador extends javax.swing.JFrame {
                         fVO.setTipo(false);
                         boolean insert = phDAO.FotoRegister(fVO);
                         if (insert == true) {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
-                            Image foto = getToolkit().getImage(rutadisco);
-                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                            imagengeneral1.setIcon(new ImageIcon(foto));
+                            JOptionPane.showMessageDialog(rootPane, "El video se guardó correctamente.");
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                            JOptionPane.showMessageDialog(rootPane, "El video no pudo ser guardado, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
@@ -2963,7 +2349,8 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish1.getText() + ".jpg";
+
+                    String rutadisco = "C:\\\\acuario\\\\" + id_pezeditado + "\\\\videos\\vivo.mpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -2974,10 +2361,7 @@ public class Administrador extends javax.swing.JFrame {
                         archivofoto.close();
                         envio.close();
 
-                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
-                        Image foto = getToolkit().getImage(rutadisco);
-                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                        imagengeneral1.setIcon(new ImageIcon(foto));
+                        JOptionPane.showMessageDialog(rootPane, "El video se guardó correctamente.");
 
                     } catch (IOException ex) {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
@@ -2991,7 +2375,7 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_examinaryguardar1ActionPerformed
 
     private void examinaryguardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar2ActionPerformed
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.mpg", "mpg", "mpeg");
         JFileChooser archivo = new JFileChooser();
         archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
         archivo.setDialogTitle("Abrir Archivo");
@@ -3004,10 +2388,11 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish2.getText() + ".jpg");
+                File directorio = new File("C:\\\\acuario\\" + id_pezeditado + "\\videos\\");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish2.getText() + ".jpg";
+                    directorio.mkdirs();
+                    String rutadisco = "C:\\\\acuario\\\\" + id_pezeditado + "\\\\videos\\\\cuerpo.mpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3023,12 +2408,9 @@ public class Administrador extends javax.swing.JFrame {
                         fVO.setTipo(false);
                         boolean insert = phDAO.FotoRegister(fVO);
                         if (insert == true) {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
-                            Image foto = getToolkit().getImage(rutadisco);
-                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                            imagengeneral2.setIcon(new ImageIcon(foto));
+                            JOptionPane.showMessageDialog(rootPane, "El video se guardó correctamente.");
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                            JOptionPane.showMessageDialog(rootPane, "El video no pudo ser guardado, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
@@ -3036,7 +2418,8 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish2.getText() + ".jpg";
+
+                    String rutadisco = "C:\\\\acuario\\\\" + id_pezeditado + "\\\\videos\\cuerpo.mpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3046,12 +2429,7 @@ public class Administrador extends javax.swing.JFrame {
                         }
                         archivofoto.close();
                         envio.close();
-
-                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
-                        Image foto = getToolkit().getImage(rutadisco);
-                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                        imagengeneral2.setIcon(new ImageIcon(foto));
-
+                        JOptionPane.showMessageDialog(rootPane, "El video se guardó correctamente.");
                     } catch (IOException ex) {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -3064,7 +2442,7 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_examinaryguardar2ActionPerformed
 
     private void examinaryguardar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar3ActionPerformed
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.mpg", "mpg", "mpeg");
         JFileChooser archivo = new JFileChooser();
         archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
         archivo.setDialogTitle("Abrir Archivo");
@@ -3077,10 +2455,11 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish3.getText() + ".jpg");
+                File directorio = new File("C:\\\\acuario\\" + id_pezeditado + "\\videos\\");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish3.getText() + ".jpg";
+                    directorio.mkdirs();
+                    String rutadisco = "C:\\\\acuario\\\\" + id_pezeditado + "\\\\videos\\\\medidas.mpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3096,12 +2475,9 @@ public class Administrador extends javax.swing.JFrame {
                         fVO.setTipo(false);
                         boolean insert = phDAO.FotoRegister(fVO);
                         if (insert == true) {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
-                            Image foto = getToolkit().getImage(rutadisco);
-                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                            imagengeneral3.setIcon(new ImageIcon(foto));
+                            JOptionPane.showMessageDialog(rootPane, "El video se guardó correctamente.");
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                            JOptionPane.showMessageDialog(rootPane, "El video no pudo ser guardado, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
@@ -3109,7 +2485,8 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish3.getText() + ".jpg";
+
+                    String rutadisco = "C:\\\\acuario\\\\" + id_pezeditado + "\\\\videos\\medidas.mpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3120,10 +2497,7 @@ public class Administrador extends javax.swing.JFrame {
                         archivofoto.close();
                         envio.close();
 
-                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
-                        Image foto = getToolkit().getImage(rutadisco);
-                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                        imagengeneral3.setIcon(new ImageIcon(foto));
+                        JOptionPane.showMessageDialog(rootPane, "El video se guardó correctamente.");
 
                     } catch (IOException ex) {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
@@ -3134,10 +2508,11 @@ public class Administrador extends javax.swing.JFrame {
             }
             //fin almacena
         }
+
     }//GEN-LAST:event_examinaryguardar3ActionPerformed
 
     private void examinaryguardar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar4ActionPerformed
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.mpg", "mpg", "mpeg");
         JFileChooser archivo = new JFileChooser();
         archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
         archivo.setDialogTitle("Abrir Archivo");
@@ -3150,10 +2525,11 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish4.getText() + ".jpg");
+                File directorio = new File("C:\\\\acuario\\" + id_pezeditado + "\\videos\\");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish4.getText() + ".jpg";
+                    directorio.mkdirs();
+                    String rutadisco = "C:\\\\acuario\\\\" + id_pezeditado + "\\\\videos\\\\temperatura.mpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3169,12 +2545,9 @@ public class Administrador extends javax.swing.JFrame {
                         fVO.setTipo(false);
                         boolean insert = phDAO.FotoRegister(fVO);
                         if (insert == true) {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
-                            Image foto = getToolkit().getImage(rutadisco);
-                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                            imagengeneral4.setIcon(new ImageIcon(foto));
+                            JOptionPane.showMessageDialog(rootPane, "El video se guardó correctamente.");
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                            JOptionPane.showMessageDialog(rootPane, "El video no pudo ser guardado, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
@@ -3182,7 +2555,8 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish4.getText() + ".jpg";
+
+                    String rutadisco = "C:\\\\acuario\\\\" + id_pezeditado + "\\\\videos\\temperatura.mpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3193,10 +2567,7 @@ public class Administrador extends javax.swing.JFrame {
                         archivofoto.close();
                         envio.close();
 
-                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
-                        Image foto = getToolkit().getImage(rutadisco);
-                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                        imagengeneral4.setIcon(new ImageIcon(foto));
+                        JOptionPane.showMessageDialog(rootPane, "El video se guardó correctamente.");
 
                     } catch (IOException ex) {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
@@ -3207,10 +2578,11 @@ public class Administrador extends javax.swing.JFrame {
             }
             //fin almacena
         }
+
     }//GEN-LAST:event_examinaryguardar4ActionPerformed
 
     private void examinaryguardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar5ActionPerformed
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.mpg", "mpg", "mpeg");
         JFileChooser archivo = new JFileChooser();
         archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
         archivo.setDialogTitle("Abrir Archivo");
@@ -3223,10 +2595,11 @@ public class Administrador extends javax.swing.JFrame {
             try {
                 byte[] readData = new byte[1024];
                 FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish5.getText() + ".jpg");
+                File directorio = new File("C:\\\\acuario\\" + id_pezeditado + "\\videos\\");
 
                 if (!directorio.exists()) {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish5.getText() + ".jpg";
+                    directorio.mkdirs();
+                    String rutadisco = "C:\\\\acuario\\\\" + id_pezeditado + "\\\\videos\\\\general.mpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3242,12 +2615,9 @@ public class Administrador extends javax.swing.JFrame {
                         fVO.setTipo(false);
                         boolean insert = phDAO.FotoRegister(fVO);
                         if (insert == true) {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
-                            Image foto = getToolkit().getImage(rutadisco);
-                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                            imagengeneral5.setIcon(new ImageIcon(foto));
+                            JOptionPane.showMessageDialog(rootPane, "El video se guardó correctamente.");
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                            JOptionPane.showMessageDialog(rootPane, "El video no pudo ser guardado, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
@@ -3255,7 +2625,8 @@ public class Administrador extends javax.swing.JFrame {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish5.getText() + ".jpg";
+
+                    String rutadisco = "C:\\\\acuario\\\\" + id_pezeditado + "\\\\videos\\general.mpg";
                     FileOutputStream envio = new FileOutputStream(rutadisco);
                     try {
                         int i = archivofoto.read(readData);
@@ -3266,10 +2637,7 @@ public class Administrador extends javax.swing.JFrame {
                         archivofoto.close();
                         envio.close();
 
-                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
-                        Image foto = getToolkit().getImage(rutadisco);
-                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                        imagengeneral5.setIcon(new ImageIcon(foto));
+                        JOptionPane.showMessageDialog(rootPane, "El video se guardó correctamente.");//rutadisco
 
                     } catch (IOException ex) {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
@@ -3282,390 +2650,13 @@ public class Administrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_examinaryguardar5ActionPerformed
 
-    private void examinaryguardar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar6ActionPerformed
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
-        JFileChooser archivo = new JFileChooser();
-        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
-        archivo.setDialogTitle("Abrir Archivo");
-        int ventana = archivo.showOpenDialog(rootPane);
-        String rutaselect = "";
-        if (ventana == JFileChooser.APPROVE_OPTION) {
-            File file = archivo.getSelectedFile();
-            rutaselect = String.valueOf(file);
-            //se almacena
-            try {
-                byte[] readData = new byte[1024];
-                FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish6.getText() + ".jpg");
-
-                if (!directorio.exists()) {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish6.getText() + ".jpg";
-                    FileOutputStream envio = new FileOutputStream(rutadisco);
-                    try {
-                        int i = archivofoto.read(readData);
-                        while (i != -1) {
-                            envio.write(readData, 0, i);
-                            i = archivofoto.read(readData);
-                        }
-                        archivofoto.close();
-                        envio.close();
-                        FotoVO fVO = new FotoVO();
-                        fVO.setFoto_ruta(rutadisco);
-                        fVO.setPez_id(id_pezeditado);
-                        fVO.setTipo(false);
-                        boolean insert = phDAO.FotoRegister(fVO);
-                        if (insert == true) {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
-                            Image foto = getToolkit().getImage(rutadisco);
-                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                            imagengeneral6.setIcon(new ImageIcon(foto));
-                        } else {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
-                        }
-                    } catch (IOException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish6.getText() + ".jpg";
-                    FileOutputStream envio = new FileOutputStream(rutadisco);
-                    try {
-                        int i = archivofoto.read(readData);
-                        while (i != -1) {
-                            envio.write(readData, 0, i);
-                            i = archivofoto.read(readData);
-                        }
-                        archivofoto.close();
-                        envio.close();
-
-                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
-                        Image foto = getToolkit().getImage(rutadisco);
-                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                        imagengeneral6.setIcon(new ImageIcon(foto));
-
-                    } catch (IOException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //fin almacena
-        }
-    }//GEN-LAST:event_examinaryguardar6ActionPerformed
-
-    private void examinaryguardar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar7ActionPerformed
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
-        JFileChooser archivo = new JFileChooser();
-        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
-        archivo.setDialogTitle("Abrir Archivo");
-        int ventana = archivo.showOpenDialog(rootPane);
-        String rutaselect = "";
-        if (ventana == JFileChooser.APPROVE_OPTION) {
-            File file = archivo.getSelectedFile();
-            rutaselect = String.valueOf(file);
-            //se almacena
-            try {
-                byte[] readData = new byte[1024];
-                FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish7.getText() + ".jpg");
-
-                if (!directorio.exists()) {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish7.getText() + ".jpg";
-                    FileOutputStream envio = new FileOutputStream(rutadisco);
-                    try {
-                        int i = archivofoto.read(readData);
-                        while (i != -1) {
-                            envio.write(readData, 0, i);
-                            i = archivofoto.read(readData);
-                        }
-                        archivofoto.close();
-                        envio.close();
-                        FotoVO fVO = new FotoVO();
-                        fVO.setFoto_ruta(rutadisco);
-                        fVO.setPez_id(id_pezeditado);
-                        fVO.setTipo(false);
-                        boolean insert = phDAO.FotoRegister(fVO);
-                        if (insert == true) {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
-                            Image foto = getToolkit().getImage(rutadisco);
-                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                            imagengeneral7.setIcon(new ImageIcon(foto));
-                        } else {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
-                        }
-                    } catch (IOException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish7.getText() + ".jpg";
-                    FileOutputStream envio = new FileOutputStream(rutadisco);
-                    try {
-                        int i = archivofoto.read(readData);
-                        while (i != -1) {
-                            envio.write(readData, 0, i);
-                            i = archivofoto.read(readData);
-                        }
-                        archivofoto.close();
-                        envio.close();
-
-                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
-                        Image foto = getToolkit().getImage(rutadisco);
-                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                        imagengeneral7.setIcon(new ImageIcon(foto));
-
-                    } catch (IOException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //fin almacena
-        }
-    }//GEN-LAST:event_examinaryguardar7ActionPerformed
-
-    private void examinaryguardar8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar8ActionPerformed
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
-        JFileChooser archivo = new JFileChooser();
-        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
-        archivo.setDialogTitle("Abrir Archivo");
-        int ventana = archivo.showOpenDialog(rootPane);
-        String rutaselect = "";
-        if (ventana == JFileChooser.APPROVE_OPTION) {
-            File file = archivo.getSelectedFile();
-            rutaselect = String.valueOf(file);
-            //se almacena
-            try {
-                byte[] readData = new byte[1024];
-                FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish8.getText() + ".jpg");
-
-                if (!directorio.exists()) {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish8.getText() + ".jpg";
-                    FileOutputStream envio = new FileOutputStream(rutadisco);
-                    try {
-                        int i = archivofoto.read(readData);
-                        while (i != -1) {
-                            envio.write(readData, 0, i);
-                            i = archivofoto.read(readData);
-                        }
-                        archivofoto.close();
-                        envio.close();
-                        FotoVO fVO = new FotoVO();
-                        fVO.setFoto_ruta(rutadisco);
-                        fVO.setPez_id(id_pezeditado);
-                        fVO.setTipo(false);
-                        boolean insert = phDAO.FotoRegister(fVO);
-                        if (insert == true) {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
-                            Image foto = getToolkit().getImage(rutadisco);
-                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                            imagengeneral8.setIcon(new ImageIcon(foto));
-                        } else {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
-                        }
-                    } catch (IOException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish8.getText() + ".jpg";
-                    FileOutputStream envio = new FileOutputStream(rutadisco);
-                    try {
-                        int i = archivofoto.read(readData);
-                        while (i != -1) {
-                            envio.write(readData, 0, i);
-                            i = archivofoto.read(readData);
-                        }
-                        archivofoto.close();
-                        envio.close();
-
-                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
-                        Image foto = getToolkit().getImage(rutadisco);
-                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                        imagengeneral8.setIcon(new ImageIcon(foto));
-
-                    } catch (IOException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //fin almacena
-        }
-    }//GEN-LAST:event_examinaryguardar8ActionPerformed
-
-    private void examinaryguardar9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar9ActionPerformed
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
-        JFileChooser archivo = new JFileChooser();
-        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
-        archivo.setDialogTitle("Abrir Archivo");
-        int ventana = archivo.showOpenDialog(rootPane);
-        String rutaselect = "";
-        if (ventana == JFileChooser.APPROVE_OPTION) {
-            File file = archivo.getSelectedFile();
-            rutaselect = String.valueOf(file);
-            //se almacena
-            try {
-                byte[] readData = new byte[1024];
-                FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish9.getText() + ".jpg");
-
-                if (!directorio.exists()) {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish9.getText() + ".jpg";
-                    FileOutputStream envio = new FileOutputStream(rutadisco);
-                    try {
-                        int i = archivofoto.read(readData);
-                        while (i != -1) {
-                            envio.write(readData, 0, i);
-                            i = archivofoto.read(readData);
-                        }
-                        archivofoto.close();
-                        envio.close();
-                        FotoVO fVO = new FotoVO();
-                        fVO.setFoto_ruta(rutadisco);
-                        fVO.setPez_id(id_pezeditado);
-                        fVO.setTipo(false);
-                        boolean insert = phDAO.FotoRegister(fVO);
-                        if (insert == true) {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
-                            Image foto = getToolkit().getImage(rutadisco);
-                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                            imagengeneral9.setIcon(new ImageIcon(foto));
-                        } else {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
-                        }
-                    } catch (IOException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else {
-                    String rutadisco = "\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\\\" + namefish9.getText() + ".jpg";
-                    FileOutputStream envio = new FileOutputStream(rutadisco);
-                    try {
-                        int i = archivofoto.read(readData);
-                        while (i != -1) {
-                            envio.write(readData, 0, i);
-                            i = archivofoto.read(readData);
-                        }
-                        archivofoto.close();
-                        envio.close();
-
-                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
-                        Image foto = getToolkit().getImage(rutadisco);
-                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                        imagengeneral9.setIcon(new ImageIcon(foto));
-
-                    } catch (IOException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //fin almacena
-        }
-    }//GEN-LAST:event_examinaryguardar9ActionPerformed
-
-    private void examinaryguardar10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinaryguardar10ActionPerformed
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.jpg", "jpg", "jpeg");
-        JFileChooser archivo = new JFileChooser();
-        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
-        archivo.setDialogTitle("Abrir Archivo");
-        int ventana = archivo.showOpenDialog(rootPane);
-        String rutaselect = "";
-        if (ventana == JFileChooser.APPROVE_OPTION) {
-            File file = archivo.getSelectedFile();
-            rutaselect = String.valueOf(file);
-            //se almacena
-            try {
-                byte[] readData = new byte[1024];
-                FileInputStream archivofoto = new FileInputStream(rutaselect);
-                File directorio = new File("\\\\\\\\JAK\\acuario\\" + id_pezeditado + "\\" + namefish10.getText() + ".jpg");
-
-                if (!directorio.exists()) {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish10.getText() + ".jpg";
-                    FileOutputStream envio = new FileOutputStream(rutadisco);
-                    try {
-                        int i = archivofoto.read(readData);
-                        while (i != -1) {
-                            envio.write(readData, 0, i);
-                            i = archivofoto.read(readData);
-                        }
-                        archivofoto.close();
-                        envio.close();
-                        FotoVO fVO = new FotoVO();
-                        fVO.setFoto_ruta(rutadisco);
-                        fVO.setPez_id(id_pezeditado);
-                        fVO.setTipo(false);
-                        boolean insert = phDAO.FotoRegister(fVO);
-                        if (insert == true) {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen se guardo correctamente.");
-                            Image foto = getToolkit().getImage(rutadisco);
-                            foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                            imagengeneral10.setIcon(new ImageIcon(foto));
-                        } else {
-                            JOptionPane.showMessageDialog(rootPane, "La imagen no pudo ser guardada, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
-                        }
-                    } catch (IOException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else {
-                    String rutadisco = "\\\\\\\\JAK\\\\acuario\\\\" + id_pezeditado + "\\\\" + namefish10.getText() + ".jpg";
-                    FileOutputStream envio = new FileOutputStream(rutadisco);
-                    try {
-                        int i = archivofoto.read(readData);
-                        while (i != -1) {
-                            envio.write(readData, 0, i);
-                            i = archivofoto.read(readData);
-                        }
-                        archivofoto.close();
-                        envio.close();
-
-                        JOptionPane.showMessageDialog(rootPane, "La imagen se actualizo correctamente.");//rutadisco
-                        Image foto = getToolkit().getImage(rutadisco);
-                        foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                        imagengeneral10.setIcon(new ImageIcon(foto));
-
-                    } catch (IOException ex) {
-                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //fin almacena
-        }
-    }//GEN-LAST:event_examinaryguardar10ActionPerformed
-
-    private void fotosgeneralesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotosgeneralesActionPerformed
+    private void videosGeneralesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_videosGeneralesActionPerformed
         int x = -1;
         x = tablapeces.getSelectedRow();
 //        System.out.println("pisicion de la fila " + x);
         if (x >= 0) {
-            imagengeneral1.setIcon(null);
-            imagengeneral2.setIcon(null);
-            imagengeneral3.setIcon(null);
-            imagengeneral4.setIcon(null);
-            imagengeneral5.setIcon(null);
-            imagengeneral6.setIcon(null);
-            imagengeneral7.setIcon(null);
-            imagengeneral8.setIcon(null);
-            imagengeneral9.setIcon(null);
-            imagengeneral10.setIcon(null);
             if (fishes.size() > 0) {
                 id_pezeditado = ((PezVO) fishes.get(x)).getPez_id();
-                namefishgeneral.setText(((PezVO) fishes.get(x)).getPez_nombre());
-
 //                String prueba = "adfsdh";
 //                if(prueba.contains("df")==true){
 //                    System.out.println("se encontro");
@@ -3679,56 +2670,7 @@ public class Administrador extends javax.swing.JFrame {
                         for (int i = 0; i < fotos.size(); i++) {
                             FotoVO f = (FotoVO) fotos.get(i);
                             if (f != null) {
-                                if(f.getFoto_ruta().contains("1.jpg")==true){
-                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
-                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                                    imagengeneral1.setIcon(new ImageIcon(foto));
-                                }
-                                if(f.getFoto_ruta().contains("2.jpg")==true){
-                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
-                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                                    imagengeneral2.setIcon(new ImageIcon(foto));
-                                }
-                                if(f.getFoto_ruta().contains("3.jpg")==true){
-                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
-                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                                    imagengeneral3.setIcon(new ImageIcon(foto));
-                                }
-                                if(f.getFoto_ruta().contains("4.jpg")==true){
-                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
-                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                                    imagengeneral4.setIcon(new ImageIcon(foto));
-                                }
-                                if(f.getFoto_ruta().contains("5.jpg")==true){
-                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
-                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                                    imagengeneral5.setIcon(new ImageIcon(foto));
-                                }
-                                if(f.getFoto_ruta().contains("6.jpg")==true){
-                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
-                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                                    imagengeneral6.setIcon(new ImageIcon(foto));
-                                }
-                                if(f.getFoto_ruta().contains("7.jpg")==true){
-                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
-                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                                    imagengeneral7.setIcon(new ImageIcon(foto));
-                                }
-                                if(f.getFoto_ruta().contains("8.jpg")==true){
-                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
-                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                                    imagengeneral8.setIcon(new ImageIcon(foto));
-                                }
-                                if(f.getFoto_ruta().contains("9.jpg")==true){
-                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
-                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                                    imagengeneral9.setIcon(new ImageIcon(foto));
-                                }
-                                if(f.getFoto_ruta().contains("10.jpg")==true){
-                                    Image foto = getToolkit().getImage(f.getFoto_ruta());
-                                    foto = foto.getScaledInstance(190, 130, Image.SCALE_DEFAULT);
-                                    imagengeneral10.setIcon(new ImageIcon(foto));
-                                }
+
                             }
                         }
                     }
@@ -3741,7 +2683,75 @@ public class Administrador extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un pez");
         }
-    }//GEN-LAST:event_fotosgeneralesActionPerformed
+    }//GEN-LAST:event_videosGeneralesActionPerformed
+
+    private void videoInactividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_videoInactividadActionPerformed
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos *.mpg", "mpg", "mpeg");
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileFilter(filtro);//.addChoosableFileFilter(filtro);
+        archivo.setDialogTitle("Abrir Archivo");
+        int ventana = archivo.showOpenDialog(rootPane);
+        String rutaselect = "";
+        if (ventana == JFileChooser.APPROVE_OPTION) {
+            File file = archivo.getSelectedFile();
+            rutaselect = String.valueOf(file);
+            //se almacena
+            try {
+                byte[] readData = new byte[1024];
+                FileInputStream archivofoto = new FileInputStream(rutaselect);
+                File directorio = new File("C:\\\\acuario\\");
+
+                if (!directorio.exists()) {
+                    directorio.mkdirs();
+                    String rutadisco = "C:\\\\acuario\\\\inactividad.mpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+                        FotoVO fVO = new FotoVO();
+                        fVO.setFoto_ruta(rutadisco);
+                        fVO.setPez_id(id_pezeditado);
+                        fVO.setTipo(false);
+                        boolean insert = phDAO.FotoRegister(fVO);
+                        if (insert == true) {
+                            JOptionPane.showMessageDialog(rootPane, "El video se guardó correctamente.");
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "El video no pudo ser guardado, por favor intente nuevamente. \n Si el problema persiste contacte al desarrollador. ");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    String rutadisco = "C:\\\\acuario\\\\inactividad.mpg";
+                    FileOutputStream envio = new FileOutputStream(rutadisco);
+                    try {
+                        int i = archivofoto.read(readData);
+                        while (i != -1) {
+                            envio.write(readData, 0, i);
+                            i = archivofoto.read(readData);
+                        }
+                        archivofoto.close();
+                        envio.close();
+
+                        JOptionPane.showMessageDialog(rootPane, "El video se guardó correctamente.");//rutadisco
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //fin almacena
+        }
+    }//GEN-LAST:event_videoInactividadActionPerformed
 
     private void pintartablapeces() {
         dftm2 = (DefaultTableModel) this.tablapeces.getModel();
@@ -3754,15 +2764,14 @@ public class Administrador extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String[] fila = new String[4];
+        String[] fila = new String[3];
         for (PezVO pVO : fishes) {
-            fila[0] = pVO.getPez_nombre();
-            fila[1] = pVO.getPez_nombComun();
-            fila[2] = pVO.getPez_nombCientifico();
+            fila[0] = pVO.getPez_nombComun();
+            fila[1] = pVO.getPez_nombCientifico();
             if (pVO.isPez_estado() == true) {
-                fila[3] = "Si";
+                fila[2] = "Si";
             } else {
-                fila[3] = "No";
+                fila[2] = "No";
             }
             dftm2.addRow(fila);
         }
@@ -3871,23 +2880,12 @@ public class Administrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea acuario;
-    private javax.swing.JTextArea acuario1;
     private javax.swing.JPanel addUser;
     private javax.swing.JPanel addpez;
-    private javax.swing.JTextArea agua;
-    private javax.swing.JTextArea agua1;
     private javax.swing.JButton alamcenar;
     private javax.swing.JTextArea alimentacion;
-    private javax.swing.JTextArea alimentacion1;
     private javax.swing.JTextField apellidos;
     private javax.swing.JTextField apellidos1;
-    private javax.swing.JTextArea biotipo;
-    private javax.swing.JTextArea biotipo1;
-    private javax.swing.JTextArea coloracion;
-    private javax.swing.JTextArea coloracion1;
-    private javax.swing.JTextArea comportamiento;
-    private javax.swing.JTextArea comportamiento1;
     private javax.swing.JLabel confirmar;
     private javax.swing.JLabel confirmar1;
     private javax.swing.JMenuItem crear;
@@ -3896,14 +2894,13 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton crearpez;
     private javax.swing.JButton crearsubfamilia;
     private javax.swing.JButton create;
+    private javax.swing.JTextArea curiosidades;
     private javax.swing.JTextField descripcionfamilia;
     private javax.swing.JTextField descripcionfamilia1;
     private javax.swing.JTextField descripcionorden;
     private javax.swing.JTextField descripcionorden2;
     private javax.swing.JTextField descripcionsubfamilia;
     private javax.swing.JTextField descripcionsubfamilia1;
-    private javax.swing.JTextArea distribucion;
-    private javax.swing.JTextArea distribucion1;
     private javax.swing.JLabel doc;
     private javax.swing.JLabel doc1;
     private javax.swing.JTextField documento;
@@ -3919,17 +2916,10 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton editpez;
     private javax.swing.JButton examinar;
     private javax.swing.JButton examinaryguardar1;
-    private javax.swing.JButton examinaryguardar10;
     private javax.swing.JButton examinaryguardar2;
     private javax.swing.JButton examinaryguardar3;
     private javax.swing.JButton examinaryguardar4;
     private javax.swing.JButton examinaryguardar5;
-    private javax.swing.JButton examinaryguardar6;
-    private javax.swing.JButton examinaryguardar7;
-    private javax.swing.JButton examinaryguardar8;
-    private javax.swing.JButton examinaryguardar9;
-    private javax.swing.JComboBox familia;
-    private javax.swing.JComboBox familia1;
     private javax.swing.JComboBox familia2;
     private javax.swing.JComboBox familia3;
     private javax.swing.JPanel familiapane;
@@ -3937,42 +2927,24 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton finalizarfamilia;
     private javax.swing.JButton finalizarorden;
     private javax.swing.JButton finalizarsubfamilia;
-    private javax.swing.JTextArea forma;
-    private javax.swing.JTextArea forma1;
     private javax.swing.JPanel fotopantalla;
     private javax.swing.JButton fotoprinc;
     private javax.swing.JPanel fotoprincipal;
-    private javax.swing.JButton fotosgenerales;
+    private javax.swing.JTextArea generalidades;
     private javax.swing.JButton habilitarpeces;
     private javax.swing.JLabel idpez;
-    private javax.swing.JLabel imagengeneral1;
-    private javax.swing.JLabel imagengeneral10;
-    private javax.swing.JLabel imagengeneral2;
-    private javax.swing.JLabel imagengeneral3;
-    private javax.swing.JLabel imagengeneral4;
-    private javax.swing.JLabel imagengeneral5;
-    private javax.swing.JLabel imagengeneral6;
-    private javax.swing.JLabel imagengeneral7;
-    private javax.swing.JLabel imagengeneral8;
-    private javax.swing.JLabel imagengeneral9;
     private javax.swing.JLabel imagenprincipal;
     private javax.swing.JPanel inicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -3993,21 +2965,7 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
@@ -4021,36 +2979,19 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
-    private javax.swing.JScrollPane jScrollPane18;
-    private javax.swing.JScrollPane jScrollPane19;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane20;
-    private javax.swing.JScrollPane jScrollPane21;
-    private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JScrollPane jScrollPane24;
     private javax.swing.JScrollPane jScrollPane25;
@@ -4058,9 +2999,6 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JLabel lastName;
     private javax.swing.JLabel lastName1;
     private javax.swing.JPanel lista;
@@ -4072,15 +3010,10 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JMenuBar menu;
     private javax.swing.JLabel namefish;
     private javax.swing.JLabel namefish1;
-    private javax.swing.JLabel namefish10;
     private javax.swing.JLabel namefish2;
     private javax.swing.JLabel namefish3;
     private javax.swing.JLabel namefish4;
     private javax.swing.JLabel namefish5;
-    private javax.swing.JLabel namefish6;
-    private javax.swing.JLabel namefish7;
-    private javax.swing.JLabel namefish8;
-    private javax.swing.JLabel namefish9;
     private javax.swing.JLabel namefishgeneral;
     private javax.swing.JLabel names;
     private javax.swing.JLabel names1;
@@ -4088,13 +3021,9 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JTextField nombrecientifico1;
     private javax.swing.JTextField nombrecomun;
     private javax.swing.JTextField nombrecomun1;
-    private javax.swing.JTextField nombrepez;
-    private javax.swing.JTextField nombrepez1;
     private javax.swing.JTextField nombres;
     private javax.swing.JTextField nombres1;
-    private javax.swing.JComboBox orden;
     private javax.swing.JComboBox orden1;
-    private javax.swing.JComboBox orden2;
     private javax.swing.JComboBox orden3;
     private javax.swing.JComboBox ordenfamilia;
     private javax.swing.JComboBox ordenfamilia1;
@@ -4106,10 +3035,13 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JPasswordField password1;
     private javax.swing.JTextField passwordConfirm;
     private javax.swing.JPasswordField passwordConfirm1;
+    private javax.swing.JTextArea pez_alimentacion1;
+    private javax.swing.JTextArea pez_curiosidades1;
+    private javax.swing.JTextArea pez_distribucion;
+    private javax.swing.JTextArea pez_distribucion1;
+    private javax.swing.JTextArea pez_generalidades1;
     private javax.swing.JLabel ruta;
     private javax.swing.JLabel rutadisco;
-    private javax.swing.JComboBox subfamilia;
-    private javax.swing.JComboBox subfamilia1;
     private javax.swing.JPanel subfamiliapane;
     private javax.swing.JPanel subfamiliapaneedit;
     private javax.swing.JTable tabla;
@@ -4117,13 +3049,11 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JTable tablaordenes;
     private javax.swing.JTable tablapeces;
     private javax.swing.JTable tablasubfamilias;
-    private javax.swing.JTextArea tamano;
-    private javax.swing.JTextArea tamano1;
-    private javax.swing.JTextArea temperatura;
-    private javax.swing.JTextArea temperatura1;
     private javax.swing.JLabel user;
     private javax.swing.JLabel user1;
     private javax.swing.JTextField username;
     private javax.swing.JTextField username1;
+    private javax.swing.JButton videoInactividad;
+    private javax.swing.JButton videosGenerales;
     // End of variables declaration//GEN-END:variables
 }

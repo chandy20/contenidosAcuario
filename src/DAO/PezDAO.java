@@ -32,8 +32,8 @@ public class PezDAO {
         boolean r = false;
         try {
             stm = cn.getConnection().createStatement();
-            pstm = cn.getConnection().prepareStatement("INSERT INTO `pez`(`pez_nombre`, `pez_nombComun`, `pez_nombCientifico`, `pez_biotopo`, `pez_distribucion`, `pez_forma`, `pez_coloracion`, `pez_tamano`, `pez_temperatura`, `pez_agua`, `pez_alimentacion`, `pez_comportamiento`, `pez_estado`, `subf_id`, `pez_acuario`)"
-                    + " VALUES ('" + pVO.getPez_nombre() + "','" + pVO.getPez_nombComun() + "','" + pVO.getPez_nombCientifico() + "','" + pVO.getPez_biotopo() + "','" + pVO.getPez_distribucion() + "','" + pVO.getPez_forma() + "','" + pVO.getPez_coloracion() + "','" + pVO.getPez_tamano() + "','" + pVO.getPez_tempreatura() + "','" + pVO.getPez_agua() + "','" + pVO.getPez_alimentacion() + "','" + pVO.getPez_comportamiento() + "'," + pVO.isPez_estado() + "," + pVO.getSubf_id() + ",'" + pVO.getPez_acuario() + "')");
+            pstm = cn.getConnection().prepareStatement("INSERT INTO `pez`(`pez_nombComun`, `pez_nombCientifico`, `pez_distribucion`, `pez_alimentacion`, `pez_generalidades`, `pez_curiosidades`, `pez_estado`)"
+                       + " VALUES ('" +  pVO.getPez_nombComun() + "','" + pVO.getPez_nombCientifico() + "','" + pVO.getPez_distribucion() + "','" + pVO.getPez_alimentacion() + "','" + pVO.getPez_generalidades() + "','" + pVO.getPez_curiosidades() +"', 1)");
             if (pstm.executeUpdate() == 1) {
                 r = true;
             }
@@ -48,12 +48,14 @@ public class PezDAO {
     }
 
     public boolean fishUpdate(PezVO pVO) throws SQLException {
+        System.out.println("actualizando la joda");
         boolean r = false;
         try {
             stm = cn.getConnection().createStatement();
-            pstm = cn.getConnection().prepareStatement("UPDATE `pez` SET `pez_nombre` = '" + pVO.getPez_nombre() + "', `pez_nombComun` = '" + pVO.getPez_nombComun() + "', `pez_nombCientifico` = '" + pVO.getPez_nombCientifico() + "', `pez_biotopo` = '" + pVO.getPez_biotopo() + "', `pez_distribucion` = '" + pVO.getPez_distribucion() + "', `pez_forma` = '" + pVO.getPez_forma() + "', `pez_coloracion` = '" + pVO.getPez_coloracion() + "', `pez_tamano` = '" + pVO.getPez_tamano() + "', `pez_temperatura` = '" + pVO.getPez_tempreatura() + "', `pez_agua` = '" + pVO.getPez_agua() + "', `pez_alimentacion` = '" + pVO.getPez_alimentacion() + "', `pez_comportamiento` = '" + pVO.getPez_comportamiento() + "', `subf_id` = " + pVO.getSubf_id() + ", `pez_acuario` = '" + pVO.getPez_acuario() + "' WHERE pez_id =" + pVO.getPez_id());
+            pstm = cn.getConnection().prepareStatement("UPDATE `pez` SET  `pez_nombComun` = '" + pVO.getPez_nombComun() + "', `pez_nombCientifico` = '" + pVO.getPez_nombCientifico() + "', `pez_distribucion` = '" + pVO.getPez_distribucion() + "', `pez_alimentacion` = '" + pVO.getPez_alimentacion() + "', `pez_generalidades` = '" + pVO.getPez_generalidades() + "', `pez_curiosidades` = '" + pVO.getPez_curiosidades() + "' WHERE pez_id =" + pVO.getPez_id());
             if (pstm.executeUpdate() == 1) {
                 r = true;
+                System.out.println(r);
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -93,21 +95,13 @@ public class PezDAO {
             while (res.next()) {
                 pVO = new PezVO();
                 pVO.setPez_id(res.getInt("pez_id"));
-                pVO.setPez_nombre(res.getString("pez_nombre"));
                 pVO.setPez_nombComun(res.getString("pez_nombcomun"));
                 pVO.setPez_nombCientifico(res.getString("pez_nombcientifico"));
-                pVO.setSubf_id(res.getInt("subf_id"));//capturar el id de la subfamilia de la lista
                 pVO.setPez_distribucion(res.getString("pez_distribucion"));
-                pVO.setPez_agua(res.getString("pez_agua"));
                 pVO.setPez_alimentacion(res.getString("pez_alimentacion"));
-                pVO.setPez_biotopo(res.getString("pez_biotopo"));
-                pVO.setPez_coloracion(res.getString("pez_coloracion"));
-                pVO.setPez_comportamiento(res.getString("pez_comportamiento"));
-                pVO.setPez_forma(res.getString("pez_forma"));
-                pVO.setPez_tamano(res.getString("pez_tamano"));
-                pVO.setPez_tempreatura(res.getString("pez_temperatura"));
+                pVO.setPez_generalidades(res.getString("pez_generalidades"));
+                pVO.setPez_curiosidades(res.getString("pez_curiosidades"));
                 pVO.setPez_estado(res.getBoolean("pez_estado"));
-                pVO.setPez_acuario(res.getString("pez_acuario"));
                 fish.add(pVO);
             }
         } catch (SQLException e) {
@@ -124,7 +118,7 @@ public class PezDAO {
         boolean r = false;
         try {
             stm = cn.getConnection().createStatement();
-            pstm = cn.getConnection().prepareStatement("SELECT pez_id FROM pez WHERE pez_nombre LIKE '" + name + "'");
+            pstm = cn.getConnection().prepareStatement("SELECT pez_id FROM pez WHERE pez_nombComun LIKE '" + name + "'");
             res = pstm.executeQuery();
             while (res.next()) {
                 r = true;
@@ -143,7 +137,7 @@ public class PezDAO {
         boolean r = false;
         try {
             stm = cn.getConnection().createStatement();
-            pstm = cn.getConnection().prepareStatement("SELECT pez_id FROM pez WHERE pez_nombre LIKE '" + name + "' AND pez_id <> " + pez + "");
+            pstm = cn.getConnection().prepareStatement("SELECT pez_id FROM pez WHERE pez_nombComun LIKE '" + name + "' AND pez_id <> " + pez + "");
             res = pstm.executeQuery();
             while (res.next()) {
                 r = true;

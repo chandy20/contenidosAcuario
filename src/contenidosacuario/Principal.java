@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import DAO.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -66,6 +67,16 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 400, -1));
 
         username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
+        username.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usernameKeyPressed(evt);
+            }
+        });
         getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 160, 150, -1));
 
         pass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -82,6 +93,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 80, -1));
 
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordKeyPressed(evt);
+            }
+        });
         getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 210, 150, -1));
 
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -99,8 +115,7 @@ public class Principal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_closeMouseClicked
 
-    private void ingresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarMouseClicked
-        // TODO add your handling code here:
+    public void login(){
         String user = username.getText();
         String pass = password.getText();
         UsuarioDAO uDAO = new UsuarioDAO();
@@ -127,7 +142,29 @@ public class Principal extends javax.swing.JFrame {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+    private void ingresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarMouseClicked
+        // TODO add your handling code here:
+        login();
     }//GEN-LAST:event_ingresarMouseClicked
+
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_usernameActionPerformed
+
+    private void usernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyPressed
+        // TODO add your handling code here:
+       if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+           password.requestFocus();
+       }  
+    }//GEN-LAST:event_usernameKeyPressed
+
+    private void passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+           login();
+       } 
+    }//GEN-LAST:event_passwordKeyPressed
 
     /**
      * @param args the command line arguments
